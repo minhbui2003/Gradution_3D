@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as THREE from 'three';
 
 interface EnvelopeProps {
@@ -18,6 +18,16 @@ export function Envelope({
 }: EnvelopeProps) {
   // Flap hinges open upward/backward: 0 (closed) to Math.PI * 0.85 (open)
   const flapAngle = openProgress * Math.PI * 0.85;
+
+  // Thin triangular flat flap geometry
+  const flapShape = useMemo(() => {
+    const s = new THREE.Shape();
+    s.moveTo(-1.4, 0);
+    s.lineTo(1.4, 0);
+    s.lineTo(0, -1.05);
+    s.closePath();
+    return s;
+  }, []);
 
   return (
     <group position={position} rotation={rotation} scale={scale}>
@@ -109,11 +119,10 @@ export function Envelope({
         </group>
       </group>
 
-      {/* 4. Triangular Opening Flap Hinged at top */}
+      {/* 4. Thin Flat Triangular Opening Flap Hinged at top */}
       <group position={[0, 0.95, -0.02]} rotation={[flapAngle, 0, 0]}>
-        {/* Flap body */}
-        <mesh position={[0, -0.55, 0]} rotation={[0, 0, Math.PI]} castShadow>
-          <coneGeometry args={[1.4, 1.1, 3]} />
+        <mesh position={[0, 0, 0]} castShadow>
+          <extrudeGeometry args={[flapShape, { depth: 0.015, bevelEnabled: false }]} />
           <meshStandardMaterial
             color="#FAF7EF"
             roughness={0.4}
@@ -121,9 +130,9 @@ export function Envelope({
             side={THREE.DoubleSide}
           />
         </mesh>
-        {/* Gold border on flap */}
-        <mesh position={[0, -0.55, 0.005]} rotation={[0, 0, Math.PI]}>
-          <coneGeometry args={[1.38, 1.08, 3]} />
+        {/* Subtle gold line along flap edge */}
+        <mesh position={[0, 0, 0.016]}>
+          <extrudeGeometry args={[flapShape, { depth: 0.005, bevelEnabled: false }]} />
           <meshStandardMaterial
             color="#F0C66D"
             metalness={0.8}

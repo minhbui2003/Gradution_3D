@@ -15,11 +15,11 @@ export function Navigation({ progress }: NavigationProps) {
   const activeScene = getActiveScene(progress);
 
   const navItems = [
-    { label: 'Thiệp mời', targetP: 0.00, icon: Sparkles },
-    { label: 'Kỷ niệm', targetP: 0.24, icon: BookOpen },
-    { label: 'Lễ trao bằng', targetP: 0.48, icon: Award },
-    { label: 'Thông tin', targetP: 0.66, icon: Calendar },
-    { label: 'Lời chúc & RSVP', targetP: 0.88, icon: Heart },
+    { id: 'hero', label: 'Thiệp mời', targetP: 0.00, icon: Sparkles },
+    { id: 'campus', label: 'Kỷ niệm', targetP: 0.24, icon: BookOpen },
+    { id: 'ceremony', label: 'Lễ trao bằng', targetP: 0.48, icon: Award },
+    { id: 'event', label: 'Thông tin lễ', targetP: 0.66, icon: Calendar },
+    { id: 'wishes', label: 'Lời chúc & RSVP', targetP: 0.88, icon: Heart },
   ];
 
   return (
@@ -49,10 +49,10 @@ export function Navigation({ progress }: NavigationProps) {
       <nav className="hidden md:flex items-center gap-1.5 glass-panel px-3 py-1.5 rounded-full border border-gold/25">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeScene.name === item.label;
+          const isActive = activeScene.id === item.id;
           return (
             <button
-              key={item.label}
+              key={item.id}
               onClick={() => scrollToProgress(item.targetP)}
               className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all ${
                 isActive

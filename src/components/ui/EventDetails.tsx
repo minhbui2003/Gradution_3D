@@ -5,7 +5,6 @@ import {
   Calendar,
   Clock,
   MapPin,
-  Navigation,
   Download,
   CalendarPlus,
   ExternalLink,
@@ -21,6 +20,22 @@ interface EventDetailsProps {
   progress: number;
 }
 
+// Convert ISO date string to UTC format for iCalendar: YYYYMMDDTHHMMSSZ
+function formatICSDate(isoString: string): string {
+  const d = new Date(isoString);
+  const pad = (n: number) => (n < 10 ? '0' + n : '' + n);
+  return (
+    d.getUTCFullYear() +
+    pad(d.getUTCMonth() + 1) +
+    pad(d.getUTCDate()) +
+    'T' +
+    pad(d.getUTCHours()) +
+    pad(d.getUTCMinutes()) +
+    pad(d.getUTCSeconds()) +
+    'Z'
+  );
+}
+
 export function EventDetails({ progress }: EventDetailsProps) {
   const [showMapModal, setShowMapModal] = useState(false);
 
@@ -28,18 +43,28 @@ export function EventDetails({ progress }: EventDetailsProps) {
   const isVisible = progress >= 0.59 && progress <= 0.81;
   if (!isVisible) return null;
 
-  // Calendar .ics download generator
+  // Derive RFC 5545 dates from central EVENT_DATA config
+  const startUTC = formatICSDate(EVENT_DATA.ceremony.isoDate);
+  const endUTC = formatICSDate(EVENT_DATA.ceremony.isoEndDate);
+
   const downloadICS = () => {
+    const uid = `iuh-grad-${Date.now()}@buitatnhutminh.vn`;
+    const dtstamp = formatICSDate(new Date().toISOString());
+
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'PRODID:-//IUH Graduation//Minh Bui//VI',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
       'BEGIN:VEVENT',
+      `UID:${uid}`,
+      `DTSTAMP:${dtstamp}`,
+      `DTSTART:${startUTC}`,
+      `DTEND:${endUTC}`,
       `SUMMARY:Lễ Tốt Nghiệp Cử Nhân - ${EVENT_DATA.graduate.fullName}`,
-      `DESCRIPTION:Tham dự Lễ tốt nghiệp Cử nhân Công nghệ Thông tin tại Trường ĐH Công nghiệp TP.HCM (IUH)`,
-      `LOCATION:${EVENT_DATA.ceremony.venueName}, ${EVENT_DATA.ceremony.address}`,
-      'DTSTART:20261125T000000Z', // 07:00 UTC+7 -> 00:00 UTC
-      'DTEND:20261125T043000Z',   // 11:30 UTC+7 -> 04:30 UTC
+      `DESCRIPTION:Trân trọng kính mời tham dự Lễ tốt nghiệp Cử nhân Công nghệ Thông tin tại Trường ĐH Công nghiệp TP.HCM (IUH)`,
+      `LOCATION:${EVENT_DATA.ceremony.venueName}\\, ${EVENT_DATA.ceremony.address}`,
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR',
@@ -53,11 +78,12 @@ export function EventDetails({ progress }: EventDetailsProps) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
   };
 
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
     `Lễ Tốt Nghiệp - ${EVENT_DATA.graduate.fullName}`
-  )}&dates=20261125T000000Z/20261125T043000Z&details=${encodeURIComponent(
+  )}&dates=${startUTC}/${endUTC}&details=${encodeURIComponent(
     `Lễ Tốt Nghiệp Cử Nhân CNTT - ${EVENT_DATA.graduate.fullName} tại ${EVENT_DATA.ceremony.hall}`
   )}&location=${encodeURIComponent(EVENT_DATA.ceremony.address)}`;
 
@@ -142,59 +168,76 @@ export function EventDetails({ progress }: EventDetailsProps) {
                   href={EVENT_DATA.ceremony.googleMapsDirectUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-full bg-iuh/30 hover:bg-iuh/50 text-xs text-blue-200 font-medium transition-colors flex items-center gap-1.5"
+                  className="px-3 py-1.5 rounded-full bg-iuh/80 hover:bg-iuh text-xs text-white font-medium transition-colors flex items-center gap-1.5"
                 >
-                  <Navigation size={13} />
-                  <span>Chỉ đường Maps</span>
-                  <ExternalLink size={11} />
+                  <ExternalLink size={13} />
+                  <span>Chỉ đường Google Maps</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Calendar Add Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/10">
-          <span className="text-xs text-gray-300">Lưu lịch vào điện thoại:</span>
+        {/* Add to Calendar Actions */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10">
+          <div className="text-center sm:text-left">
+            <span className="text-xs text-gray-300 block">Đừng quên ngày quan trọng!</span>
+            <span className="text-[11px] text-gray-400">Thêm sự kiện vào lịch cá nhân của bạn</span>
+          </div>
+
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <a
               href={googleCalendarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-iuh hover:bg-iuh-light text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+              className="flex-1 sm:flex-none px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
             >
-              <CalendarPlus size={14} />
+              <CalendarPlus size={14} className="text-gold" />
               <span>Google Calendar</span>
             </a>
             <button
               onClick={downloadICS}
-              className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-gold text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border border-gold/30"
+              className="flex-1 sm:flex-none px-4 py-2 rounded-full bg-gold hover:bg-gold-light text-navy text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-md"
             >
               <Download size={14} />
-              <span>Tải file .ics</span>
+              <span>Tải file .ICS</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Embedded Google Maps Modal */}
+      {/* Google Maps Embed Modal */}
       {showMapModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm pointer-events-auto">
-          <div className="w-full max-w-2xl bg-navy rounded-3xl border border-gold/40 overflow-hidden shadow-2xl flex flex-col">
-            <div className="p-4 flex items-center justify-between border-b border-white/10">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm pointer-events-auto"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowMapModal(false);
+          }}
+        >
+          <div
+            className="w-full max-w-3xl bg-navy rounded-3xl border border-gold/40 p-4 shadow-2xl flex flex-col"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-gold" />
-                <span className="text-sm font-bold text-white">Vị trí Hội trường E4 - Đại học IUH</span>
+                <h4 className="text-sm font-serif font-bold text-white">
+                  Bản đồ vị trí: {EVENT_DATA.ceremony.venueName}
+                </h4>
               </div>
               <button
                 onClick={() => setShowMapModal(false)}
-                className="p-1 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Đóng bản đồ"
+                className="p-1.5 rounded-full text-gray-400 hover:text-white"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
-            <div className="w-full h-80 sm:h-96 bg-gray-900">
+
+            <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-white/10">
               <iframe
+                title="Bản đồ IUH Hội trường E4"
                 src={EVENT_DATA.ceremony.googleMapsEmbedUrl}
                 width="100%"
                 height="100%"
@@ -203,6 +246,19 @@ export function EventDetails({ progress }: EventDetailsProps) {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
+            </div>
+
+            <div className="flex justify-between items-center mt-3 pt-2 text-xs text-gray-300">
+              <span>{EVENT_DATA.ceremony.address}</span>
+              <a
+                href={EVENT_DATA.ceremony.googleMapsDirectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:underline flex items-center gap-1"
+              >
+                <span>Mở trong ứng dụng Google Maps</span>
+                <ExternalLink size={12} />
+              </a>
             </div>
           </div>
         </div>

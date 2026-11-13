@@ -8,7 +8,7 @@ interface CameraRigProps {
   progress: number;
 }
 
-// Keyframe waypoints for camera position and look-at target
+// Keyframe waypoints for camera position and look-at target across all 5 scenes
 const WAYPOINTS = [
   // Scene 1: Hero (0.00 - 0.18) - Framed for cinematic envelope, floating cap, and chibi
   { p: 0.00, pos: new THREE.Vector3(0, 0.4, 4.6), look: new THREE.Vector3(0, 0.2, 0) },
@@ -18,17 +18,18 @@ const WAYPOINTS = [
   { p: 0.16, pos: new THREE.Vector3(0, 0.8, 3.8), look: new THREE.Vector3(0, 0.5, -1.0) },
   { p: 0.18, pos: new THREE.Vector3(0, 1.4, 3.0), look: new THREE.Vector3(0, 1.0, -3.0) },
 
-  // Scene 2: Campus (0.18 - 0.42)
-  { p: 0.24, pos: new THREE.Vector3(0, 1.8, 1.0), look: new THREE.Vector3(0, 1.4, -5.0) },
-  { p: 0.32, pos: new THREE.Vector3(0.5, 1.6, -1.5), look: new THREE.Vector3(0, 1.3, -5.5) },
-  { p: 0.38, pos: new THREE.Vector3(0, 1.5, -3.2), look: new THREE.Vector3(0, 1.2, -6.5) },
-  { p: 0.42, pos: new THREE.Vector3(0, 2.0, -5.0), look: new THREE.Vector3(0, 1.5, -11.0) },
+  // Scene 2: Campus Journey (0.18 - 0.42) - Elevated cinematic walk following chibi through arch
+  { p: 0.22, pos: new THREE.Vector3(0, 1.9, 3.2), look: new THREE.Vector3(0, 1.3, -4.5) },
+  { p: 0.28, pos: new THREE.Vector3(0, 1.8, 2.0), look: new THREE.Vector3(0, 1.3, -4.8) },
+  { p: 0.34, pos: new THREE.Vector3(0, 1.7, 0.8), look: new THREE.Vector3(0, 1.2, -5.2) },
+  { p: 0.38, pos: new THREE.Vector3(0, 1.6, -0.5), look: new THREE.Vector3(0, 1.2, -6.5) },
+  { p: 0.42, pos: new THREE.Vector3(0, 1.8, -3.5), look: new THREE.Vector3(0, 1.4, -11.0) },
 
-  // Scene 3: Ceremony (0.42 - 0.60)
-  { p: 0.46, pos: new THREE.Vector3(0, 2.2, -6.5), look: new THREE.Vector3(0, 1.5, -11.0) },
-  { p: 0.52, pos: new THREE.Vector3(0, 1.7, -7.5), look: new THREE.Vector3(0, 1.3, -11.0) },
-  { p: 0.56, pos: new THREE.Vector3(0, 1.8, -7.5), look: new THREE.Vector3(0, 1.8, -11.0) },
-  { p: 0.60, pos: new THREE.Vector3(0, 1.5, -9.5), look: new THREE.Vector3(0, 1.2, -18.0) },
+  // Scene 3: Ceremony Auditorium (0.42 - 0.60)
+  { p: 0.46, pos: new THREE.Vector3(0, 2.0, -6.0), look: new THREE.Vector3(0, 1.4, -11.0) },
+  { p: 0.52, pos: new THREE.Vector3(0, 1.6, -7.5), look: new THREE.Vector3(0, 1.3, -11.0) },
+  { p: 0.56, pos: new THREE.Vector3(0, 1.6, -7.8), look: new THREE.Vector3(0, 1.5, -11.0) },
+  { p: 0.60, pos: new THREE.Vector3(0, 1.6, -9.5), look: new THREE.Vector3(0, 1.2, -18.0) },
 
   // Scene 4: Event & Venue (0.60 - 0.80)
   { p: 0.66, pos: new THREE.Vector3(0, 1.3, -13.5), look: new THREE.Vector3(0, 1.1, -18.0) },
@@ -36,15 +37,14 @@ const WAYPOINTS = [
   { p: 0.80, pos: new THREE.Vector3(0, 1.5, -16.0), look: new THREE.Vector3(0, 1.2, -25.0) },
 
   // Scene 5: Wishes & RSVP (0.80 - 1.00)
-  { p: 0.88, pos: new THREE.Vector3(0, 1.4, -20.5), look: new THREE.Vector3(0, 1.1, -25.0) },
-  { p: 0.96, pos: new THREE.Vector3(0, 1.3, -21.0), look: new THREE.Vector3(0, 1.0, -25.0) },
-  { p: 1.00, pos: new THREE.Vector3(0, 1.2, -21.5), look: new THREE.Vector3(0, 1.0, -25.0) },
+  { p: 0.86, pos: new THREE.Vector3(0, 1.4, -20.2), look: new THREE.Vector3(0, 1.2, -25.0) },
+  { p: 0.94, pos: new THREE.Vector3(0, 1.3, -20.8), look: new THREE.Vector3(0, 1.1, -25.0) },
+  { p: 1.00, pos: new THREE.Vector3(0, 1.2, -21.2), look: new THREE.Vector3(0, 1.1, -25.0) },
 ];
 
 function getInterpolatedTransform(p: number) {
   const clamped = Math.max(0, Math.min(1, p));
 
-  // Find surrounding waypoints
   let i = 0;
   while (i < WAYPOINTS.length - 1 && WAYPOINTS[i + 1].p <= clamped) {
     i++;
@@ -60,7 +60,7 @@ function getInterpolatedTransform(p: number) {
   const w0 = WAYPOINTS[i];
   const w1 = WAYPOINTS[i + 1];
   const t = (clamped - w0.p) / (w1.p - w0.p);
-  // Smooth cubic ease
+  // Smooth cubic ease for seamless camera motion
   const easeT = t * t * (3 - 2 * t);
 
   const currentPos = new THREE.Vector3().lerpVectors(w0.pos, w1.pos, easeT);

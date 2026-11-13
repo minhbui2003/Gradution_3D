@@ -196,9 +196,12 @@ function RiggedGlbModel({
   );
 }
 
+// Preload rigged model
+useGLTF.preload('/models/graduate_rigged.glb');
+
 export function Graduate(props: GraduateProps) {
   return (
-    <React.Suspense fallback={<ProceduralGraduate {...props} />}>
+    <React.Suspense fallback={null}>
       <RiggedGlbModel {...props} />
     </React.Suspense>
   );

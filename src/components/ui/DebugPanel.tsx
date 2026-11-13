@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Settings, ChevronUp, ChevronDown, CheckCircle } from 'lucide-react';
 import { getActiveScene, SCENES } from '@/config/scenes';
 import { scrollToProgress } from '../experience/ScrollDirector';
@@ -11,7 +11,18 @@ interface DebugPanelProps {
 
 export function DebugPanel({ progress }: DebugPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showDebug, setShowDebug] = useState(false);
   const activeScene = getActiveScene(progress);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isDev = process.env.NODE_ENV !== 'production';
+      const hasDebugParam = window.location.search.includes('debug=true');
+      setShowDebug(isDev || hasDebugParam);
+    }
+  }, []);
+
+  if (!showDebug) return null;
 
   return (
     <div className="fixed bottom-4 left-4 z-40 pointer-events-auto text-xs">
@@ -46,10 +57,10 @@ export function DebugPanel({ progress }: DebugPanelProps) {
               </span>
             </div>
             <div className="flex justify-between items-center pt-1 border-t border-white/5">
-              <span className="text-gray-400">Model:</span>
+              <span className="text-gray-400">Rigged Model:</span>
               <span className="text-green-400 flex items-center gap-1">
                 <CheckCircle size={11} />
-                <span>graduate.glb loaded</span>
+                <span>graduate_rigged.glb</span>
               </span>
             </div>
           </div>
@@ -59,13 +70,17 @@ export function DebugPanel({ progress }: DebugPanelProps) {
               Jump to Chapter:
             </span>
             <div className="grid grid-cols-2 gap-1.5">
-              {SCENES.map((sc) => (
+              {SCENES.map((scene) => (
                 <button
-                  key={sc.id}
-                  onClick={() => scrollToProgress((sc.range[0] + sc.range[1]) / 2)}
-                  className="px-2 py-1 rounded bg-white/5 hover:bg-white/15 text-left text-[10px] text-gray-300 truncate transition-colors"
+                  key={scene.id}
+                  onClick={() => scrollToProgress(scene.range[0] + 0.02)}
+                  className={`px-2 py-1 rounded-lg text-[10px] font-medium transition-colors text-left truncate ${
+                    activeScene.id === scene.id
+                      ? 'bg-iuh text-white'
+                      : 'bg-white/5 hover:bg-white/10 text-gray-300'
+                  }`}
                 >
-                  {sc.name}
+                  {scene.name}
                 </button>
               ))}
             </div>
@@ -74,10 +89,10 @@ export function DebugPanel({ progress }: DebugPanelProps) {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-panel border border-gold/30 text-gray-300 hover:text-gold text-[11px] font-medium shadow-md transition-all"
+          className="glass-panel px-3 py-1.5 rounded-full border border-gold/30 text-gray-300 hover:text-gold flex items-center gap-1.5 shadow-md"
         >
           <Settings size={13} className="text-gold" />
-          <span>p: {progress.toFixed(3)}</span>
+          <span className="font-mono text-[11px]">p: {progress.toFixed(3)}</span>
           <ChevronUp size={13} />
         </button>
       )}
