@@ -1,0 +1,29 @@
+{
+  "status": "template_only_no_glbs_supplied",
+  "models": {
+    "graduate": {"path": "/models/graduate.glb", "required": true, "rigged": true, "clipNames": ["Idle", "Walk", "Wave", "Celebrate"]},
+    "cap": {"path": "/models/cap.glb", "required": true, "rigged": false},
+    "envelopeBody": {"path": "/models/envelope_body.glb", "required": false},
+    "diploma": {"path": "/models/diploma.glb", "required": true},
+    "campusFacade": {"path": "/models/campus_facade.glb", "required": false},
+    "campusGate": {"path": "/models/campus_gate.glb", "required": false},
+    "stageShell": {"path": "/models/stage_shell.glb", "required": false},
+    "podium": {"path": "/models/podium.glb", "required": false}
+  },
+  "sceneRanges": {
+    "invitation": [0, 0.18],
+    "campusStory": [0.18, 0.42],
+    "ceremony": [0.42, 0.60],
+    "eventInformation": [0.60, 0.80],
+    "rsvpWishes": [0.80, 1.00]
+  },
+  "content": {
+    "graduateName": "Bùi Tất Nhựt Minh",
+    "faculty": "Khoa Công nghệ Thông tin",
+    "eventStart": null,
+    "eventEnd": null,
+    "venueName": null,
+    "venueAddress": null,
+    "googleMapsUrl": null
+  }
+}

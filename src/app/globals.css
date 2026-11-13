@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-navy: #10264A;
+  --color-iuh: #2469BC;
+  --color-paper: #F4F7FC;
+  --color-gold: #F0C66D;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b172a;
+  color: #F4F7FC;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  user-select: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2469BC;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F0C66D;
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(16, 38, 74, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(240, 198, 109, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-light {
+  background: rgba(244, 247, 252, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(240, 198, 109, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF1C5 0%, #F0C66D 50%, #C89932 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-gradient-text {
+  background: linear-gradient(135deg, #8FC3FF 0%, #2469BC 50%, #10264A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Cinematic vignettes */
+.vignette-overlay {
+  background: radial-gradient(circle at center, transparent 40%, rgba(10, 23, 46, 0.6) 100%);
+  pointer-events: none;
+}
