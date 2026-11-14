@@ -9,6 +9,7 @@ export interface EventConfig {
     classCode: string;
     studentId: string;
     avatarUrl: string;
+    portraitUrl?: string;
     quote: string;
   };
   ceremony: {
@@ -49,6 +50,7 @@ export const EVENT_DATA: EventConfig = {
     classCode: "DHCNTT",
     studentId: "IUH-GRAD-2026",
     avatarUrl: "/images/chibi_avatar.png",
+    portraitUrl: "/images/portrait.png",
     quote: "Hành trình 4 năm rực rỡ dưới mái trường IUH khép lại để mở ra những chân trời mới. Trân trọng kính mời thầy cô, gia đình và bạn bè cùng đến chia vui!",
   },
   ceremony: {
@@ -61,7 +63,7 @@ export const EVENT_DATA: EventConfig = {
     hall: "Hội trường E4",
     address: "Số 12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, TP. Hồ Chí Minh",
     googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.8581691238473!2d106.68427047583856!3d10.822164158348827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174deb3ef536f31%3A0x8b7bb8b7c956157b!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBUUC5IQ00!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s",
-    googleMapsDirectUrl: "https://maps.app.goo.gl/3q4a7c8d9e",
+    googleMapsDirectUrl: "https://www.google.com/maps/search/?api=1&query=12%20Nguyen%20Van%20Bao%2C%20Go%20Vap%2C%20Ho%20Chi%20Minh%20City%2C%20Vietnam",
   },
   schedule: [
     {

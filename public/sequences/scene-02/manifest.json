@@ -1,0 +1,21 @@
+{
+  "id": "scene-02",
+  "prefix": "/sequences/scene-02/frame-",
+  "extension": "webp",
+  "digits": 3,
+  "frameCount": 150,
+  "width": 1280,
+  "height": 720,
+  "scrollRange": [
+    0.18,
+    0.42
+  ],
+  "filePattern": "/sequences/scene-02/frame-%03d.webp",
+  "firstFrame": "/sequences/scene-02/frame-000.webp",
+  "lastFrame": "/sequences/scene-02/frame-149.webp",
+  "sourceDurationSeconds": 7.93,
+  "sourceFps": 24,
+  "sourceFrames": 190,
+  "frameSampleStrategy": "evenly_spaced_including_exact_first_and_last",
+  "byteSize": 4133814
+}

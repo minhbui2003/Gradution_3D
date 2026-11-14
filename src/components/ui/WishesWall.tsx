@@ -1,7 +1,18 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Heart, Plus, MessageCircle, Send, Sparkles, X, User, Loader2 } from 'lucide-react';
+import {
+  Heart,
+  Plus,
+  Send,
+  Sparkles,
+  X,
+  User,
+  Users,
+  MessageSquare,
+  CheckCircle2,
+  Loader2,
+} from 'lucide-react';
 import { DataAdapter, WishData } from '@/lib/dataAdapter';
 
 interface WishesWallProps {
@@ -11,28 +22,49 @@ interface WishesWallProps {
 
 export function WishesWall({ progress, onOpenRSVP }: WishesWallProps) {
   const [wishes, setWishes] = useState<WishData[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWishModalOpen, setIsWishModalOpen] = useState(false);
+
+  // New wish state
   const [senderName, setSenderName] = useState('');
   const [relation, setRelation] = useState('Bạn bè');
   const [message, setMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState('');
+  const [isSubmittingWish, setIsSubmittingWish] = useState(false);
+  const [wishError, setWishError] = useState('');
+
+  // Embedded RSVP state
+  const [rsvpName, setRsvpName] = useState('');
+  const [rsvpAttendance, setRsvpAttendance] = useState<'yes' | 'no'>('yes');
+  const [rsvpGuests, setRsvpGuests] = useState(1);
+  const [rsvpMessage, setRsvpMessage] = useState('');
+  const [isSubmittingRSVP, setIsSubmittingRSVP] = useState(false);
+  const [rsvpSuccess, setRsvpSuccess] = useState(false);
+  const [rsvpError, setRsvpError] = useState('');
 
   useEffect(() => {
     // Initial fetch from server
     DataAdapter.fetchWishes().then(setWishes);
+
+    // Pre-fill existing RSVP if available
+    const existing = DataAdapter.getSavedRSVP();
+    if (existing) {
+      setRsvpName(existing.fullName);
+      setRsvpAttendance(existing.attendance);
+      setRsvpGuests(existing.guestCount || 1);
+      setRsvpMessage(existing.message || '');
+      setRsvpSuccess(true);
+    }
   }, []);
 
   // Handle ESC key to close modal
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) {
-        setIsModalOpen(false);
+      if (e.key === 'Escape' && isWishModalOpen) {
+        setIsWishModalOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen]);
+  }, [isWishModalOpen]);
 
   // Visible in Scene 5: 0.80 to 1.00
   const isVisible = progress >= 0.79;
@@ -52,11 +84,11 @@ export function WishesWall({ progress, onOpenRSVP }: WishesWallProps) {
   const handleAddWish = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!senderName.trim() || !message.trim()) {
-      setError('Vui lòng điền tên và lời chúc của bạn');
+      setWishError('Vui lòng điền tên và lời chúc của bạn');
       return;
     }
-    setError('');
-    setIsSubmitting(true);
+    setWishError('');
+    setIsSubmittingWish(true);
 
     try {
       const newWish = await DataAdapter.submitWish({
@@ -68,88 +100,251 @@ export function WishesWall({ progress, onOpenRSVP }: WishesWallProps) {
       setWishes((prev) => [newWish, ...prev]);
       setSenderName('');
       setMessage('');
-      setIsModalOpen(false);
-    } catch (err) {
-      setError('Không thể gửi lời chúc lúc này. Vui lòng thử lại.');
+      setIsWishModalOpen(false);
+    } catch {
+      setWishError('Không thể gửi lời chúc lúc này. Vui lòng thử lại.');
     } finally {
-      setIsSubmitting(false);
+      setIsSubmittingWish(false);
+    }
+  };
+
+  const handleEmbeddedRSVPSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!rsvpName.trim()) {
+      setRsvpError('Vui lòng nhập họ và tên của bạn');
+      return;
+    }
+    setRsvpError('');
+    setIsSubmittingRSVP(true);
+
+    const result = await DataAdapter.submitRSVP({
+      fullName: rsvpName.trim(),
+      attendance: rsvpAttendance,
+      guestCount: rsvpAttendance === 'yes' ? rsvpGuests : 0,
+      message: rsvpMessage.trim(),
+    });
+
+    setIsSubmittingRSVP(false);
+
+    if (result.success) {
+      setRsvpSuccess(true);
+    } else {
+      setRsvpError(result.error || 'Có lỗi xảy ra khi lưu RSVP.');
     }
   };
 
   return (
-    <div className="fixed inset-0 pointer-events-none flex flex-col justify-end pb-8 sm:pb-12 px-4 z-20">
-      <div className="w-full max-w-4xl mx-auto flex flex-col pointer-events-auto">
-        {/* Header & Action bar */}
-        <div className="flex items-center justify-between mb-4 glass-panel px-4 py-2.5 rounded-2xl border border-gold/30 shadow-lg">
-          <div className="flex items-center gap-2">
-            <Sparkles size={16} className="text-gold" />
-            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
-              Sổ Lưu Bút Kỷ Niệm ({wishes.length})
-            </h3>
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="px-3.5 py-1.5 rounded-full bg-gold hover:bg-gold-light text-navy text-xs font-bold transition-all shadow-md flex items-center gap-1.5 hover:scale-105 active:scale-95"
-            >
-              <Plus size={14} />
-              <span>Gửi lời chúc</span>
-            </button>
-            <button
-              onClick={onOpenRSVP}
-              className="px-3.5 py-1.5 rounded-full bg-iuh hover:bg-iuh-light text-white text-xs font-semibold transition-all shadow-md hover:scale-105 active:scale-95"
-            >
-              Xác nhận tham dự (RSVP)
-            </button>
-          </div>
-        </div>
-
-        {/* Wishes Cards Grid (Horizontally scrollable / responsive) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-h-56 sm:max-h-64 overflow-y-auto p-1">
-          {wishes.map((item) => (
-            <div
-              key={item.id}
-              className="glass-panel-light text-navy p-3.5 rounded-2xl border border-gold/30 shadow-lg flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-navy truncate max-w-[140px]">
-                    {item.senderName}
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-iuh/10 text-iuh font-semibold">
-                    {item.relation}
-                  </span>
-                </div>
-                <p className="text-xs text-gray-700 leading-snug line-clamp-3">
-                  &ldquo;{item.message}&rdquo;
-                </p>
+    <div className="fixed inset-0 pointer-events-none flex items-end justify-center pb-3 sm:pb-6 px-3 sm:px-6 z-20 overflow-y-auto">
+      <div className="w-full max-w-6xl mx-auto pointer-events-auto">
+        {/* 2-Column Responsive Layout: Left Wishes Wall | Right RSVP Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-end">
+          {/* LEFT: Wishes Wall (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col glass-panel p-3.5 sm:p-5 rounded-3xl border border-gold/40 shadow-2xl backdrop-blur-md">
+            {/* Header & New Wish Button */}
+            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <Sparkles size={16} className="text-gold" />
+                <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
+                  Sổ Lưu Bút Kỷ Niệm ({wishes.length})
+                </h3>
               </div>
+              <button
+                onClick={() => setIsWishModalOpen(true)}
+                className="px-3 py-1 rounded-full bg-gold hover:bg-gold-light text-navy text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center gap-1.5 hover:scale-105 active:scale-95"
+              >
+                <Plus size={13} />
+                <span>Gửi lời chúc</span>
+              </button>
+            </div>
 
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-200/80">
-                <span className="text-[10px] text-gray-400">
-                  {new Date(item.createdAt).toLocaleDateString('vi-VN')}
-                </span>
-                <button
-                  onClick={() => handleLike(item.id)}
-                  aria-label={`Thả tim lời chúc từ ${item.senderName}`}
-                  className="flex items-center gap-1 text-[11px] font-semibold text-red-500 hover:scale-110 active:scale-95 transition-transform"
+            {/* Scrollable Wishes List with Scroll Isolation */}
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-56 sm:max-h-64 overflow-y-auto p-1"
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              {wishes.map((item) => (
+                <div
+                  key={item.id}
+                  className="glass-panel-light text-navy p-3 rounded-2xl border border-gold/30 shadow-md flex flex-col justify-between"
                 >
-                  <Heart size={13} className="fill-red-500" />
-                  <span>{item.likes || 1}</span>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-bold text-navy truncate max-w-[130px]">
+                        {item.senderName}
+                      </span>
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-iuh/10 text-iuh font-semibold">
+                        {item.relation}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-gray-700 leading-snug line-clamp-3">
+                      &ldquo;{item.message}&rdquo;
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-gray-200/80">
+                    <span className="text-[9px] text-gray-400">
+                      {new Date(item.createdAt).toLocaleDateString('vi-VN')}
+                    </span>
+                    <button
+                      onClick={() => handleLike(item.id)}
+                      aria-label={`Thả tim lời chúc từ ${item.senderName}`}
+                      className="flex items-center gap-1 text-[10px] font-semibold text-red-500 hover:scale-110 active:scale-95 transition-transform"
+                    >
+                      <Heart size={12} className="fill-red-500" />
+                      <span>{item.likes || 1}</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: Embedded RSVP Form (5 cols) */}
+          <div
+            className="lg:col-span-5 glass-panel p-3.5 sm:p-5 rounded-3xl border border-gold/40 shadow-2xl backdrop-blur-md flex flex-col"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
+              <div className="flex items-center gap-1.5 text-gold text-xs sm:text-sm font-bold uppercase tracking-wider">
+                <Users size={15} />
+                <span>Xác Nhận Tham Dự (RSVP)</span>
+              </div>
+              <button
+                onClick={onOpenRSVP}
+                className="text-[10px] text-gray-300 hover:text-gold underline"
+              >
+                Mở Drawer
+              </button>
+            </div>
+
+            {rsvpSuccess ? (
+              <div className="p-3 rounded-2xl bg-green-500/15 border border-green-500/30 text-center my-auto">
+                <CheckCircle2 size={24} className="text-green-400 mx-auto mb-1" />
+                <h4 className="text-xs font-bold text-white">Đã nhận phản hồi RSVP!</h4>
+                <p className="text-[11px] text-gray-300 mt-0.5">
+                  Cảm ơn <strong>{rsvpName}</strong>. Nhựt Minh rất mong được đón tiếp bạn!
+                </p>
+                <button
+                  onClick={() => setRsvpSuccess(false)}
+                  className="mt-2 text-[10px] text-gold underline hover:text-gold-light"
+                >
+                  Chỉnh sửa lại phản hồi
                 </button>
               </div>
-            </div>
-          ))}
+            ) : (
+              <form onSubmit={handleEmbeddedRSVPSubmit} className="space-y-2 text-left">
+                {rsvpError && (
+                  <p className="text-[10px] text-red-400 bg-red-950/40 p-1.5 rounded-lg">
+                    {rsvpError}
+                  </p>
+                )}
+
+                {/* Name */}
+                <div>
+                  <label className="text-[10px] uppercase font-bold text-gray-300 block mb-0.5">
+                    Họ và tên *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={rsvpName}
+                    onChange={(e) => setRsvpName(e.target.value)}
+                    placeholder="Nguyễn Văn A"
+                    className="w-full px-2.5 py-1.5 text-xs rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                  />
+                </div>
+
+                {/* Attendance choice */}
+                <div className="grid grid-cols-2 gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setRsvpAttendance('yes')}
+                    className={`py-1.5 px-2 rounded-xl text-[11px] font-semibold border transition-all ${
+                      rsvpAttendance === 'yes'
+                        ? 'bg-iuh text-white border-iuh shadow-sm'
+                        : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
+                    }`}
+                  >
+                    ✓ Sẽ có mặt
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setRsvpAttendance('no')}
+                    className={`py-1.5 px-2 rounded-xl text-[11px] font-semibold border transition-all ${
+                      rsvpAttendance === 'no'
+                        ? 'bg-red-900/60 text-red-200 border-red-500'
+                        : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
+                    }`}
+                  >
+                    ✕ Không thể đến
+                  </button>
+                </div>
+
+                {/* Guests & Message */}
+                {rsvpAttendance === 'yes' && (
+                  <div className="flex items-center gap-2">
+                    <label className="text-[10px] text-gray-300 uppercase font-bold shrink-0">
+                      Khách đi cùng:
+                    </label>
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3].map((num) => (
+                        <button
+                          key={num}
+                          type="button"
+                          onClick={() => setRsvpGuests(num)}
+                          className={`w-6 h-6 rounded-lg text-[10px] font-bold border transition-all ${
+                            rsvpGuests === num
+                              ? 'bg-gold text-navy border-gold'
+                              : 'bg-white/5 text-gray-300 border-white/10'
+                          }`}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  <input
+                    type="text"
+                    value={rsvpMessage}
+                    onChange={(e) => setRsvpMessage(e.target.value)}
+                    placeholder="Lời nhắn gửi Minh (không bắt buộc)..."
+                    className="w-full px-2.5 py-1 text-xs rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                  />
+                </div>
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  disabled={isSubmittingRSVP}
+                  className="w-full py-1.5 rounded-full bg-gradient-to-r from-iuh to-iuh-dark hover:from-iuh-light text-white text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-all"
+                >
+                  {isSubmittingRSVP ? (
+                    <Loader2 size={13} className="animate-spin" />
+                  ) : (
+                    <Send size={13} />
+                  )}
+                  <span>Xác nhận tham dự</span>
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Add Wish Modal */}
-      {isModalOpen && (
+      {/* New Wish Modal */}
+      {isWishModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm pointer-events-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm pointer-events-auto"
           onClick={(e) => {
-            if (e.target === e.currentTarget) setIsModalOpen(false);
+            if (e.target === e.currentTarget) setIsWishModalOpen(false);
           }}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
           <div
             className="w-full max-w-md bg-navy rounded-3xl border border-gold/40 p-5 shadow-2xl flex flex-col"
@@ -158,101 +353,88 @@ export function WishesWall({ progress, onOpenRSVP }: WishesWallProps) {
           >
             <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
               <h4 className="text-sm font-serif font-bold text-white flex items-center gap-2">
-                <MessageCircle size={16} className="text-gold" />
-                <span>Viết lời chúc gửi Nhựt Minh</span>
+                <Sparkles size={16} className="text-gold" />
+                <span>Gửi Lời Chúc Mừng Tốt Nghiệp</span>
               </h4>
               <button
-                onClick={() => setIsModalOpen(false)}
-                aria-label="Đóng bảng viết lời chúc"
+                onClick={() => setIsWishModalOpen(false)}
                 className="p-1 rounded-full text-gray-400 hover:text-white"
               >
                 <X size={18} />
               </button>
             </div>
 
-            {error && (
-              <div className="p-2.5 rounded-xl bg-red-500/20 border border-red-500/40 text-red-200 text-xs mb-3">
-                {error}
+            {wishError && (
+              <div className="mb-3 p-2 rounded-xl bg-red-500/20 border border-red-500/40 text-xs text-red-300">
+                {wishError}
               </div>
             )}
 
-            <form onSubmit={handleAddWish} className="space-y-3">
+            <form onSubmit={handleAddWish} className="space-y-3 text-left">
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">
-                  Họ và tên của bạn <span className="text-red-400">*</span>
+                <label className="text-xs uppercase font-bold text-gray-300 block mb-1">
+                  Tên của bạn *
                 </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={senderName}
-                    onChange={(e) => setSenderName(e.target.value)}
-                    placeholder="Ví dụ: Lê Thị B"
-                    required
-                    className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 focus:border-gold focus:outline-none text-white text-xs sm:text-sm pl-9"
-                  />
-                  <User size={15} className="absolute left-3 top-2.5 text-gray-400" />
-                </div>
+                <input
+                  type="text"
+                  required
+                  value={senderName}
+                  onChange={(e) => setSenderName(e.target.value)}
+                  placeholder="Ví dụ: Anh Tuấn, Cô Lan, Nhóm bạn..."
+                  className="w-full px-3 py-2 text-xs rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">
+                <label className="text-xs uppercase font-bold text-gray-300 block mb-1">
                   Mối quan hệ
                 </label>
                 <select
                   value={relation}
                   onChange={(e) => setRelation(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-navy-deep border border-white/15 focus:border-gold focus:outline-none text-white text-xs sm:text-sm"
+                  className="w-full px-3 py-2 text-xs rounded-xl bg-navy border border-white/20 text-white focus:outline-none focus:border-gold"
                 >
-                  <option value="Gia đình">Gia đình / Người thân</option>
-                  <option value="Thầy Cô">Thầy Cô / Giảng viên</option>
                   <option value="Bạn bè">Bạn bè</option>
+                  <option value="Thầy Cô">Thầy Cô</option>
+                  <option value="Gia đình">Gia đình</option>
                   <option value="Đồng nghiệp">Đồng nghiệp</option>
-                  <option value="Khác">Khách mời</option>
+                  <option value="Khác">Khác</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">
-                  Lời chúc mừng <span className="text-red-400">*</span>
+                <label className="text-xs uppercase font-bold text-gray-300 block mb-1">
+                  Lời chúc gửi đến Nhựt Minh *
                 </label>
                 <textarea
+                  required
+                  rows={3}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  rows={4}
-                  maxLength={500}
-                  required
-                  placeholder="Gửi lời chúc mừng, nhắn nhủ đến tân cử nhân..."
-                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 focus:border-gold focus:outline-none text-white text-xs sm:text-sm resize-none"
+                  placeholder="Chúc bạn luôn thành công trên con đường sự nghiệp..."
+                  className="w-full px-3 py-2 text-xs rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
                 />
-                <span className="text-[10px] text-gray-400 block text-right">
-                  {message.length}/500 ký tự
-                </span>
               </div>
 
-              <div className="pt-2 flex justify-end gap-2">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/10">
                 <button
                   type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-full border border-white/20 text-gray-300 text-xs hover:bg-white/5"
+                  onClick={() => setIsWishModalOpen(false)}
+                  className="px-4 py-2 rounded-full border border-white/20 text-xs text-gray-300 hover:bg-white/5 transition-colors"
                 >
                   Hủy
                 </button>
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="px-5 py-2 rounded-full bg-gold hover:bg-gold-light text-navy text-xs font-bold transition-all shadow-md flex items-center gap-1.5 disabled:opacity-50"
+                  disabled={isSubmittingWish}
+                  className="px-5 py-2 rounded-full bg-gold hover:bg-gold-light text-navy text-xs font-bold transition-all shadow-md flex items-center gap-1.5"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 size={13} className="animate-spin" />
-                      <span>Đang gửi...</span>
-                    </>
+                  {isSubmittingWish ? (
+                    <Loader2 size={14} className="animate-spin" />
                   ) : (
-                    <>
-                      <Send size={13} />
-                      <span>Gửi lời chúc</span>
-                    </>
+                    <Send size={14} />
                   )}
+                  <span>Gửi lời chúc</span>
                 </button>
               </div>
             </form>

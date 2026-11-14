@@ -79,34 +79,26 @@ export class DataAdapter {
 
   // Submit new wish to shared server
   static async submitWish(wish: Omit<WishData, 'id' | 'createdAt' | 'likes'>): Promise<WishData> {
-    const fallbackWish: WishData = {
-      ...wish,
-      id: `wish-${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      likes: 1,
-    };
-
+    const res = await fetch('/api/wishes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(wish),
+    });
+    let data: { success?: boolean; wish?: WishData; error?: string };
     try {
-      const res = await fetch('/api/wishes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(wish),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success && data.wish) {
-          const current = this.getWishesSync();
-          localStorage.setItem(STORAGE_KEYS.WISHES, JSON.stringify([data.wish, ...current]));
-          return data.wish;
-        }
-      }
-    } catch (err) {
-      console.warn('Network error saving wish, caching locally:', err);
+      data = await res.json();
+    } catch {
+      throw new Error('Máy chủ trả về dữ liệu không hợp lệ.');
     }
-
+    if (!res.ok || !data.success || !data.wish) {
+      throw new Error(data.error || 'Không thể lưu lời chúc trên máy chủ.');
+    }
     const current = this.getWishesSync();
-    localStorage.setItem(STORAGE_KEYS.WISHES, JSON.stringify([fallbackWish, ...current]));
-    return fallbackWish;
+    localStorage.setItem(
+      STORAGE_KEYS.WISHES,
+      JSON.stringify([data.wish, ...current])
+    );
+    return data.wish;
   }
 
   // Like wish with server update

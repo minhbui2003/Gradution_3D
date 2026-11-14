@@ -13,6 +13,8 @@ import {
   Award,
   GraduationCap,
   Heart,
+  Maximize2,
+  Navigation as NavigationIcon,
 } from 'lucide-react';
 import { EVENT_DATA } from '@/config/event';
 
@@ -37,7 +39,7 @@ function formatICSDate(isoString: string): string {
 }
 
 export function EventDetails({ progress }: EventDetailsProps) {
-  const [showMapModal, setShowMapModal] = useState(false);
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
 
   // Visible in Scene 4: 0.60 to 0.80
   const isVisible = progress >= 0.59 && progress <= 0.81;
@@ -62,9 +64,9 @@ export function EventDetails({ progress }: EventDetailsProps) {
       `DTSTAMP:${dtstamp}`,
       `DTSTART:${startUTC}`,
       `DTEND:${endUTC}`,
-      `SUMMARY:Lễ Tốt Nghiệp Cử Nhân - ${EVENT_DATA.graduate.fullName}`,
-      `DESCRIPTION:Trân trọng kính mời tham dự Lễ tốt nghiệp Cử nhân Công nghệ Thông tin tại Trường ĐH Công nghiệp TP.HCM (IUH)`,
-      `LOCATION:${EVENT_DATA.ceremony.venueName}\\, ${EVENT_DATA.ceremony.address}`,
+      `SUMMARY:${EVENT_DATA.ceremony.title} - ${EVENT_DATA.graduate.fullName}`,
+      `DESCRIPTION:Trân trọng kính mời tham dự Lễ tốt nghiệp cử nhân của ${EVENT_DATA.graduate.fullName} tại ${EVENT_DATA.ceremony.hall}.`,
+      `LOCATION:${EVENT_DATA.ceremony.venueName}, ${EVENT_DATA.ceremony.address}`,
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR',
@@ -74,148 +76,183 @@ export function EventDetails({ progress }: EventDetailsProps) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'Le_Tot_Nghiep_Bui_Tat_Nhut_Minh.ics');
+    link.download = `Le_Tot_Nghiep_${EVENT_DATA.graduate.nickName || 'Minh'}_2026.ics`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    URL.revokeObjectURL(url);
   };
 
+  // Google Calendar Web Intent Link
+  const gCalDates = `${startUTC}/${endUTC}`;
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    `Lễ Tốt Nghiệp - ${EVENT_DATA.graduate.fullName}`
-  )}&dates=${startUTC}/${endUTC}&details=${encodeURIComponent(
-    `Lễ Tốt Nghiệp Cử Nhân CNTT - ${EVENT_DATA.graduate.fullName} tại ${EVENT_DATA.ceremony.hall}`
-  )}&location=${encodeURIComponent(EVENT_DATA.ceremony.address)}`;
+    `${EVENT_DATA.ceremony.title} - ${EVENT_DATA.graduate.fullName}`
+  )}&dates=${gCalDates}&details=${encodeURIComponent(
+    `Trân trọng kính mời tham dự Lễ tốt nghiệp cử nhân của ${EVENT_DATA.graduate.fullName}.\nĐịa điểm: ${EVENT_DATA.ceremony.hall}\nĐịa chỉ: ${EVENT_DATA.ceremony.address}`
+  )}&location=${encodeURIComponent(
+    `${EVENT_DATA.ceremony.venueName}, ${EVENT_DATA.ceremony.address}`
+  )}`;
 
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
+  const getIcon = (name: string) => {
+    switch (name) {
       case 'camera':
-        return <Camera size={16} className="text-iuh" />;
+        return <Camera size={14} className="text-gold" />;
       case 'award':
-        return <Award size={16} className="text-gold" />;
+        return <Award size={14} className="text-gold" />;
       case 'graduation-cap':
-        return <GraduationCap size={16} className="text-iuh" />;
+        return <GraduationCap size={14} className="text-gold" />;
       case 'heart':
-        return <Heart size={16} className="text-red-400" />;
+        return <Heart size={14} className="text-gold" />;
       default:
-        return <Clock size={16} className="text-gray-400" />;
+        return <Clock size={14} className="text-gray-400" />;
     }
   };
 
   return (
-    <div className="fixed inset-0 pointer-events-none flex items-center justify-center p-4 z-20">
-      <div className="w-full max-w-2xl mx-auto glass-panel p-5 sm:p-7 rounded-3xl border border-gold/40 shadow-2xl pointer-events-auto max-h-[88vh] overflow-y-auto">
-        {/* Header */}
-        <div className="text-center mb-5">
-          <span className="inline-block px-3 py-1 rounded-full bg-gold/15 text-gold text-xs font-semibold uppercase tracking-wider mb-2">
-            Thông tin chi tiết buổi lễ
+    <div className="fixed inset-0 pointer-events-none flex items-center justify-center p-3 sm:p-6 z-20 overflow-y-auto">
+      <div className="w-full max-w-5xl mx-auto glass-panel p-4 sm:p-6 rounded-3xl border border-gold/40 shadow-2xl pointer-events-auto max-h-[90vh] overflow-y-auto backdrop-blur-md">
+        {/* Section Header */}
+        <div className="text-center mb-4 pb-2 border-b border-white/10">
+          <span className="inline-block px-3 py-0.5 rounded-full bg-gold/15 text-gold text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-1">
+            Thông tin Lễ Tốt Nghiệp & Bản đồ Chỉ đường
           </span>
-          <h2 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-wide">
+          <h2 className="text-lg sm:text-2xl font-serif font-bold text-white tracking-wide">
             {EVENT_DATA.ceremony.title}
           </h2>
-          <p className="text-xs sm:text-sm text-gray-300 mt-1">
+          <p className="text-xs sm:text-sm text-gray-300 mt-0.5">
             {EVENT_DATA.ceremony.dateDisplay} • {EVENT_DATA.ceremony.timeDisplay}
           </p>
         </div>
 
-        {/* Schedule timeline */}
-        <div className="mb-6 space-y-3">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-gold flex items-center gap-2">
-            <Clock size={14} />
-            <span>Lịch trình buổi lễ</span>
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            {EVENT_DATA.schedule.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/30 transition-colors flex items-start gap-3"
+        {/* 2-Column Responsive Layout: Left Timeline & Actions | Right Real Google Maps */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-start">
+          {/* LEFT: Timeline & Calendar Actions */}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-gold flex items-center gap-1.5">
+              <Clock size={14} />
+              <span>Lịch trình buổi lễ</span>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {EVENT_DATA.schedule.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-2.5 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/30 transition-colors flex items-start gap-2.5"
+                >
+                  <div className="p-1.5 rounded-xl bg-navy/80 shrink-0 mt-0.5 border border-white/10">
+                    {getIcon(item.icon)}
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-gold block">{item.time}</span>
+                    <h5 className="text-[11px] font-semibold text-white">{item.title}</h5>
+                    <p className="text-[10px] text-gray-300 leading-tight mt-0.5">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Venue Address Box */}
+            <div className="p-3 rounded-2xl bg-gradient-to-br from-navy-deep to-navy border border-gold/30 text-left">
+              <div className="flex items-start gap-2.5">
+                <div className="p-2 rounded-xl bg-iuh/20 text-gold shrink-0">
+                  <MapPin size={18} />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-xs font-bold text-white">{EVENT_DATA.ceremony.venueName}</h4>
+                  <p className="text-[11px] text-gray-300 mt-0.5">{EVENT_DATA.ceremony.address}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Add to Calendar Buttons */}
+            <div className="flex items-center gap-2 pt-1">
+              <a
+                href={googleCalendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2 px-3 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 border border-white/10"
               >
-                <div className="p-2 rounded-xl bg-navy/80 shrink-0 mt-0.5 border border-white/10">
-                  {getIcon(item.icon)}
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-gold block">{item.time}</span>
-                  <h5 className="text-xs font-semibold text-white">{item.title}</h5>
-                  <p className="text-[11px] text-gray-300 leading-snug mt-0.5">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Venue Box */}
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-navy-deep to-navy border border-gold/30 mb-6">
-          <div className="flex items-start gap-3">
-            <div className="p-2.5 rounded-xl bg-iuh/20 text-iuh shrink-0">
-              <MapPin size={22} className="text-gold" />
-            </div>
-            <div className="flex-1">
-              <h4 className="text-sm font-bold text-white">{EVENT_DATA.ceremony.venueName}</h4>
-              <p className="text-xs text-gray-300 mt-0.5">{EVENT_DATA.ceremony.address}</p>
-
-              {/* Venue Action Buttons */}
-              <div className="flex flex-wrap items-center gap-2 mt-3">
-                <button
-                  onClick={() => setShowMapModal(true)}
-                  className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs text-gray-200 font-medium transition-colors flex items-center gap-1.5"
-                >
-                  <MapPin size={13} />
-                  <span>Xem bản đồ vệ tinh</span>
-                </button>
-                <a
-                  href={EVENT_DATA.ceremony.googleMapsDirectUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-full bg-iuh/80 hover:bg-iuh text-xs text-white font-medium transition-colors flex items-center gap-1.5"
-                >
-                  <ExternalLink size={13} />
-                  <span>Chỉ đường Google Maps</span>
-                </a>
-              </div>
+                <CalendarPlus size={13} className="text-gold" />
+                <span>Google Calendar</span>
+              </a>
+              <button
+                onClick={downloadICS}
+                className="flex-1 py-2 px-3 rounded-full bg-gold hover:bg-gold-light text-navy text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-md"
+              >
+                <Download size={13} />
+                <span>Tải file .ICS</span>
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* Add to Calendar Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10">
-          <div className="text-center sm:text-left">
-            <span className="text-xs text-gray-300 block">Đừng quên ngày quan trọng!</span>
-            <span className="text-[11px] text-gray-400">Thêm sự kiện vào lịch cá nhân của bạn</span>
-          </div>
+          {/* RIGHT: Real Interactive Google Maps Embed with Scroll Isolation */}
+          <div
+            className="flex flex-col gap-2 rounded-2xl p-2.5 bg-navy-deep/80 border border-gold/30 shadow-inner"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-1">
+              <div className="flex items-center gap-1.5 text-gold text-xs font-bold uppercase tracking-wider">
+                <MapPin size={13} />
+                <span>Bản đồ vị trí IUH Hội trường E4</span>
+              </div>
+              <button
+                onClick={() => setIsMapExpanded(true)}
+                className="p-1 rounded-lg text-gray-400 hover:text-white transition-colors"
+                title="Phóng to bản đồ"
+              >
+                <Maximize2 size={13} />
+              </button>
+            </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <a
-              href={googleCalendarUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-none px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
-            >
-              <CalendarPlus size={14} className="text-gold" />
-              <span>Google Calendar</span>
-            </a>
-            <button
-              onClick={downloadICS}
-              className="flex-1 sm:flex-none px-4 py-2 rounded-full bg-gold hover:bg-gold-light text-navy text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-md"
-            >
-              <Download size={14} />
-              <span>Tải file .ICS</span>
-            </button>
+            {/* Maps Iframe */}
+            <div className="relative w-full h-56 sm:h-64 rounded-xl overflow-hidden border border-white/15 bg-navy shadow-md">
+              <iframe
+                title="Bản đồ IUH Hội trường E4"
+                src={EVENT_DATA.ceremony.googleMapsEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
+            {/* Direct Directions Action Link */}
+            <div className="flex items-center justify-between px-1 pt-1 text-[11px]">
+              <span className="text-gray-300 truncate max-w-[200px]">
+                {EVENT_DATA.ceremony.address}
+              </span>
+              <a
+                href={EVENT_DATA.ceremony.googleMapsDirectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:underline flex items-center gap-1 font-semibold shrink-0"
+              >
+                <NavigationIcon size={11} />
+                <span>Chỉ đường trực tiếp</span>
+                <ExternalLink size={10} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Google Maps Embed Modal */}
-      {showMapModal && (
+      {/* Expanded Map Fullscreen Modal */}
+      {isMapExpanded && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm pointer-events-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md pointer-events-auto"
           onClick={(e) => {
-            if (e.target === e.currentTarget) setShowMapModal(false);
+            if (e.target === e.currentTarget) setIsMapExpanded(false);
           }}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
           <div
-            className="w-full max-w-3xl bg-navy rounded-3xl border border-gold/40 p-4 shadow-2xl flex flex-col"
+            className="w-full max-w-4xl bg-navy rounded-3xl border border-gold/50 p-4 shadow-2xl flex flex-col"
             role="dialog"
             aria-modal="true"
           >
@@ -227,15 +264,15 @@ export function EventDetails({ progress }: EventDetailsProps) {
                 </h4>
               </div>
               <button
-                onClick={() => setShowMapModal(false)}
+                onClick={() => setIsMapExpanded(false)}
                 aria-label="Đóng bản đồ"
                 className="p-1.5 rounded-full text-gray-400 hover:text-white"
               >
-                <X size={18} />
+                <X size={20} />
               </button>
             </div>
 
-            <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-white/10">
+            <div className="relative w-full h-80 sm:h-[450px] rounded-2xl overflow-hidden border border-white/10">
               <iframe
                 title="Bản đồ IUH Hội trường E4"
                 src={EVENT_DATA.ceremony.googleMapsEmbedUrl}
@@ -254,7 +291,7 @@ export function EventDetails({ progress }: EventDetailsProps) {
                 href={EVENT_DATA.ceremony.googleMapsDirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gold hover:underline flex items-center gap-1"
+                className="text-gold hover:underline flex items-center gap-1 font-semibold"
               >
                 <span>Mở trong ứng dụng Google Maps</span>
                 <ExternalLink size={12} />
