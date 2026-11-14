@@ -1,91 +1,86 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-interface WishItem {
-  id: string;
-  senderName: string;
-  relation: string;
-  message: string;
-  createdAt: string;
-  likes: number;
-}
-
-const DATA_FILE = path.join(process.cwd(), 'data', 'wishes.json');
-
-function readWishes(): WishItem[] {
-  try {
-    if (!fs.existsSync(DATA_FILE)) {
-      return [];
-    }
-    const data = fs.readFileSync(DATA_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (err) {
-    console.error('Error reading wishes:', err);
-    return [];
-  }
-}
-
-function writeWishes(wishes: WishItem[]) {
-  try {
-    const dir = path.dirname(DATA_FILE);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(DATA_FILE, JSON.stringify(wishes, null, 2), 'utf8');
-  } catch (err) {
-    console.error('Error writing wishes:', err);
-  }
-}
+import {
+  checkRateLimit,
+  getClientIp,
+  sanitizeText,
+} from '@/lib/security';
+import {
+  fetchWishesRecords,
+  saveWishRecord,
+  updateWishLike,
+  WishRecord,
+} from '@/lib/storage';
 
 // GET /api/wishes - Retrieve all wishes
 export async function GET() {
-  const wishes = readWishes();
-  return NextResponse.json({ success: true, wishes });
+  try {
+    const wishes = await fetchWishesRecords();
+    return NextResponse.json({ success: true, wishes });
+  } catch (err) {
+    console.error('Error fetching wishes:', err);
+    return NextResponse.json(
+      { success: false, error: 'Không thể tải danh sách lời chúc' },
+      { status: 500 }
+    );
+  }
 }
 
-// POST /api/wishes - Submit a new wish
+// POST /api/wishes - Submit a new wish with anti-spam & rate limiting
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+
+    // Rate limit: Max 5 wishes per 10 minutes per IP
+    if (!checkRateLimit(`wish:${ip}`, 5, 10 * 60 * 1000)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Bạn đã gửi lời chúc quá thường xuyên. Vui lòng thử lại sau 10 phút.',
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
-    const { senderName, relation, message } = body;
+    const { senderName, relation, message, honeypot } = body;
 
-    if (!senderName || typeof senderName !== 'string' || !senderName.trim()) {
+    // Honeypot spam trap
+    if (honeypot) {
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
+
+    const cleanName = sanitizeText(senderName, 50);
+    if (!cleanName || cleanName.length < 2) {
       return NextResponse.json(
-        { success: false, error: 'Vui lòng nhập họ và tên của bạn' },
+        { success: false, error: 'Vui lòng nhập họ và tên của bạn (tối thiểu 2 ký tự)' },
         { status: 400 }
       );
     }
 
-    if (!message || typeof message !== 'string' || !message.trim()) {
+    const cleanMessage = sanitizeText(message, 500);
+    if (!cleanMessage || cleanMessage.length < 2) {
       return NextResponse.json(
-        { success: false, error: 'Vui lòng nhập nội dung lời chúc' },
+        { success: false, error: 'Vui lòng nhập nội dung lời chúc hợp lệ' },
         { status: 400 }
       );
     }
 
-    if (message.length > 500) {
-      return NextResponse.json(
-        { success: false, error: 'Lời chúc không được vượt quá 500 ký tự' },
-        { status: 400 }
-      );
-    }
+    const cleanRelation = sanitizeText(relation, 30) || 'Bạn bè';
 
-    const newWish: WishItem = {
+    const newWish: WishRecord = {
       id: `wish-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-      senderName: senderName.trim().slice(0, 50),
-      relation: typeof relation === 'string' && relation.trim() ? relation.trim().slice(0, 30) : 'Bạn bè',
-      message: message.trim(),
+      senderName: cleanName,
+      relation: cleanRelation,
+      message: cleanMessage,
       createdAt: new Date().toISOString(),
       likes: 1,
     };
 
-    const wishes = readWishes();
-    wishes.unshift(newWish);
-    writeWishes(wishes);
+    await saveWishRecord(newWish);
 
     return NextResponse.json({ success: true, wish: newWish }, { status: 201 });
   } catch (err) {
+    console.error('Error saving wish:', err);
     return NextResponse.json(
       { success: false, error: 'Máy chủ xử lý lỗi, vui lòng thử lại sau' },
       { status: 500 }
@@ -93,9 +88,19 @@ export async function POST(request: Request) {
   }
 }
 
-// PATCH /api/wishes - Like a wish
+// PATCH /api/wishes - Like a wish with rate limiting
 export async function PATCH(request: Request) {
   try {
+    const ip = getClientIp(request);
+
+    // Rate limit: Max 30 likes per minute per IP
+    if (!checkRateLimit(`like:${ip}`, 30, 60 * 1000)) {
+      return NextResponse.json(
+        { success: false, error: 'Thao tác quá nhanh, vui lòng chờ một lát.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { id } = body;
 
@@ -103,19 +108,12 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ success: false, error: 'ID không hợp lệ' }, { status: 400 });
     }
 
-    const wishes = readWishes();
-    let newLikes = 0;
-    const updated = wishes.map((w) => {
-      if (w.id === id) {
-        newLikes = (w.likes || 0) + 1;
-        return { ...w, likes: newLikes };
-      }
-      return w;
-    });
+    const cleanId = sanitizeText(id, 60);
+    const newLikes = await updateWishLike(cleanId);
 
-    writeWishes(updated);
-    return NextResponse.json({ success: true, id, likes: newLikes });
+    return NextResponse.json({ success: true, id: cleanId, likes: newLikes });
   } catch (err) {
+    console.error('Error liking wish:', err);
     return NextResponse.json({ success: false, error: 'Không thể cập nhật tim' }, { status: 500 });
   }
 }
