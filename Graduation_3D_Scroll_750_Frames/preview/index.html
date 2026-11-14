@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Graduation 3D — Scroll frames preview</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:#081629;color:#f5f8ff;font-family:system-ui,sans-serif}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+#scrollTrack{height:700vh;position:relative;pointer-events:none}
+#panel{position:fixed;z-index:10;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:start;gap:12px;pointer-events:none}
+.label{background:#091b37dc;border:1px solid #b59f6f55;padding:11px 15px;border-radius:14px;font-size:14px;backdrop-filter:blur(12px)}
+#help{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:10;background:#091b37de;border:1px solid #b59f6f55;padding:10px 16px;border-radius:20px;font-size:12px;pointer-events:none}
+#bar{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,#2469bc,#f0c66d);z-index:20}
+@media(max-width:600px){.label{font-size:11px;padding:8px}.hide-mobile{display:none}}
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas><div id="scrollTrack"></div><div id="bar"></div>
+<div id="panel"><div class="label" id="sceneLabel">Đang tải scene-01...</div><div class="label hide-mobile" id="frameLabel">Frame 000/149</div></div>
+<div id="help">Cuộn chuột / kéo trang để xem 5 cảnh • Cuộn lên để tua ngược</div>
+<script>
+(() => {
+ const ranges=[[0,.18],[.18,.42],[.42,.60],[.60,.80],[.80,1]];
+ const names=['Thiệp mời','Hành trình 4 năm','Lễ trao bằng','Thông tin / Google Maps','Lời chúc / RSVP'];
+ const canvas=document.getElementById('canvas'); const ctx=canvas.getContext('2d',{alpha:false});
+ const cache=new Map();const pending=new Set();const cacheLimit=28;const pendingLimit=5;let current={scene:0,frame:0};let previous=null;
+ const url=(s,f)=>`../public/sequences/scene-${String(s+1).padStart(2,'0')}/frame-${String(f).padStart(3,'0')}.webp`;
+ const parse=p=>{let s=ranges.findIndex((r,i)=>p<r[1]||i===4);const [a,b]=ranges[s];return {scene:s,frame:Math.round(Math.min(1,Math.max(0,(p-a)/(b-a)))*149)};};
+ const size=()=>{const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);draw();};
+ function draw(){const {scene,frame}=current;let img=cache.get(url(scene,frame));
+  if(!img){for(let k=1;k<12;k++){img=cache.get(url(scene,frame-k))||cache.get(url(scene,frame+k));if(img)break;}}
+  img=img||previous;ctx.fillStyle='#07152a';ctx.fillRect(0,0,canvas.width,canvas.height);
+  if(img&&img.naturalWidth){const k=Math.max(canvas.width/img.naturalWidth,canvas.height/img.naturalHeight),w=img.naturalWidth*k,h=img.naturalHeight*k;ctx.drawImage(img,(canvas.width-w)/2,(canvas.height-h)/2,w,h);previous=img;}}
+ function request(s,f){if(s<0||s>4||f<0||f>149)return;let path=url(s,f);if(cache.has(path)||pending.has(path)||pending.size>=pendingLimit)return;
+  const img=new Image();pending.add(path);img.onload=()=>{pending.delete(path);cache.delete(path);cache.set(path,img);while(cache.size>cacheLimit)cache.delete(cache.keys().next().value);draw();preload();};img.onerror=()=>{pending.delete(path)};img.src=path;}
+ function preload(){const {scene,frame}=current;[0,-1,1,-2,2,-3,3,-5,5].forEach(d=>request(scene,frame+d));if(frame>135)request(scene+1,0);if(frame<13)request(scene-1,149);}
+ function update(){const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const p=Math.min(1,Math.max(0,scrollY/max));current=parse(p);document.getElementById('sceneLabel').textContent=`0${current.scene+1} · ${names[current.scene]} · ${(p*100).toFixed(1)}%`;document.getElementById('frameLabel').textContent=`Frame ${String(current.frame).padStart(3,'0')}/149`;document.getElementById('bar').style.width=(p*100)+'%';draw();preload();}
+ addEventListener('resize',()=>{size();update()});addEventListener('scroll',update,{passive:true});size();update();
+})();
+</script>
+</body>
+</html>

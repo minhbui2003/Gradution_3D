@@ -1,0 +1,15 @@
+S06 — Dừng trước cánh cửa
+
+1. Ảnh đầu: REFERENCE.png. Nếu công cụ có ô ảnh cuối: chọn cùng REFERENCE.png.
+2. Dán PROMPT_AMBIENT_EN.txt. Negative prompt dùng riêng nếu công cụ có trường tương ứng.
+3. Chọn 16:9, nguồn 1080p nếu có, thời lượng 8 giây; tắt âm thanh nếu có.
+4. Đây là camera ĐỨNG YÊN; chuyển động chỉ ở môi trường. Không gen nón/nhân vật/card.
+5. Lưu bản xuất gốc vào OUTPUT/S06_AMBIENT.mp4.
+
+Nội dung web riêng: Một câu chuyển ý ngắn và gợi ý cuộn tiếp.
+Bố cục web: Không card; để cửa ở giữa hoàn toàn rõ.
+Vai trò nón: Nón chờ trước cửa; chỉ bay xuyên khi có cuộn mới.
+
+Ảnh trích: scene-02.mp4, frame 120, t=5.000000s, nguồn gốc 1920×1080.
+Ảnh có thể còn chữ/logo/chi tiết AI từ video nguồn. Duyệt ảnh TRƯỚC KHI gen; prompt không tự sửa ảnh tham chiếu.
+Nếu thay REFERENCE.png: chạy tools/sync_references.py trước khi gen các đoạn nối.

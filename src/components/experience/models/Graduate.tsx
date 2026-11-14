@@ -14,6 +14,7 @@ interface GraduateProps {
   scale?: number;
   waving?: boolean;
   celebrating?: boolean;
+  animated?: boolean;
 }
 
 export function ProceduralGraduate({
@@ -21,12 +22,13 @@ export function ProceduralGraduate({
   rotation = [0, 0, 0],
   scale = 1,
   waving = false,
+  animated = true,
 }: GraduateProps) {
   const groupRef = useRef<THREE.Group>(null);
   const armRef = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
+    const t = animated ? clock.getElapsedTime() : 0;
     if (groupRef.current) {
       groupRef.current.position.y = position[1] + Math.sin(t * 2) * 0.03;
     }
@@ -124,6 +126,7 @@ function RiggedGlbModel({
   scale = 1,
   waving = false,
   celebrating = false,
+  animated = true,
 }: GraduateProps) {
   const { scene } = useGLTF(
     '/models/graduate_rigged.glb',
@@ -136,7 +139,16 @@ function RiggedGlbModel({
 
   const groupRef = useRef<THREE.Group>(null);
   const clonedScene = useMemo(() => SkeletonUtils.clone(scene) as THREE.Group, [scene]);
+  const normalization = useMemo(() => {
+    const bounds = new THREE.Box3().setFromObject(clonedScene);
+    const size = bounds.getSize(new THREE.Vector3());
+    const center = bounds.getCenter(new THREE.Vector3());
+    const factor = 2.5 / Math.max(size.y, 0.001);
+    return { factor, offset: [-center.x * factor, -bounds.min.y * factor, -center.z * factor] as [number, number, number] };
+  }, [clonedScene]);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
+  const actionsRef = useRef<Record<string, THREE.AnimationAction>>({});
+  const activeActionRef = useRef<THREE.AnimationAction | null>(null);
 
   useEffect(() => {
     clonedScene.traverse((child) => {
@@ -157,47 +169,48 @@ function RiggedGlbModel({
       const mixer = new THREE.AnimationMixer(clonedScene);
       mixerRef.current = mixer;
 
-      const idleClip = clips.find((c) => c.name === 'Idle');
-      const waveClip = clips.find((c) => c.name === 'Wave');
-      const cheerClip = clips.find((c) => c.name === 'Celebrate');
-
-      if (celebrating && cheerClip) {
-        mixer.clipAction(cheerClip).play();
-      } else if (waving && waveClip) {
-        mixer.clipAction(waveClip).play();
-      } else if (idleClip) {
-        mixer.clipAction(idleClip).play();
-      }
+      actionsRef.current = Object.fromEntries(clips.map((clip) => [clip.name, mixer.clipAction(clip)]));
     }
 
     return () => {
       mixerRef.current?.stopAllAction();
+      mixerRef.current?.uncacheRoot(clonedScene);
+      mixerRef.current = null;
+      actionsRef.current = {};
+      activeActionRef.current = null;
     };
-  }, [clonedScene, waving, celebrating]);
+  }, [clonedScene]);
+
+  useEffect(() => {
+    const next = actionsRef.current[celebrating ? 'Celebrate' : waving ? 'Wave' : 'Idle'];
+    const previous = activeActionRef.current;
+    if (!next || next === previous) return;
+    next.reset().setEffectiveWeight(1).play();
+    if (previous) next.crossFadeFrom(previous, animated ? 0.45 : 0, false);
+    activeActionRef.current = next;
+  }, [clonedScene, waving, celebrating, animated]);
 
   useFrame((_, delta) => {
-    if (mixerRef.current) {
+    if (mixerRef.current && animated) {
       mixerRef.current.update(delta);
     }
   });
 
-  // Facing forward towards the viewer: -0.85 rad
-  const finalRotY = -0.85 + (rotation[1] || 0);
+  // The source model faces +X; rotate it to +Z, toward the viewer.
+  const finalRotY = -Math.PI / 2 + (rotation[1] || 0);
 
   return (
-    <group ref={groupRef} position={position} scale={scale}>
-      <primitive
-        object={clonedScene}
-        position={[0, 0, 0]}
-        rotation={[rotation[0] || 0, finalRotY, rotation[2] || 0]}
-        scale={[2.2, 2.2, 2.2]}
-      />
+    <group ref={groupRef} position={position} scale={scale} dispose={null}>
+      <group rotation={[rotation[0] || 0, finalRotY, rotation[2] || 0]}>
+        <primitive
+          object={clonedScene}
+          position={normalization.offset}
+          scale={normalization.factor}
+        />
+      </group>
     </group>
   );
 }
-
-// Preload rigged model
-useGLTF.preload('/models/graduate_rigged.glb');
 
 export function Graduate(props: GraduateProps) {
   return (

@@ -1,0 +1,26 @@
+Các lệnh chạy từ thư mục gốc dự án:
+
+python VEO3_PRODUCTION_KIT/tools/check_assets.py --scope pilot --allow-missing
+python VEO3_PRODUCTION_KIT/tools/check_assets.py
+python VEO3_PRODUCTION_KIT/tools/sync_references.py
+python VEO3_PRODUCTION_KIT/tools/collect_assets.py --scope pilot
+
+check_assets chỉ đọc video, ghi báo cáo JSON vào 04_HANDOFF; không gọi API.
+Thiếu video trả exit code 2 khi không dùng --allow-missing; đây là trạng thái chờ bình thường.
+Metadata và so sánh đầu/cuối dùng OpenCV và NumPy nếu có sẵn. Nếu thiếu, báo chưa kiểm tra metadata,
+không tự ghi nhận đạt; có thể cài python -m pip install opencv-python-headless numpy.
+
+Sau khi xem video đạt yêu cầu, sửa mục tương ứng trong 04_HANDOFF/reviews.json:
+- accepted: true
+- video_sha256: chuỗi SHA-256 được ghi trong asset-check-*.json
+- notes: nhận xét camera/kiến trúc/nối vòng
+- actual_motion_window_seconds: [giây bắt đầu, giây kết thúc] đã đo thực tế cho đoạn di chuyển;
+  video nền dùng null. Không mặc định [2.5,4.5] nếu đầu ra Veo khác prompt.
+
+Điểm SHA gắn duyệt với đúng file, thay video sẽ cần duyệt lại.
+Sai khác pixel là chỉ số hỗ trợ, không tự chứng minh chất lượng hay camera đứng yên.
+collect_assets chỉ gom các clip đã đạt vào 04_HANDOFF/ready-media-*, không sửa website.
+sync_references cập nhật ảnh đầu/cuối khi bạn thay REFERENCE.png của một điểm dừng;
+nó sẽ hủy trạng thái duyệt cũ của các video liên quan vì đầu vào đã đổi.
+
+Đừng đặt khóa API, tài khoản, token vào bộ folder này. Không công cụ nào cần chúng.

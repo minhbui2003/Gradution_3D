@@ -17,6 +17,7 @@ import {
   Navigation as NavigationIcon,
 } from 'lucide-react';
 import { EVENT_DATA } from '@/config/event';
+import { smoothstep } from '@/lib/sceneProgress';
 
 interface EventDetailsProps {
   progress: number;
@@ -44,6 +45,7 @@ export function EventDetails({ progress }: EventDetailsProps) {
   // Visible in Scene 4: 0.60 to 0.80
   const isVisible = progress >= 0.59 && progress <= 0.81;
   if (!isVisible) return null;
+  const opacity = smoothstep(0.59, 0.62, progress) * (1 - smoothstep(0.78, 0.81, progress));
 
   // Derive RFC 5545 dates from central EVENT_DATA config
   const startUTC = formatICSDate(EVENT_DATA.ceremony.isoDate);
@@ -109,7 +111,7 @@ export function EventDetails({ progress }: EventDetailsProps) {
   };
 
   return (
-    <div className="fixed inset-0 pointer-events-none flex items-center justify-center p-3 sm:p-6 z-20 overflow-y-auto">
+    <div className="event-overlay fixed inset-0 pointer-events-none flex items-center justify-center p-3 sm:p-6 z-20 overflow-y-auto" style={{ opacity, visibility: opacity < 0.01 ? 'hidden' : 'visible', transform: `translate3d(0, ${(1 - opacity) * 28}px, 0)` }}>
       <div className="w-full max-w-5xl mx-auto glass-panel p-4 sm:p-6 rounded-3xl border border-gold/40 shadow-2xl pointer-events-auto max-h-[90vh] overflow-y-auto backdrop-blur-md">
         {/* Section Header */}
         <div className="text-center mb-4 pb-2 border-b border-white/10">

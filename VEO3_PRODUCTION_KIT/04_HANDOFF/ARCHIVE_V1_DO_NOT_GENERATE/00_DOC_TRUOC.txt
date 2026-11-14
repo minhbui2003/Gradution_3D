@@ -1,0 +1,28 @@
+BẮT ĐẦU BẰNG START_HERE.html (mở bằng trình duyệt).
+
+Bộ chuẩn bị: 9 video nền camera đứng yên + 8 video di chuyển = 17 clip gốc.
+Làm thử trước đúng 3 clip: S01_AMBIENT, S02_AMBIENT, T01_S01_TO_S02.
+Duyệt bộ pilot có nối đúng camera/ảnh và cảm giác tiến nhanh rồi mới tạo phần còn lại.
+
+Mỗi thư mục đã có ảnh nền trích từ video của bạn, prompt tiếng Anh để copy,
+hướng dẫn tiếng Việt và OUTPUT để bỏ video về. Không ghép tên/card/nón vào video.
+Bạn có thể thay ảnh REFERENCE.png tương ứng trước khi gen; sau đó chạy tools/sync_references.py.
+
+Ảnh nguồn giữ nguyên nội dung video: chữ/logo/chi tiết AI có thể đã nằm sẵn trong ảnh.
+Duyệt ảnh trước; prompt video không thay thế việc chuẩn bị ảnh sạch. Bản đồ thật và chữ sự kiện là lớp web riêng.
+
+Nguồn video đề nghị: 16:9, 1080p, 8 giây; 720p vẫn nhận để làm pilot.
+Nhịp web dự kiến 0.9–1.4 giây/đoạn bay. Đây là việc cắt/retime sau khi duyệt, KHÔNG yêu cầu Veo gen 1 giây.
+Đoạn nền đứng tại chỗ sẽ phát vòng tiến 1x; không đảo chiều video để nối vòng.
+
+Veo: kiểm tra công cụ đang dùng có ảnh đầu/ảnh cuối. Tài liệu Google hiện ghi Veo 3.1 GA hỗ trợ tính năng này;
+không dùng ID preview cũ trong Gemini API. Links và ngày kiểm tra nằm trong START_HERE.html.
+Nếu giao diện không có ảnh cuối, chỉ làm thử pilot trước và cho biết công cụ/model cụ thể khi bàn giao.
+
+Đặt bản xuất gốc đúng tên trong OUTPUT. Không tự crop/đổi fps/tăng tốc hoặc xóa bản gốc.
+Chạy: python VEO3_PRODUCTION_KIT/tools/check_assets.py --scope pilot --allow-missing
+Kiểm tra đủ: python VEO3_PRODUCTION_KIT/tools/check_assets.py
+Kiểm tra kỹ thuật không thay thế duyệt hình. Chỉ đánh dấu accepted sau khi xem video.
+
+Web hiện tại chưa được thay bằng các file chưa tồn tại. Bản thiết kế lại và kế hoạch tích hợp ở 04_HANDOFF/INTEGRATION_PLAN.html.
+Khi tạo xong, báo đã bỏ video vào OUTPUT; bước sau sẽ duyệt, tối ưu, ráp và kiểm thử web hoàn chỉnh.

@@ -1,0 +1,4 @@
+Ảnh thật đặt vào các thư mục portrait, memory-1 đến memory-4.
+Ưu tiên ảnh gốc, không cắt sẵn và không chèn chữ. Thư mục này KHÔNG dùng để upload vào Veo nền.
+Khi tích hợp, ảnh thật hiển thị bằng HTML/WebGL riêng; không yêu cầu Veo vẽ khuôn mặt của Minh.
+Ảnh portrait.png hiện tại trong app là chibi minh họa, không phải ảnh chân dung thật.

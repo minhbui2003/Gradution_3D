@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-14",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "kit_status": "prepared_waiting_for_user_videos",
+  "canonical_reference_images": 9,
+  "transition_pairs": 8,
+  "generation_tasks": 17,
+  "pilot_tasks": 3,
+  "submitted_user_videos": 0,
+  "checks": {
+    "raw_frames_match_sequential_source_decode": true,
+    "all_html_local_links_resolve": true,
+    "all_transition_images_match_canonical_references": true,
+    "offline_prompt_controls_count": 17,
+    "offline_html_desktop_mobile": true,
+    "source_audit_findings": 14,
+    "runtime_checks_passed": 18,
+    "runtime_screenshots": 23,
+    "typescript_no_emit": "passed",
+    "missing_media_blocked_from_staging": true,
+    "unreviewed_media_blocked_from_staging": true,
+    "synthetic_reviewed_fixture_can_stage": true,
+    "changed_video_or_reference_invalidates_review": true,
+    "path_traversal_rejected": true,
+    "user_output_directories_unchanged_by_tests": true
+  },
+  "limitations": [
+    "No Veo generation or external publishing performed.",
+    "No final media or final redesign acceptance is claimed.",
+    "Browser QA was headless Chromium with emulated viewports, not device performance measurement.",
+    "Valid RSVP/wish writes were not exercised against user data."
+  ]
+}

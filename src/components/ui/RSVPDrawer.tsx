@@ -18,6 +18,31 @@ export function RSVPDrawer({ isOpen, onClose }: RSVPDrawerProps) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const dialog = dialogRef.current;
+    const getFocusable = () => Array.from(dialog?.querySelectorAll<HTMLElement>('button, input, select, textarea, a[href]') || []).filter((element) => !element.hasAttribute('disabled'));
+    getFocusable()[0]?.focus();
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+      const elements = getFocusable();
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener('keydown', trapFocus);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', trapFocus);
+      previousFocus?.focus({ preventScroll: true });
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,9 +109,11 @@ export function RSVPDrawer({ isOpen, onClose }: RSVPDrawerProps) {
       }}
     >
       <div
+        ref={dialogRef}
         className="w-full max-w-md h-full bg-navy border-l border-gold/30 p-6 flex flex-col shadow-2xl overflow-y-auto animate-in slide-in-from-right duration-300"
         role="dialog"
         aria-modal="true"
+        aria-label="Xác nhận tham dự"
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">

@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-14",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "base_url": "http://localhost:3000",
+  "checks": [
+    {
+      "id": "http",
+      "passed": true
+    },
+    {
+      "id": "immersive_no_header",
+      "passed": true
+    },
+    {
+      "id": "rsvp_open_close_scroll_lock",
+      "passed": true
+    },
+    {
+      "id": "S02_fixed_camera_and_living_video",
+      "passed": true,
+      "frame": "59.0000"
+    },
+    {
+      "id": "S03_fixed_camera_and_living_video",
+      "passed": true,
+      "frame": "85.0000"
+    },
+    {
+      "id": "S04_fixed_camera_and_living_video",
+      "passed": true,
+      "frame": "103.0000"
+    },
+    {
+      "id": "S05_fixed_camera_and_living_video",
+      "passed": true,
+      "frame": "115.0000"
+    },
+    {
+      "id": "S06_fixed_camera_and_living_video",
+      "passed": true,
+      "frame": "120.0000"
+    },
+    {
+      "id": "memory_lightbox_keyboard",
+      "passed": true
+    },
+    {
+      "id": "calendar_download_timezone",
+      "passed": true,
+      "uses_current_event_config": true
+    },
+    {
+      "id": "viewport_390x844_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "id": "viewport_360x640_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "id": "viewport_768x1024_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "id": "reduced_motion_pauses_video",
+      "passed": true
+    },
+    {
+      "id": "rsvp_public_summary_has_no_records",
+      "passed": true
+    },
+    {
+      "id": "rsvp_rejects_invalid_name_no_write",
+      "passed": true
+    },
+    {
+      "id": "wishes_rejects_invalid_input_no_write",
+      "passed": true
+    },
+    {
+      "id": "wishes_endpoint_read",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "unexpected_failed_responses": [],
+  "limitations": [
+    "Headless Chromium with emulated viewports, not physical mobile devices.",
+    "No FPS, LCP or real-device GPU performance claim.",
+    "No valid RSVP/wish submissions made to avoid altering guest data.",
+    "Source audit is not a penetration test."
+  ],
+  "passed": true
+}

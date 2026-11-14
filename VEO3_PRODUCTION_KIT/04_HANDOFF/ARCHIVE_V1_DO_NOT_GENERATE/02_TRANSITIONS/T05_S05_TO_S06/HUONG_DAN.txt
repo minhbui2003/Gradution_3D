@@ -1,0 +1,12 @@
+T05 — Năm 4 → chờ trước cửa
+
+Ảnh đầu: FIRST_FRAME.png (= S05/REFERENCE.png).
+Ảnh cuối: LAST_FRAME.png (= S06/REFERENCE.png).
+Phải chọn hai ảnh vào đúng trường ảnh đầu/ảnh cuối; không gộp ảnh thành collage.
+Dán PROMPT_TRANSITION_EN.txt. Chọn 16:9, 1080p nếu có, nguồn 8 giây.
+Lưu nguyên bản tại OUTPUT/T05_S05_TO_S06.mp4.
+
+Clip gen 8 giây KHÔNG phải thời gian chờ trên web. Mục tiêu đoạn di chuyển trong nguồn: giây 2.5–4.5.
+Sau khi duyệt video, sẽ đo lại đoạn camera thực sự di chuyển, cắt và retime về khoảng 0.9–1.4 giây trên web.
+Không tự tăng tốc cả 8 giây lên 8x. Không tự cắt trước khi bàn giao. Timing của model chỉ là yêu cầu, phải kiểm tra đầu ra.
+Nếu công cụ bạn dùng không có điều khiển ảnh cuối: chưa gen hàng loạt các đoạn nối; dùng thử ba clip pilot trước.

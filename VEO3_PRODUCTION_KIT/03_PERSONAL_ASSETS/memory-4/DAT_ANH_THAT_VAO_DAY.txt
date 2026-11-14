@@ -1,0 +1,1 @@
+Đặt ảnh thật cho memory-4 ở đây. Giữ tên gốc cũng được; bước tích hợp sẽ kiểm tra và tối ưu.

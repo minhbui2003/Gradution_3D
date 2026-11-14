@@ -37,7 +37,7 @@ export function Navigation({ progress }: NavigationProps) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 py-3 flex items-center justify-between gap-2 pointer-events-none">
+    <header className="experience-nav fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 py-3 flex items-center justify-between gap-2 pointer-events-none">
       <div className="flex items-center gap-2 sm:gap-3 glass-panel px-2.5 sm:px-3.5 py-1.5 rounded-full border border-gold/30 min-w-0 pointer-events-auto">
         <div className="relative w-8 h-8 shrink-0 rounded-full overflow-hidden border border-gold bg-navy">
           <Image
@@ -53,12 +53,12 @@ export function Navigation({ progress }: NavigationProps) {
             Bùi Tất Nhựt Minh
           </span>
           <span className="text-[10px] text-gray-300 truncate">
-            {activeScene.name} ({Math.round(progress * 100)}%)
+            IUH · CLASS OF 2026
           </span>
         </div>
       </div>
 
-      <nav aria-label="Đi đến phân cảnh" className="hidden md:flex items-center gap-1.5 glass-panel px-3 py-1.5 rounded-full border border-gold/25 pointer-events-auto">
+      <nav aria-label="Đi đến phân cảnh" className="hidden lg:flex items-center gap-1.5 glass-panel px-3 py-1.5 rounded-full border border-gold/25 pointer-events-auto">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = activeScene.id === item.id;
@@ -88,7 +88,7 @@ export function Navigation({ progress }: NavigationProps) {
             onClick={() => handleNavigate(0.24)}
             className="hidden sm:flex items-center px-3 py-1.5 rounded-full text-xs font-medium glass-panel border border-gold/40 text-gold hover:bg-gold/10 transition-colors"
           >
-            Bỏ qua Intro
+            Khám phá ↓
           </button>
         )}
         <button
@@ -97,7 +97,7 @@ export function Navigation({ progress }: NavigationProps) {
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-scene-navigation"
           onClick={() => setMobileMenuOpen((open) => !open)}
-          className="md:hidden p-2 rounded-full glass-panel border border-gold/30 text-white hover:text-gold transition-colors"
+          className="lg:hidden p-2 rounded-full glass-panel border border-gold/30 text-white hover:text-gold transition-colors"
         >
           {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -107,7 +107,7 @@ export function Navigation({ progress }: NavigationProps) {
         <nav
           id="mobile-scene-navigation"
           aria-label="Mục lục phân cảnh trên điện thoại"
-          className="absolute top-full right-3 mt-2 w-[min(88vw,300px)] glass-panel rounded-2xl border border-gold/40 p-2 shadow-2xl md:hidden pointer-events-auto"
+          className="absolute top-full right-3 mt-2 w-[min(88vw,300px)] glass-panel rounded-2xl border border-gold/40 p-2 shadow-2xl lg:hidden pointer-events-auto"
         >
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;

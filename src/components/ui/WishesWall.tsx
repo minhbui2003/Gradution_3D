@@ -14,6 +14,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import { DataAdapter, WishData } from '@/lib/dataAdapter';
+import { smoothstep } from '@/lib/sceneProgress';
 
 interface WishesWallProps {
   progress: number;
@@ -134,7 +135,7 @@ export function WishesWall({ progress, onOpenRSVP }: WishesWallProps) {
   };
 
   return (
-    <div className="fixed inset-0 pointer-events-none flex items-end justify-center pb-3 sm:pb-6 px-3 sm:px-6 z-20 overflow-y-auto">
+    <div className="wishes-overlay fixed inset-0 pointer-events-none flex items-end justify-center pb-3 sm:pb-6 px-3 sm:px-6 z-20 overflow-y-auto" style={{ opacity: smoothstep(0.79, 0.83, progress), transform: `translateY(${(1 - smoothstep(0.79, 0.83, progress)) * 28}px)`, visibility: progress <= 0.791 ? 'hidden' : 'visible' }}>
       <div className="w-full max-w-6xl mx-auto pointer-events-auto">
         {/* 2-Column Responsive Layout: Left Wishes Wall | Right RSVP Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-end">

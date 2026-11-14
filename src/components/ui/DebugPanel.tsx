@@ -16,9 +16,8 @@ export function DebugPanel({ progress }: DebugPanelProps) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const isDev = process.env.NODE_ENV !== 'production';
       const hasDebugParam = window.location.search.includes('debug=true');
-      setShowDebug(isDev || hasDebugParam);
+      setShowDebug(hasDebugParam);
     }
   }, []);
 

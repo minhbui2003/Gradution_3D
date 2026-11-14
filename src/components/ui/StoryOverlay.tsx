@@ -3,115 +3,76 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { EVENT_DATA } from '@/config/event';
-import { Sparkles, Calendar, BookOpen, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
-import { scrollToProgress } from '../experience/ScrollDirector';
+import { ArrowDown, ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { smoothstep } from '@/lib/sceneProgress';
+import { CAMPUS_JOURNEY, MEMORY_STOPS, getMemoryOpacity } from '@/config/journey';
 
-interface StoryOverlayProps {
-  progress: number;
-}
+interface StoryOverlayProps { progress: number; }
 
 export function StoryOverlay({ progress }: StoryOverlayProps) {
   const [selectedStoryIndex, setSelectedStoryIndex] = useState<number | null>(null);
+  const isVisible = progress >= CAMPUS_JOURNEY.start && progress < CAMPUS_JOURNEY.nextScene;
+  const modalOpen = selectedStoryIndex !== null;
 
-  // Visible in Campus & Story section (0.18 to 0.42)
-  const isVisible = progress >= 0.17 && progress <= 0.43;
-
-  // Handle ESC key to close modal
+  useEffect(() => { if (!isVisible) setSelectedStoryIndex(null); }, [isVisible]);
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && selectedStoryIndex !== null) {
-        setSelectedStoryIndex(null);
-      }
+    if (!modalOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus({ preventScroll: true });
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedStoryIndex]);
+  }, [modalOpen]);
+  useEffect(() => {
+    if (!modalOpen) return;
+    const close = (event: KeyboardEvent) => { if (event.key === 'Escape') setSelectedStoryIndex(null); };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [modalOpen]);
 
   if (!isVisible) return null;
-
-  // Derive which story card is active based on sub-progress
-  // 0.18 - 0.24: Story 1 (Năm 1)
-  // 0.24 - 0.30: Story 2 (Năm 2)
-  // 0.30 - 0.36: Story 3 (Năm 3)
-  // 0.36 - 0.42: Story 4 (Năm 4)
-  const localP = Math.max(0, Math.min(1, (progress - 0.18) / (0.42 - 0.18)));
-  const activeIndex = Math.min(3, Math.max(0, Math.floor(localP * 4)));
+  const activeIndex = MEMORY_STOPS.findIndex((stop) => progress >= stop.start && progress < stop.end);
+  const stop = activeIndex >= 0 ? MEMORY_STOPS[activeIndex] : null;
+  const story = activeIndex >= 0 ? EVENT_DATA.stories[activeIndex] : null;
+  const cardOpacity = stop ? getMemoryOpacity(progress, activeIndex) : 0;
+  const enter = stop ? smoothstep(stop.start, stop.start + .009, progress) : 0;
+  const exit = stop ? smoothstep(stop.holdEnd, stop.end, progress) : 0;
+  const headingOpacity = smoothstep(.18, .195, progress) * (1 - smoothstep(.375, .39, progress));
+  const doorOpacity = smoothstep(.382, .389, progress) * (1 - smoothstep(.4, .416, progress));
+  const phase = progress >= CAMPUS_JOURNEY.doorOpen ? 'opening' : progress >= CAMPUS_JOURNEY.doorHold ? 'door' : activeIndex >= 0 ? 'memory' : 'approach';
 
   return (
-    <div className="fixed inset-0 pointer-events-none flex flex-col justify-end pb-4 sm:pb-8 px-3 sm:px-6 z-10 transition-opacity duration-300">
-      <div className="w-full max-w-5xl mx-auto pointer-events-auto">
-        {/* Section Pill Badge */}
-        <div className="text-center mb-2.5">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-panel border border-gold/40 text-gold text-[10px] sm:text-xs font-semibold tracking-wider uppercase shadow-lg">
-            <Sparkles size={12} className="text-gold" />
-            <span>Ký ức 4 năm đại học ({activeIndex + 1}/4) • Nhấn vào ảnh để phóng to</span>
-          </div>
-        </div>
-
-        {/* 4 Interactive Memory Photos Grid / Gallery Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5">
-          {EVENT_DATA.stories.map((story, idx) => {
-            const isActive = idx === activeIndex;
-            return (
-              <div
-                key={story.id}
-                onClick={() => setSelectedStoryIndex(idx)}
-                className={`group cursor-pointer rounded-2xl p-2.5 sm:p-3 transition-all duration-300 backdrop-blur-md flex flex-col justify-between ${
-                  isActive
-                    ? 'glass-panel text-white border-2 border-gold shadow-2xl -translate-y-1.5 scale-[1.02] bg-navy/90'
-                    : 'glass-panel-light text-navy border border-white/20 hover:border-gold/50 hover:-translate-y-1 bg-white/70 opacity-90'
-                }`}
-              >
-                {/* Photo Thumbnail */}
-                <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-2 shadow-md bg-navy-deep/80">
-                  <Image
-                    src={story.imageUrl}
-                    alt={story.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 640px) 45vw, 220px"
-                  />
-                  <div className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-md bg-navy-deep/90 text-gold text-[9px] font-bold border border-gold/30">
-                    {story.year}
-                  </div>
-                  <div className="absolute bottom-1.5 right-1.5 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 size={11} />
-                  </div>
-                </div>
-
-                {/* Text Content */}
-                <div className="flex flex-col text-left">
-                  <h4
-                    className={`text-xs font-bold leading-tight truncate mb-1 ${
-                      isActive ? 'text-white' : 'text-navy'
-                    }`}
-                  >
-                    {story.title}
-                  </h4>
-                  <p
-                    className={`text-[10px] leading-snug line-clamp-2 ${
-                      isActive ? 'text-gray-300' : 'text-gray-600'
-                    }`}
-                  >
-                    {story.description}
-                  </p>
-                </div>
-
-                {/* Indicator dot */}
-                <div className="flex items-center justify-between mt-2 pt-1 border-t border-white/10 text-[9px]">
-                  <span className={isActive ? 'text-gold font-semibold' : 'text-gray-400'}>
-                    {story.year}
-                  </span>
-                  <span className={isActive ? 'text-gold' : 'text-gray-400'}>
-                    {isActive ? '● Đang xem' : 'Xem ảnh'}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+    <div className="campus-story-overlay fixed inset-0 pointer-events-none z-10" data-journey-phase={phase}>
+      <div className="memory-heading" style={{ opacity: headingOpacity }}>
+        <span className="section-eyebrow">02 / NHỮNG NĂM THÁNG ẤY</span>
+        <h2>Bốn năm.<br /><em>Một miền ký ức.</em></h2>
       </div>
-
+      {story && stop && <div className={`memory-stop memory-stop-${stop.side}`} data-story-index={activeIndex}
+        style={{ opacity: cardOpacity, visibility: cardOpacity < .01 ? 'hidden' : 'visible',
+          transform: `perspective(1100px) translate3d(${(stop.side === 'left' ? -1 : 1) * (1 - enter) * 65}px, ${-exit * 40}px, ${-(1 - enter) * 100 - exit * 100}px) rotateY(${(stop.side === 'left' ? 1 : -1) * (1 - enter) * 8}deg)` }}>
+        <article className="memory-stop-card" role="button" tabIndex={cardOpacity > .1 ? 0 : -1}
+          aria-label={`Xem ảnh ${story.title}`} onClick={() => setSelectedStoryIndex(activeIndex)}
+          onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setSelectedStoryIndex(activeIndex); } }}>
+          <div className="memory-stop-photo">
+            <Image src={story.imageUrl} alt={story.title} fill sizes="(max-width: 767px) 82vw, 380px" className="object-cover" />
+            <span className="memory-stop-year">{story.year}</span>
+          </div>
+          <div className="memory-stop-copy">
+            <span className="memory-stop-eyebrow">MỘT CHẶNG ĐƯỜNG ĐÁNG NHỚ</span>
+            <h3>{story.title}</h3>
+            <p>{story.description}</p>
+            <span className="memory-stop-link">Lưu giữ khoảnh khắc <ArrowUpRight size={14} /></span>
+          </div>
+        </article>
+      </div>}
+      {doorOpacity > 0 && <div className="door-prompt" style={{ opacity: doorOpacity }}>
+        <span className="door-prompt-rule" />
+        <p>Khép lại một hành trình.</p>
+        <span>Cuộn tiếp để mở chương mới</span>
+        <ArrowDown size={16} />
+      </div>}
       {/* Enlarged Memory Photo Lightbox Modal with Scroll Isolation */}
       {selectedStoryIndex !== null && (
         <div

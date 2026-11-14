@@ -1,0 +1,15 @@
+S03 — Năm 2 — đồ án và bạn bè
+
+1. Ảnh đầu: REFERENCE.png. Nếu công cụ có ô ảnh cuối: chọn cùng REFERENCE.png.
+2. Dán PROMPT_AMBIENT_EN.txt. Negative prompt dùng riêng nếu công cụ có trường tương ứng.
+3. Chọn 16:9, nguồn 1080p nếu có, thời lượng 8 giây; tắt âm thanh nếu có.
+4. Đây là camera ĐỨNG YÊN; chuyển động chỉ ở môi trường. Không gen nón/nhân vật/card.
+5. Lưu bản xuất gốc vào OUTPUT/S03_AMBIENT.mp4.
+
+Nội dung web riêng: Một card Năm 2; không hiển thị đồng thời cả bốn card.
+Bố cục web: Card bên phải, cửa và hướng đi ở giữa.
+Vai trò nón: Nón bay về phía đối diện card phải.
+
+Ảnh trích: scene-02.mp4, frame 85, t=3.541667s, nguồn gốc 1920×1080.
+Ảnh có thể còn chữ/logo/chi tiết AI từ video nguồn. Duyệt ảnh TRƯỚC KHI gen; prompt không tự sửa ảnh tham chiếu.
+Nếu thay REFERENCE.png: chạy tools/sync_references.py trước khi gen các đoạn nối.

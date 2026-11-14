@@ -1,0 +1,104 @@
+{
+  "S01_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S02_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S03_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S04_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S05_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S06_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S07_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S08_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S09_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T01_S01_TO_S02": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T02_S02_TO_S03": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T03_S03_TO_S04": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T04_S04_TO_S05": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T05_S05_TO_S06": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T06_S06_TO_S07": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T07_S07_TO_S08": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T08_S08_TO_S09": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  }
+}

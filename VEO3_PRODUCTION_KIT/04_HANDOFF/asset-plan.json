@@ -1,0 +1,498 @@
+{
+  "schema_version": 2,
+  "created_local_date": "2026-11-14",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "status": "waiting_for_user_generated_media",
+  "active_website_modified": false,
+  "source_archive": "Graduation_Videos.rar",
+  "stops": [
+    {
+      "id": "S01",
+      "slug": "INVITATION",
+      "title": "Thiệp mời trước trường",
+      "scene": 2,
+      "frame": 0,
+      "content": "Lời mời và khung ảnh thật của Minh.",
+      "layout": "Chữ bên trái, khung ảnh bên phải; để giữa trống cho lối tiến vào trường.",
+      "motion": "Very slow soft cloud drift at the lower edges; sparse warm gold motes; a restrained flowing light ribbon outside the central building facade.",
+      "cap": "Nón lơ lửng phía trên khung ảnh, sau đó bay về lối vào.",
+      "role": "hero",
+      "folder": "01_STOPS/S01_INVITATION",
+      "reference": "01_STOPS/S01_INVITATION/REFERENCE.png",
+      "reference_sha256": "8c911b579c2ae6436f9a5fd0b8090648a66ae3a657553c2456ecd74f0082f4c0",
+      "ambient_output": "01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4"
+    },
+    {
+      "id": "S02",
+      "slug": "MEMORY_YEAR_1",
+      "title": "Năm 1 — bước chân đầu tiên",
+      "scene": 2,
+      "frame": 59,
+      "content": "Một card Năm 1, dùng ảnh cá nhân riêng.",
+      "layout": "Card trái trên desktop; card dưới trên mobile. Giữ lối vào ở giữa thông thoáng.",
+      "motion": "Sparse suspended gold dust and delicate moving light reflections in the side glass; quiet atmospheric motion, never entering deeper into the corridor.",
+      "cap": "Nón dẫn về phía trước, tránh vùng card trái.",
+      "role": "memory",
+      "folder": "01_STOPS/S02_MEMORY_YEAR_1",
+      "reference": "01_STOPS/S02_MEMORY_YEAR_1/REFERENCE.png",
+      "reference_sha256": "e00f25d45f8c0aaae057d8855e7f58bfae5bddddcd8ef0d8fd37f1864b51095e",
+      "ambient_output": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4"
+    },
+    {
+      "id": "S03",
+      "slug": "MEMORY_YEAR_2",
+      "title": "Năm 2 — đồ án và bạn bè",
+      "scene": 2,
+      "frame": 85,
+      "content": "Một card Năm 2; không hiển thị đồng thời cả bốn card.",
+      "layout": "Card bên phải, cửa và hướng đi ở giữa.",
+      "motion": "A few slow golden particles drifting across the corridor edges; gentle changes in existing reflected light on the floor, with stationary architecture.",
+      "cap": "Nón bay về phía đối diện card phải.",
+      "role": "memory",
+      "folder": "01_STOPS/S03_MEMORY_YEAR_2",
+      "reference": "01_STOPS/S03_MEMORY_YEAR_2/REFERENCE.png",
+      "reference_sha256": "9acb3d86bb440a85b1a4076fb594120f4d41eb2d4217a8addb892d0fbc5465e3",
+      "ambient_output": "01_STOPS/S03_MEMORY_YEAR_2/OUTPUT/S03_AMBIENT.mp4"
+    },
+    {
+      "id": "S04",
+      "slug": "MEMORY_YEAR_3",
+      "title": "Năm 3 — thực tập",
+      "scene": 2,
+      "frame": 103,
+      "content": "Một card Năm 3 và câu chuyện thực tập.",
+      "layout": "Card trái, nhấn chiều sâu của hành lang phía sau.",
+      "motion": "A restrained translucent gold light current along the side wall and sparse drifting dust; all door and wall edges remain perfectly stationary.",
+      "cap": "Nón đi dọc trục hành lang, không lướt qua chữ.",
+      "role": "memory",
+      "folder": "01_STOPS/S04_MEMORY_YEAR_3",
+      "reference": "01_STOPS/S04_MEMORY_YEAR_3/REFERENCE.png",
+      "reference_sha256": "8babe75b83b313bb5eb7e74a9696549e454351d4ffce6ea2b5569a35b9a8b63a",
+      "ambient_output": "01_STOPS/S04_MEMORY_YEAR_3/OUTPUT/S04_AMBIENT.mp4"
+    },
+    {
+      "id": "S05",
+      "slug": "MEMORY_YEAR_4",
+      "title": "Năm 4 — gần cửa hội trường",
+      "scene": 2,
+      "frame": 120,
+      "content": "Card Năm 4 khép lại hành trình; ngay trong chặng này đã gần thấy cửa. Cuộn thêm một nhịp là cửa mở và đi vào hội trường.",
+      "layout": "Card phải; cửa đóng hiện rõ ở trung tâm phía sau. Không có cảnh đứng chờ hay câu nhắc riêng trước cửa.",
+      "motion": "Subtle warm celebratory sparkles at the outer margins and soft existing light movement on the floor. The visible auditorium door is close ahead, fully closed and completely still until a separate transition is triggered.",
+      "cap": "Nón hướng về cửa; cùng nhịp cuộn rời card, nón bay xuyên cửa vào cảnh hội trường.",
+      "role": "memory",
+      "folder": "01_STOPS/S05_MEMORY_YEAR_4",
+      "reference": "01_STOPS/S05_MEMORY_YEAR_4/REFERENCE.png",
+      "reference_sha256": "6e44a5fec46ac43a594e6225d164db04c702b055bdc0952e7dafc1d6a28c2391",
+      "ambient_output": "01_STOPS/S05_MEMORY_YEAR_4/OUTPUT/S05_AMBIENT.mp4"
+    },
+    {
+      "id": "S07",
+      "slug": "CEREMONY",
+      "title": "Hội trường và khoảnh khắc tốt nghiệp",
+      "scene": 3,
+      "frame": 189,
+      "content": "Tiêu đề ngắn; chibi 3D nếu giữ sẽ là lớp riêng.",
+      "layout": "Để trung tâm sân khấu trống cho nhân vật 3D; chữ ở vùng an toàn.",
+      "motion": "Soft existing stage light beams and sparse elegant dust motes; a stable stage, podium, curtains and all existing signage, without strobing or a confetti storm.",
+      "cap": "Nón bay lên cao bên sân khấu, không nhân đôi với video.",
+      "role": "ceremony",
+      "folder": "01_STOPS/S07_CEREMONY",
+      "reference": "01_STOPS/S07_CEREMONY/REFERENCE.png",
+      "reference_sha256": "b5cb4ababc23f55f8785679c2b20330a078e9ed25d55e5fe344938ab441c9f83",
+      "ambient_output": "01_STOPS/S07_CEREMONY/OUTPUT/S07_AMBIENT.mp4"
+    },
+    {
+      "id": "S08",
+      "slug": "EVENT_DETAILS",
+      "title": "Sảnh — thông tin buổi lễ",
+      "scene": 4,
+      "frame": 189,
+      "content": "Lịch, địa điểm và chỉ đường bằng HTML thật.",
+      "layout": "Khối thông tin gọn; nền yên để đọc và thao tác.",
+      "motion": "Very restrained moving daylight reflections on the existing glass and polished floor, with a few faint dust particles; quiet formal lighting.",
+      "cap": "Nón nhỏ ở mép trên, không bay qua form hay bản đồ.",
+      "role": "event",
+      "folder": "01_STOPS/S08_EVENT_DETAILS",
+      "reference": "01_STOPS/S08_EVENT_DETAILS/REFERENCE.png",
+      "reference_sha256": "2eade8999f77e62259dbcaf541c3576409de5f231dde38abec8e703a3bf30067",
+      "ambient_output": "01_STOPS/S08_EVENT_DETAILS/OUTPUT/S08_AMBIENT.mp4"
+    },
+    {
+      "id": "S09",
+      "slug": "WISHES_RSVP",
+      "title": "Lưu bút, RSVP và cảm ơn",
+      "scene": 5,
+      "frame": 189,
+      "content": "Một luồng gửi lời chúc/xác nhận; cảm ơn cá nhân.",
+      "layout": "Ưu tiên form, không ép cuộn cảnh khi đang gõ hoặc đọc.",
+      "motion": "A few slow luminous gold particles and a soft existing ceiling-light shimmer; a warm welcoming end scene with stable architecture and exposure.",
+      "cap": "Nón hạ nhẹ và ở yên, chuyển động rất nhỏ.",
+      "role": "wishes",
+      "folder": "01_STOPS/S09_WISHES_RSVP",
+      "reference": "01_STOPS/S09_WISHES_RSVP/REFERENCE.png",
+      "reference_sha256": "170d900549dc67c26b8ff40ce33fce5d96c6537751a752bd55e407a63163026d",
+      "ambient_output": "01_STOPS/S09_WISHES_RSVP/OUTPUT/S09_AMBIENT.mp4"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "T01",
+      "title": "Thiệp mời → vào trường → Năm 1",
+      "source": "S01",
+      "destination": "S02",
+      "folder": "02_TRANSITIONS/T01_S01_TO_S02",
+      "first_frame": "02_TRANSITIONS/T01_S01_TO_S02/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T01_S01_TO_S02/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    },
+    {
+      "id": "T02",
+      "title": "Năm 1 → Năm 2",
+      "source": "S02",
+      "destination": "S03",
+      "folder": "02_TRANSITIONS/T02_S02_TO_S03",
+      "first_frame": "02_TRANSITIONS/T02_S02_TO_S03/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T02_S02_TO_S03/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T02_S02_TO_S03/OUTPUT/T02_S02_TO_S03.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    },
+    {
+      "id": "T03",
+      "title": "Năm 2 → Năm 3",
+      "source": "S03",
+      "destination": "S04",
+      "folder": "02_TRANSITIONS/T03_S03_TO_S04",
+      "first_frame": "02_TRANSITIONS/T03_S03_TO_S04/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T03_S03_TO_S04/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T03_S03_TO_S04/OUTPUT/T03_S03_TO_S04.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    },
+    {
+      "id": "T04",
+      "title": "Năm 3 → Năm 4, đã gần thấy cửa",
+      "source": "S04",
+      "destination": "S05",
+      "folder": "02_TRANSITIONS/T04_S04_TO_S05",
+      "first_frame": "02_TRANSITIONS/T04_S04_TO_S05/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T04_S04_TO_S05/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T04_S04_TO_S05/OUTPUT/T04_S04_TO_S05.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    },
+    {
+      "id": "T05",
+      "title": "Năm 4 → một nhịp cuộn, cửa mở → hội trường",
+      "source": "S05",
+      "destination": "S07",
+      "folder": "02_TRANSITIONS/T05_S05_TO_S07",
+      "first_frame": "02_TRANSITIONS/T05_S05_TO_S07/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T05_S05_TO_S07/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T05_S05_TO_S07/OUTPUT/T05_S05_TO_S07.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    },
+    {
+      "id": "T07",
+      "title": "Hội trường → sảnh thông tin",
+      "source": "S07",
+      "destination": "S08",
+      "folder": "02_TRANSITIONS/T07_S07_TO_S08",
+      "first_frame": "02_TRANSITIONS/T07_S07_TO_S08/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T07_S07_TO_S08/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T07_S07_TO_S08/OUTPUT/T07_S07_TO_S08.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    },
+    {
+      "id": "T08",
+      "title": "Sảnh → lưu bút và RSVP",
+      "source": "S08",
+      "destination": "S09",
+      "folder": "02_TRANSITIONS/T08_S08_TO_S09",
+      "first_frame": "02_TRANSITIONS/T08_S08_TO_S09/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T08_S08_TO_S09/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T08_S08_TO_S09/OUTPUT/T08_S08_TO_S09.mp4",
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15
+    }
+  ],
+  "tasks": [
+    {
+      "id": "S01_AMBIENT",
+      "kind": "ambient",
+      "stop": "S01",
+      "prompt": "01_STOPS/S01_INVITATION/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S01_INVITATION/REFERENCE.png",
+      "last_frame": "01_STOPS/S01_INVITATION/REFERENCE.png",
+      "output": "01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": true
+    },
+    {
+      "id": "S02_AMBIENT",
+      "kind": "ambient",
+      "stop": "S02",
+      "prompt": "01_STOPS/S02_MEMORY_YEAR_1/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S02_MEMORY_YEAR_1/REFERENCE.png",
+      "last_frame": "01_STOPS/S02_MEMORY_YEAR_1/REFERENCE.png",
+      "output": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": true
+    },
+    {
+      "id": "S03_AMBIENT",
+      "kind": "ambient",
+      "stop": "S03",
+      "prompt": "01_STOPS/S03_MEMORY_YEAR_2/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S03_MEMORY_YEAR_2/REFERENCE.png",
+      "last_frame": "01_STOPS/S03_MEMORY_YEAR_2/REFERENCE.png",
+      "output": "01_STOPS/S03_MEMORY_YEAR_2/OUTPUT/S03_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": false
+    },
+    {
+      "id": "S04_AMBIENT",
+      "kind": "ambient",
+      "stop": "S04",
+      "prompt": "01_STOPS/S04_MEMORY_YEAR_3/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S04_MEMORY_YEAR_3/REFERENCE.png",
+      "last_frame": "01_STOPS/S04_MEMORY_YEAR_3/REFERENCE.png",
+      "output": "01_STOPS/S04_MEMORY_YEAR_3/OUTPUT/S04_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": false
+    },
+    {
+      "id": "S05_AMBIENT",
+      "kind": "ambient",
+      "stop": "S05",
+      "prompt": "01_STOPS/S05_MEMORY_YEAR_4/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S05_MEMORY_YEAR_4/REFERENCE.png",
+      "last_frame": "01_STOPS/S05_MEMORY_YEAR_4/REFERENCE.png",
+      "output": "01_STOPS/S05_MEMORY_YEAR_4/OUTPUT/S05_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": false
+    },
+    {
+      "id": "S07_AMBIENT",
+      "kind": "ambient",
+      "stop": "S07",
+      "prompt": "01_STOPS/S07_CEREMONY/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S07_CEREMONY/REFERENCE.png",
+      "last_frame": "01_STOPS/S07_CEREMONY/REFERENCE.png",
+      "output": "01_STOPS/S07_CEREMONY/OUTPUT/S07_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": false
+    },
+    {
+      "id": "S08_AMBIENT",
+      "kind": "ambient",
+      "stop": "S08",
+      "prompt": "01_STOPS/S08_EVENT_DETAILS/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S08_EVENT_DETAILS/REFERENCE.png",
+      "last_frame": "01_STOPS/S08_EVENT_DETAILS/REFERENCE.png",
+      "output": "01_STOPS/S08_EVENT_DETAILS/OUTPUT/S08_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": false
+    },
+    {
+      "id": "S09_AMBIENT",
+      "kind": "ambient",
+      "stop": "S09",
+      "prompt": "01_STOPS/S09_WISHES_RSVP/PROMPT_AMBIENT_EN.txt",
+      "first_frame": "01_STOPS/S09_WISHES_RSVP/REFERENCE.png",
+      "last_frame": "01_STOPS/S09_WISHES_RSVP/REFERENCE.png",
+      "output": "01_STOPS/S09_WISHES_RSVP/OUTPUT/S09_AMBIENT.mp4",
+      "preferred_generation_seconds": 8,
+      "desired_playback": "native forward loop at 1x",
+      "pilot": false
+    },
+    {
+      "id": "T01_S01_TO_S02",
+      "kind": "transition",
+      "source": "S01",
+      "destination": "S02",
+      "prompt": "02_TRANSITIONS/T01_S01_TO_S02/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T01_S01_TO_S02/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T01_S01_TO_S02/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": true
+    },
+    {
+      "id": "T02_S02_TO_S03",
+      "kind": "transition",
+      "source": "S02",
+      "destination": "S03",
+      "prompt": "02_TRANSITIONS/T02_S02_TO_S03/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T02_S02_TO_S03/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T02_S02_TO_S03/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T02_S02_TO_S03/OUTPUT/T02_S02_TO_S03.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": false
+    },
+    {
+      "id": "T03_S03_TO_S04",
+      "kind": "transition",
+      "source": "S03",
+      "destination": "S04",
+      "prompt": "02_TRANSITIONS/T03_S03_TO_S04/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T03_S03_TO_S04/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T03_S03_TO_S04/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T03_S03_TO_S04/OUTPUT/T03_S03_TO_S04.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": false
+    },
+    {
+      "id": "T04_S04_TO_S05",
+      "kind": "transition",
+      "source": "S04",
+      "destination": "S05",
+      "prompt": "02_TRANSITIONS/T04_S04_TO_S05/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T04_S04_TO_S05/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T04_S04_TO_S05/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T04_S04_TO_S05/OUTPUT/T04_S04_TO_S05.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": false
+    },
+    {
+      "id": "T05_S05_TO_S07",
+      "kind": "transition",
+      "source": "S05",
+      "destination": "S07",
+      "prompt": "02_TRANSITIONS/T05_S05_TO_S07/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T05_S05_TO_S07/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T05_S05_TO_S07/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T05_S05_TO_S07/OUTPUT/T05_S05_TO_S07.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": false
+    },
+    {
+      "id": "T07_S07_TO_S08",
+      "kind": "transition",
+      "source": "S07",
+      "destination": "S08",
+      "prompt": "02_TRANSITIONS/T07_S07_TO_S08/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T07_S07_TO_S08/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T07_S07_TO_S08/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T07_S07_TO_S08/OUTPUT/T07_S07_TO_S08.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": false
+    },
+    {
+      "id": "T08_S08_TO_S09",
+      "kind": "transition",
+      "source": "S08",
+      "destination": "S09",
+      "prompt": "02_TRANSITIONS/T08_S08_TO_S09/PROMPT_TRANSITION_EN.txt",
+      "first_frame": "02_TRANSITIONS/T08_S08_TO_S09/FIRST_FRAME.png",
+      "last_frame": "02_TRANSITIONS/T08_S08_TO_S09/LAST_FRAME.png",
+      "output": "02_TRANSITIONS/T08_S08_TO_S09/OUTPUT/T08_S08_TO_S09.mp4",
+      "preferred_generation_seconds": 8,
+      "suggested_source_motion_window": [
+        2.5,
+        4.5
+      ],
+      "target_web_duration_seconds": 1.15,
+      "pilot": false
+    }
+  ],
+  "door_flow": {
+    "source": "S05",
+    "transition": "T05",
+    "destination": "S07",
+    "extra_door_stop": false,
+    "intentional_gestures": 1,
+    "instruction": "Already see the door at the final memory. Next scroll opens it and enters the hall without stopping at the threshold."
+  },
+  "output_spec": {
+    "preferred_width": 1920,
+    "preferred_height": 1080,
+    "minimum_width": 1280,
+    "minimum_height": 720,
+    "aspect_ratio": "16:9",
+    "generation_seconds": 8,
+    "audio": "not needed; preserve source if generated",
+    "web_transition_target_seconds": [
+      0.9,
+      1.4
+    ],
+    "web_duration_is_not_generation_duration": true
+  },
+  "sources": [
+    {
+      "title": "Google: first and last frames",
+      "url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/video/generate-videos-from-first-and-last-frames"
+    },
+    {
+      "title": "Google: video prompt guide",
+      "url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/video/video-gen-prompt-guide"
+    },
+    {
+      "title": "Google: current Gemini API video availability",
+      "url": "https://ai.google.dev/gemini-api/docs/video"
+    }
+  ]
+}

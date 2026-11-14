@@ -1,0 +1,55 @@
+{
+  "status": "design_not_activated",
+  "input_mode": "one_intentional_gesture_per_transition",
+  "state_machine": [
+    "idle",
+    "preparing-next",
+    "traveling",
+    "settling",
+    "modal-open",
+    "reduced-motion",
+    "fallback"
+  ],
+  "gesture_rules": {
+    "inertia_filter": true,
+    "maximum_pending_intent": 1,
+    "disable_scene_navigation_when_typing": true,
+    "disable_scene_navigation_in_modal": true,
+    "require_new_intent_for_door_open": true,
+    "extra_intent_at_door_threshold": false
+  },
+  "transition_runtime_target_seconds": [
+    0.9,
+    1.4
+  ],
+  "source_generation_seconds": 8,
+  "trim_only_after_visual_review": true,
+  "ambient_playback": {
+    "direction": "forward",
+    "rate": 1,
+    "camera": "locked",
+    "ping_pong": false
+  },
+  "targets_are_not_measured_results": true,
+  "revision": 2,
+  "door_flow": {
+    "source_stop": "S05",
+    "transition": "T05",
+    "destination_stop": "S07",
+    "door_already_visible_during_last_memory": true,
+    "gestures_to_enter_hall": 1,
+    "intermediate_idle_state": false,
+    "camera_sequence": [
+      "leave_last_memory_card",
+      "door_begins_opening",
+      "pass_through_door",
+      "settle_in_hall"
+    ]
+  },
+  "retired_stop_ids": [
+    "S06"
+  ],
+  "retired_transition_ids": [
+    "T06"
+  ]
+}

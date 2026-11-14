@@ -1,0 +1,11 @@
+LUỒNG ĐÃ CHỐT
+
+S05: đang xem Năm 4, đã gần thấy cánh cửa. Camera giữ vị trí; cửa đóng; nền vẫn có chuyển động.
+Một nhịp cuộn tiếp: card rời đi, T05 mở cửa và camera đi thẳng vào hội trường S07.
+Không có đoạn dừng hoặc yêu cầu cuộn thêm ở chính cánh cửa.
+
+Tạo S05_AMBIENT theo REFERENCE mới và T05_S05_TO_S07 theo hai ảnh đã ghép.
+T04 cũng đã cập nhật ảnh cuối để nối đúng với S05.
+S06_CLOSED_DOOR và hai đoạn T05_S05_TO_S06 / T06_S06_TO_S07 cũ đã ngừng dùng, lưu ở ARCHIVE_V1_DO_NOT_GENERATE.
+Giữ nguyên ID S07/S08/S09 và T07/T08 để các file còn lại không bị đổi tên.
+Tổng đang dùng: 8 nền đứng tại chỗ + 7 đoạn nối = 15 video.

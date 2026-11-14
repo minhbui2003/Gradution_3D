@@ -1,0 +1,220 @@
+{
+  "scope": "all",
+  "expected": 15,
+  "present": 0,
+  "ready": 0,
+  "status": "pending_assets_or_review",
+  "note": "Pixel scores are diagnostics, not proof of camera lock, spatial continuity, or artistic quality.",
+  "results": [
+    {
+      "id": "S01_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S02_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S03_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S03_MEMORY_YEAR_2/OUTPUT/S03_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S04_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S04_MEMORY_YEAR_3/OUTPUT/S04_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S05_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S05_MEMORY_YEAR_4/OUTPUT/S05_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S07_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S07_CEREMONY/OUTPUT/S07_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S08_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S08_EVENT_DETAILS/OUTPUT/S08_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S09_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S09_WISHES_RSVP/OUTPUT/S09_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T01_S01_TO_S02",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T02_S02_TO_S03",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T02_S02_TO_S03/OUTPUT/T02_S02_TO_S03.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T03_S03_TO_S04",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T03_S03_TO_S04/OUTPUT/T03_S03_TO_S04.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T04_S04_TO_S05",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T04_S04_TO_S05/OUTPUT/T04_S04_TO_S05.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T05_S05_TO_S07",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T05_S05_TO_S07/OUTPUT/T05_S05_TO_S07.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T07_S07_TO_S08",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T07_S07_TO_S08/OUTPUT/T07_S07_TO_S08.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T08_S08_TO_S09",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T08_S08_TO_S09/OUTPUT/T08_S08_TO_S09.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    }
+  ]
+}

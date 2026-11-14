@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-14",
+  "scope": "Source review and read-only local browser behavior. Final redesign deferred until accepted media.",
+  "findings": [
+    {
+      "id": "M01",
+      "priority": "P0",
+      "area": "Điều khiển cuộn",
+      "evidence": "src/components/experience/ScrollDirector.tsx; src/config/scenes.ts",
+      "finding": "Web hiện vẫn ánh xạ quãng cuộn liên tục vào progress; chưa có khóa một nhịp cho wheel/trackpad. Hero còn dùng 2 màn hình cuộn, campus 5 màn hình.",
+      "next": "Thay bằng bộ điều khiển theo điểm dừng: một cử chỉ có chủ ý kích hoạt một đoạn bay ngắn rồi dừng. Lọc quán tính trackpad, ngăn bỏ qua nhiều chặng, hỗ trợ phím và touch. Không ép cuộn khi đang nhập form."
+    },
+    {
+      "id": "M02",
+      "priority": "P0",
+      "area": "Video nền tại chỗ",
+      "evidence": "src/components/experience/VideoSceneBackground.tsx; scripts/prepare-living-scenes.py",
+      "finding": "Đã tách video forward ambience và camera ở bản hiện tại, nhưng video đứng yên đang là bản xử lý từ clip camera di chuyển. Không tương đương footage được tạo riêng cho từng vị trí.",
+      "next": "Thay tám ambient plate bằng clip Veo đã được duyệt camera lock, hình học và loop. Giữ bản hiện tại làm fallback; không đảo clip để nối vòng."
+    },
+    {
+      "id": "M03",
+      "priority": "P0",
+      "area": "Tuyến đi giữa các cảnh",
+      "evidence": "src/config/journey.ts; src/components/experience/CameraPathCanvas.tsx",
+      "finding": "Campus/door hiện theo ảnh rời và thời gian video hardcode. Hero tiến bằng CSS scale, không phải dolly 3D thật.",
+      "next": "Dùng T01–T05, T07 và T08 đã duyệt làm tuyến di chuyển. Đo cửa sổ camera thật trong từng clip, cắt/retime về nhịp ngắn; giữ endpoint tương thích. Một gesture không phát cả 8 giây nguồn."
+    },
+    {
+      "id": "M04",
+      "priority": "P0",
+      "area": "Ráp đầu-cuối video",
+      "evidence": "public/videos; src/components/experience/VideoSceneBackground.tsx",
+      "finding": "Video gốc giữa các scene có khác biệt góc máy/kiến trúc nhỏ. Crossfade có thể che phần nào nhưng không sửa phối cảnh.",
+      "next": "Dùng đúng một ảnh chuẩn cho điểm đến của đoạn nối và ảnh đầu của ambient tiếp theo. So sánh endpoint bằng ảnh chồng và duyệt trực quan; không dùng dissolve dài để che hình học sai."
+    },
+    {
+      "id": "V01",
+      "priority": "P1",
+      "area": "Thiệp mời và ảnh cá nhân",
+      "evidence": "src/components/ui/InvitationOverlay.tsx; src/config/event.ts",
+      "finding": "Khung ảnh thật đã có chỗ nhưng invitationPortraitUrl chưa được đặt. portrait.png hiện tại vẫn là chibi minh họa.",
+      "next": "Nhận ảnh thật trong 03_PERSONAL_ASSETS/portrait. Cắt ảnh theo bố cục responsive, ưu tiên chân dung. Không gen khuôn mặt vào video nền."
+    },
+    {
+      "id": "V02",
+      "priority": "P1",
+      "area": "Kỷ niệm bốn năm",
+      "evidence": "src/components/ui/StoryOverlay.tsx; src/config/event.ts",
+      "finding": "Hiện có một card mỗi chặng và mở ảnh được, nhưng ảnh kỷ niệm là minh họa; chữ 10–11px có chỗ nhỏ trên mobile.",
+      "next": "Thay bằng ảnh thật; giữ một nội dung chính mỗi chặng, cỡ chữ dễ đọc, enter/hold/exit tách rõ. Pause animation khi tương tác. Điều chỉnh bố cục dưới trên mobile, trái/phải trên desktop."
+    },
+    {
+      "id": "V03",
+      "priority": "P1",
+      "area": "Nón dẫn đường",
+      "evidence": "src/components/experience/TravelingCap.tsx",
+      "finding": "Nón procedural và vệt sáng hiện theo spline toàn trang, chưa có waypoint gắn với thời lượng T01–T05, T07 và T08.",
+      "next": "Một nón WebGL duy nhất; đường bay theo từng đoạn, có scale/depth khi qua cửa và nhịp dừng riêng; không bay qua chữ/ảnh/form. Veo chỉ tạo môi trường để tránh nón trùng."
+    },
+    {
+      "id": "V04",
+      "priority": "P1",
+      "area": "Sân khấu và nhân vật",
+      "evidence": "src/components/experience/ExperienceCanvas.tsx; src/components/experience/models/Graduate.tsx",
+      "finding": "Chibi thật có rig, hiện sau khi vào hội trường. Model rigged khoảng 8.6 MB. Nền và actor vẫn cần khớp thang đo/ánh sáng trong lần ráp cuối.",
+      "next": "Giữ actor là lớp riêng nếu chủ dự án muốn. Preload trước một chặng; đo lại hướng mặt, bóng, điểm đặt chân trên S07; giảm chất lượng theo thiết bị. Không gen chibi vào Veo."
+    },
+    {
+      "id": "P01",
+      "priority": "P1",
+      "area": "Tải tài nguyên và hiệu năng",
+      "evidence": "src/components/experience/CameraPathCanvas.tsx; src/components/experience/VideoSceneBackground.tsx; public/travel",
+      "finding": "Camera có cache decoded giới hạn, nhưng vẫn tải toàn route nén; public/travel hiện 263 ảnh khoảng 11.3 MB. Nhiều lớp video có thể cùng tồn tại lúc preload/crossfade.",
+      "next": "Tải hero trước, giữ tối đa hiện tại + chặng kế; hủy tải xa khi đổi hướng. Poster cho mọi chặng, pause tab ẩn, giới hạn decoder; encode 720p mobile/1080p desktop khi có nguồn. Đo FPS/LCP/memory trên thiết bị thật; chưa có số liệu để cam kết 60 FPS."
+    },
+    {
+      "id": "A01",
+      "priority": "P1",
+      "area": "Bàn phím và modal",
+      "evidence": "src/components/ui/RSVPDrawer.tsx; StoryOverlay.tsx; WishesWall.tsx",
+      "finding": "RSVP drawer có focus trap/khóa scroll/ESC. Memory lightbox hoạt động với Enter/ESC, nhưng chưa trap focus như drawer. Wish modal thiếu quản lý focus/khóa scroll đầy đủ.",
+      "next": "Dùng một cơ chế modal chung: focus trap, trả focus, aria-label, khóa hành trình lúc modal mở; giảm motion khi người dùng yêu cầu. Kiểm tra mất WebGL/video bị chặn autoplay bằng fallback DOM."
+    },
+    {
+      "id": "D01",
+      "priority": "P1",
+      "area": "Thông tin sự kiện",
+      "evidence": "src/config/event.ts; src/app/layout.tsx",
+      "finding": "Ngày 25/11/2026, giờ 07:00–11:30, hội trường E4 và địa chỉ đang là dữ liệu trong config; audit này không xác minh với ban tổ chức. OG đang dùng ảnh minh họa memory_1.png.",
+      "next": "Chủ dự án xác nhận ngày/giờ/hội trường/Maps trước khi chia sẻ. Calendar đã xuất UTC theo +07 đúng trong thử nghiệm. Thay OG bằng ảnh cá nhân hoặc ảnh nền đã duyệt."
+    },
+    {
+      "id": "D02",
+      "priority": "P1",
+      "area": "RSVP và lưu bút",
+      "evidence": "src/lib/storage.ts; src/app/api/rsvp/route.ts; src/app/api/wishes/route.ts; src/lib/security.ts",
+      "finding": "Có API thật và lưu JSON ở data/. Public RSVP chỉ trả thống kê. Rate limit dùng memory mỗi process. Mã sync external storage chưa kiểm tra HTTP status khi POST; like chỉ cập nhật kho JSON local. Lời chúc mới được công khai trực tiếp, chưa có luồng duyệt.",
+      "next": "Khi chuẩn bị public: chọn lưu trữ bền vững phù hợp host, thống nhất đọc/ghi/like; kiểm tra lỗi HTTP, không mất dữ liệu qua redeploy; quyết định duyệt lời chúc. Chưa kiểm tra ghi hợp lệ/cross-device trong đợt read-only này."
+    },
+    {
+      "id": "D03",
+      "priority": "P2",
+      "area": "Form và câu chữ",
+      "evidence": "src/components/ui/WishesWall.tsx; RSVPDrawer.tsx",
+      "finding": "Embedded RSVP dùng nhãn Mở Drawer và vẫn có chữ RSVP mang tính kỹ thuật. Một số phản hồi cảm ơn chưa phân biệt rõ người không tham dự.",
+      "next": "Đổi thành Xác nhận tham dự/Gửi lời nhắn, một luồng đơn giản. Nhãn input liên kết id, vùng lỗi/success dễ đọc; thông điệp đúng trạng thái tham dự."
+    },
+    {
+      "id": "Q01",
+      "priority": "P1",
+      "area": "Hình ảnh nguồn",
+      "evidence": "01_STOPS/*/REFERENCE.png; Graduation_Videos.rar",
+      "finding": "Tám ảnh trích giữ nguyên khung full HD, có biểu tượng/chữ/chi tiết AI đã nằm trong video. Đưa ảnh đó vào Veo có thể giữ lại các chi tiết này.",
+      "next": "Duyệt storyboard trước; nếu muốn nền sạch hơn, thay ảnh REFERENCE.png trước khi gen và sync ảnh đầu/cuối của các đoạn liên quan. Không ghép UI/nón/portrait vào ảnh seed. Không coi source ảnh AI là ảnh campus chính xác ngoài đời."
+    }
+  ],
+  "asset_setup_revision": 2,
+  "door_flow": "At the last memory the door is already visible nearby; one next scroll opens it and enters the hall with no separate door stop."
+}

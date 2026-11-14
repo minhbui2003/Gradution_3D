@@ -1,0 +1,58 @@
+{
+  "source": "Graduation_Videos.rar",
+  "playback": "Ambient scenes play independently. Campus and the doorway use scroll-driven camera positions.",
+  "scenes": [
+    {
+      "id": "scene-01",
+      "entrance": "/videos/scene-01-entry.mp4",
+      "ambient": "/videos/scene-01-ambient.mp4",
+      "ambientSourceStartSeconds": 4.5,
+      "ambientStrategy": "reverse-then-forward tail, matching endpoints",
+      "width": 1280,
+      "height": 720,
+      "fps": 24
+    },
+    {
+      "id": "scene-02",
+      "entrance": "/videos/scene-02-entry.mp4",
+      "ambient": "/videos/scene-02-ambient.mp4",
+      "ambientSourceStartSeconds": 4.5,
+      "ambientStrategy": "reverse-then-forward tail, matching endpoints",
+      "width": 1280,
+      "height": 720,
+      "fps": 24,
+      "scrollPath": "/videos/scene-02-path.mp4"
+    },
+    {
+      "id": "scene-03",
+      "entrance": "/videos/scene-03-entry.mp4",
+      "ambient": "/videos/scene-03-ambient.mp4",
+      "ambientSourceStartSeconds": 4.5,
+      "ambientStrategy": "reverse-then-forward tail, matching endpoints",
+      "width": 1280,
+      "height": 720,
+      "fps": 24,
+      "scrollPath": "/videos/scene-03-path.mp4"
+    },
+    {
+      "id": "scene-04",
+      "entrance": "/videos/scene-04-entry.mp4",
+      "ambient": "/videos/scene-04-ambient.mp4",
+      "ambientSourceStartSeconds": 4.5,
+      "ambientStrategy": "reverse-then-forward tail, matching endpoints",
+      "width": 1280,
+      "height": 720,
+      "fps": 24
+    },
+    {
+      "id": "scene-05",
+      "entrance": "/videos/scene-05-entry.mp4",
+      "ambient": "/videos/scene-05-ambient.mp4",
+      "ambientSourceStartSeconds": 4.5,
+      "ambientStrategy": "reverse-then-forward tail, matching endpoints",
+      "width": 1280,
+      "height": 720,
+      "fps": 24
+    }
+  ]
+}

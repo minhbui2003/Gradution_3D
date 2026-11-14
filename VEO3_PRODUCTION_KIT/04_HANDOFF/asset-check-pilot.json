@@ -1,0 +1,52 @@
+{
+  "scope": "pilot",
+  "expected": 3,
+  "present": 0,
+  "ready": 0,
+  "status": "pending_assets_or_review",
+  "note": "Pixel scores are diagnostics, not proof of camera lock, spatial continuity, or artistic quality.",
+  "results": [
+    {
+      "id": "S01_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "S02_AMBIENT",
+      "kind": "ambient",
+      "path": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    },
+    {
+      "id": "T01_S01_TO_S02",
+      "kind": "transition",
+      "path": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4",
+      "exists": false,
+      "errors": [
+        "missing_video"
+      ],
+      "warnings": [],
+      "visual_accepted": false,
+      "metadata_checked": false,
+      "technical_pass": false,
+      "ready_for_integration": false
+    }
+  ]
+}

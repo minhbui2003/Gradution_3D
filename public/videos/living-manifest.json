@@ -1,0 +1,63 @@
+{
+  "source": "Graduation_Videos.rar",
+  "fps": 24,
+  "camera": "Fixed reference architecture; registered positive light changes from original footage. All loops play forward.",
+  "stops": [
+    {
+      "id": "memory-1",
+      "sourceScene": 2,
+      "anchorFrame": 59,
+      "anchorTime": 2.4583333333333335,
+      "url": "/videos/memory-1.mp4"
+    },
+    {
+      "id": "memory-2",
+      "sourceScene": 2,
+      "anchorFrame": 85,
+      "anchorTime": 3.5416666666666665,
+      "url": "/videos/memory-2.mp4"
+    },
+    {
+      "id": "memory-3",
+      "sourceScene": 2,
+      "anchorFrame": 103,
+      "anchorTime": 4.291666666666667,
+      "url": "/videos/memory-3.mp4"
+    },
+    {
+      "id": "memory-4",
+      "sourceScene": 2,
+      "anchorFrame": 115,
+      "anchorTime": 4.791666666666667,
+      "url": "/videos/memory-4.mp4"
+    },
+    {
+      "id": "door",
+      "sourceScene": 2,
+      "anchorFrame": 120,
+      "anchorTime": 5.0,
+      "url": "/videos/door.mp4"
+    },
+    {
+      "id": "scene-03-living",
+      "sourceScene": 3,
+      "anchorFrame": 189,
+      "anchorTime": 7.875,
+      "url": "/videos/scene-03-living.mp4"
+    },
+    {
+      "id": "scene-04-living",
+      "sourceScene": 4,
+      "anchorFrame": 189,
+      "anchorTime": 7.875,
+      "url": "/videos/scene-04-living.mp4"
+    },
+    {
+      "id": "scene-05-living",
+      "sourceScene": 5,
+      "anchorFrame": 189,
+      "anchorTime": 7.875,
+      "url": "/videos/scene-05-living.mp4"
+    }
+  ]
+}

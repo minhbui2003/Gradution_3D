@@ -1,0 +1,33 @@
+{
+  "status": "design_not_activated",
+  "input_mode": "one_intentional_gesture_per_transition",
+  "state_machine": [
+    "idle",
+    "preparing-next",
+    "traveling",
+    "settling",
+    "modal-open",
+    "reduced-motion",
+    "fallback"
+  ],
+  "gesture_rules": {
+    "inertia_filter": true,
+    "maximum_pending_intent": 1,
+    "disable_scene_navigation_when_typing": true,
+    "disable_scene_navigation_in_modal": true,
+    "require_new_intent_for_door_open": true
+  },
+  "transition_runtime_target_seconds": [
+    0.9,
+    1.4
+  ],
+  "source_generation_seconds": 8,
+  "trim_only_after_visual_review": true,
+  "ambient_playback": {
+    "direction": "forward",
+    "rate": 1,
+    "camera": "locked",
+    "ping_pong": false
+  },
+  "targets_are_not_measured_results": true
+}
