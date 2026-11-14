@@ -118,10 +118,12 @@ export function FrameSequenceCanvas({ progress }: FrameSequenceCanvasProps) {
         canvas.height = targetHeight;
       }
 
-      ctx.fillStyle = '#07111e';
-      ctx.fillRect(0, 0, targetWidth, targetHeight);
-
+      // Keep the last valid frame on screen while a requested frame is loading.
+      // On first load, leave the canvas transparent so the first-frame CSS
+      // background underneath remains visible instead of flashing dark.
       if (image && image.naturalWidth > 0 && image.naturalHeight > 0) {
+        ctx.fillStyle = '#07111e';
+        ctx.fillRect(0, 0, targetWidth, targetHeight);
         // Calculate object-fit: cover scaling
         const scale = Math.max(
           targetWidth / image.naturalWidth,
@@ -140,7 +142,9 @@ export function FrameSequenceCanvas({ progress }: FrameSequenceCanvasProps) {
           const nextUrl = frameUrl(chapterIndex + 1, 0);
           const nextImg = getCached(nextUrl);
           if (nextImg && nextImg.naturalWidth > 0) {
-            const blendAlpha = Math.min(0.65, (local - 0.94) / 0.06);
+            // Blend all the way to the next scene before the chapter flips.
+            // 0.65 caused a visible opacity jump at every scene boundary.
+            const blendAlpha = Math.max(0, Math.min(1, (local - 0.94) / 0.06));
             ctx.save();
             ctx.globalAlpha = blendAlpha;
             const nScale = Math.max(
