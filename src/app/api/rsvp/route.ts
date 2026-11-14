@@ -96,7 +96,6 @@ export async function POST(request: Request) {
       guestCount: validGuestCount,
       message: cleanMessage,
       createdAt: new Date().toISOString(),
-      ipHash: Buffer.from(ip).toString('base64').slice(0, 10),
     };
 
     await saveRSVPRecord(record);
