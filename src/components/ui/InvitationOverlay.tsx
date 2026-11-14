@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Calendar, MapPin, Sparkles, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import { Calendar, MapPin, Sparkles, ChevronDown, GraduationCap, Quote } from 'lucide-react';
 import { EVENT_DATA } from '@/config/event';
 import { scrollToProgress } from '../experience/ScrollDirector';
 
@@ -21,19 +22,21 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
     opacity = Math.max(0, 1 - (progress - 0.12) / 0.05);
   }
 
+  const portraitSrc = EVENT_DATA.graduate.portraitUrl || EVENT_DATA.graduate.avatarUrl;
+
   return (
     <div
-      className="fixed inset-0 pointer-events-none flex flex-col justify-end p-4 sm:p-8 z-10 transition-opacity duration-300"
+      className="fixed inset-0 pointer-events-none flex flex-col justify-end p-3 sm:p-8 z-10 transition-opacity duration-300 overflow-y-auto"
       style={{ opacity }}
     >
-      <div className="w-full flex flex-col sm:flex-row items-end justify-between gap-4 pointer-events-auto">
+      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-end justify-between gap-4 pointer-events-auto">
         {/* Left Side: Compact, Elegant Glassmorphic Invitation Card */}
-        <div className="w-full sm:max-w-md glass-panel-light text-navy p-5 rounded-3xl border-2 border-gold/60 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <div className="w-full md:max-w-md glass-panel-light text-navy p-4 sm:p-5 rounded-3xl border-2 border-gold/60 shadow-2xl relative overflow-hidden backdrop-blur-md">
           {/* Subtle gold corner motifs */}
-          <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-gold m-2 rounded-tl" />
-          <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-gold m-2 rounded-tr" />
-          <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-gold m-2 rounded-bl" />
-          <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-gold m-2 rounded-br" />
+          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-gold m-2 rounded-tl" />
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-gold m-2 rounded-tr" />
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-gold m-2 rounded-bl" />
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-gold m-2 rounded-br" />
 
           {/* Badge */}
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gold/20 border border-gold/40 text-gold-dark text-[10px] font-bold tracking-wider uppercase mb-2">
@@ -42,10 +45,10 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
           </div>
 
           <p className="text-[10px] sm:text-[11px] font-bold tracking-widest text-iuh uppercase">
-            Trường Đại học Công nghiệp TP.HCM • Khoa CNTT
+            {EVENT_DATA.graduate.university} • {EVENT_DATA.graduate.faculty}
           </p>
 
-          <h1 className="text-xl sm:text-2xl font-serif font-bold text-navy mt-0.5 mb-0.5 tracking-tight">
+          <h1 className="text-lg sm:text-2xl font-serif font-bold text-navy mt-0.5 mb-0.5 tracking-tight">
             {EVENT_DATA.graduate.fullName}
           </h1>
 
@@ -61,7 +64,9 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
               </div>
               <div className="truncate">
                 <span className="text-[9px] font-medium text-gray-500 uppercase block">Thời gian</span>
-                <span className="text-[11px] font-bold text-navy truncate block">25/11/2026</span>
+                <span className="text-[11px] font-bold text-navy truncate block">
+                  {EVENT_DATA.ceremony.dateDisplay.split(',')[1] || '25/11/2026'}
+                </span>
               </div>
             </div>
 
@@ -71,7 +76,9 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
               </div>
               <div className="truncate">
                 <span className="text-[9px] font-medium text-gray-500 uppercase block">Địa điểm</span>
-                <span className="text-[11px] font-bold text-navy truncate block">Hội trường E4</span>
+                <span className="text-[11px] font-bold text-navy truncate block">
+                  {EVENT_DATA.ceremony.hall}
+                </span>
               </div>
             </div>
           </div>
@@ -93,11 +100,47 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
           </div>
         </div>
 
-        {/* Scroll down indicator centered at bottom */}
-        <div className="hidden sm:flex flex-col items-center text-gray-300 hover:text-gold transition-colors pb-2">
-          <span className="text-[11px] font-medium tracking-wide">Cuộn chuột để tiếp tục</span>
-          <ChevronDown size={18} className="text-gold animate-bounce" />
+        {/* Right Side: Real Portrait Photo of the Graduate */}
+        <div className="w-full md:w-72 glass-panel text-white p-3.5 sm:p-4 rounded-3xl border border-gold/50 shadow-2xl relative overflow-hidden backdrop-blur-md flex flex-row md:flex-col items-center gap-3">
+          {/* Subtle gold badge */}
+          <div className="absolute top-2 right-2 hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold/20 text-gold text-[9px] font-bold uppercase tracking-wider border border-gold/30">
+            <GraduationCap size={10} />
+            <span>Tân Cử Nhân</span>
+          </div>
+
+          {/* Photo container */}
+          <div className="relative w-24 h-28 sm:w-28 sm:h-32 md:w-full md:h-48 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-inner bg-navy-deep/80 shrink-0">
+            <Image
+              src={portraitSrc}
+              alt={`Ảnh chân dung tốt nghiệp của ${EVENT_DATA.graduate.fullName}`}
+              fill
+              priority
+              className="object-cover object-top hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 768px) 112px, 280px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent pointer-events-none" />
+          </div>
+
+          {/* Caption & Personal Quote */}
+          <div className="flex flex-col text-left flex-1 min-w-0">
+            <div className="flex items-center gap-1 text-gold text-[10px] font-bold uppercase tracking-wider">
+              <span>{EVENT_DATA.graduate.fullName}</span>
+            </div>
+            <p className="text-[10px] sm:text-[11px] text-gray-300 font-medium line-clamp-2 md:line-clamp-3 mt-0.5 leading-snug">
+              &ldquo;{EVENT_DATA.graduate.quote}&rdquo;
+            </p>
+            <div className="mt-1 pt-1 border-t border-white/10 flex items-center justify-between text-[9px] text-gray-400">
+              <span>Khoá 2022 - 2026</span>
+              <span className="text-gold">Khoa CNTT</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Scroll Down Hint Centered at Bottom */}
+      <div className="hidden sm:flex flex-col items-center text-gray-300 hover:text-gold transition-colors pt-3">
+        <span className="text-[11px] font-medium tracking-wide">Cuộn chuột để tiếp tục khám phá</span>
+        <ChevronDown size={18} className="text-gold animate-bounce mt-0.5" />
       </div>
     </div>
   );

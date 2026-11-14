@@ -9,6 +9,7 @@ export interface EventConfig {
     classCode: string;
     studentId: string;
     avatarUrl: string;
+    portraitUrl?: string;
     quote: string;
   };
   ceremony: {
@@ -49,6 +50,7 @@ export const EVENT_DATA: EventConfig = {
     classCode: "DHCNTT",
     studentId: "IUH-GRAD-2026",
     avatarUrl: "/images/chibi_avatar.png",
+    portraitUrl: "/images/portrait.png",
     quote: "Hành trình 4 năm rực rỡ dưới mái trường IUH khép lại để mở ra những chân trời mới. Trân trọng kính mời thầy cô, gia đình và bạn bè cùng đến chia vui!",
   },
   ceremony: {

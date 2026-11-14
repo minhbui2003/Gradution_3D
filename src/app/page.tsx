@@ -11,7 +11,16 @@ import { WishesWall } from '@/components/ui/WishesWall';
 import { RSVPDrawer } from '@/components/ui/RSVPDrawer';
 import { DebugPanel } from '@/components/ui/DebugPanel';
 
-// Dynamically import Canvas with SSR disabled for optimal WebGL performance
+// Dynamically import the 750-frame WebP sequence canvas with SSR disabled
+const FrameSequenceCanvas = dynamic(
+  () =>
+    import('@/components/experience/FrameSequenceCanvas').then(
+      (mod) => mod.FrameSequenceCanvas
+    ),
+  { ssr: false }
+);
+
+// Dynamically import transparent Three.js Canvas for Scene 03 Chibi
 const ExperienceCanvas = dynamic(
   () =>
     import('@/components/experience/ExperienceCanvas').then(
@@ -35,7 +44,10 @@ export default function GraduationPage() {
       {/* Top Header / Navigation */}
       <Navigation progress={progress} />
 
-      {/* Persistent 3D Canvas */}
+      {/* 750-Frame WebP HTML5 Background Canvas (z-0) */}
+      {isMounted && <FrameSequenceCanvas progress={progress} />}
+
+      {/* Transparent 3D Stage Canvas for Scene 03 Chibi GLB (z-[2]) */}
       {isMounted && <ExperienceCanvas progress={progress} />}
 
       {/* Vignette Overlay for cinematic lighting */}
