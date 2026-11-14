@@ -26,12 +26,12 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none flex flex-col justify-end p-3 sm:p-8 z-10 transition-opacity duration-300 overflow-y-auto"
+      className="fixed inset-0 pointer-events-none flex flex-col justify-center p-3 pt-20 pb-10 sm:p-8 z-10 transition-opacity duration-300 overflow-y-auto"
       style={{ opacity }}
     >
-      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-end justify-between gap-4 pointer-events-auto">
+      <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 pointer-events-auto">
         {/* Left Side: Compact, Elegant Glassmorphic Invitation Card */}
-        <div className="w-full md:max-w-md glass-panel-light text-navy p-4 sm:p-5 rounded-3xl border-2 border-gold/60 shadow-2xl relative overflow-hidden backdrop-blur-md">
+        <div className="w-full md:max-w-lg glass-panel-light text-navy p-4 sm:p-7 rounded-3xl border-2 border-gold/60 shadow-2xl relative overflow-hidden backdrop-blur-md">
           {/* Subtle gold corner motifs */}
           <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-gold m-2 rounded-tl" />
           <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-gold m-2 rounded-tr" />
@@ -48,7 +48,7 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
             {EVENT_DATA.graduate.university} • {EVENT_DATA.graduate.faculty}
           </p>
 
-          <h1 className="text-lg sm:text-2xl font-serif font-bold text-navy mt-0.5 mb-0.5 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-navy mt-0.5 mb-0.5 tracking-tight">
             {EVENT_DATA.graduate.fullName}
           </h1>
 
@@ -101,7 +101,7 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
         </div>
 
         {/* Right Side: Real Portrait Photo of the Graduate */}
-        <div className="w-full md:w-72 glass-panel text-white p-3.5 sm:p-4 rounded-3xl border border-gold/50 shadow-2xl relative overflow-hidden backdrop-blur-md flex flex-row md:flex-col items-center gap-3">
+        <div className="w-full md:w-[340px] glass-panel text-white p-3.5 sm:p-4 rounded-3xl border border-gold/50 shadow-2xl relative overflow-hidden backdrop-blur-md flex flex-row md:flex-col items-center gap-3">
           {/* Subtle gold badge */}
           <div className="absolute top-2 right-2 hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold/20 text-gold text-[9px] font-bold uppercase tracking-wider border border-gold/30">
             <GraduationCap size={10} />
@@ -109,14 +109,14 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
           </div>
 
           {/* Photo container */}
-          <div className="relative w-24 h-28 sm:w-28 sm:h-32 md:w-full md:h-48 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-inner bg-navy-deep/80 shrink-0">
+          <div className="relative w-24 h-28 sm:w-28 sm:h-32 md:w-full md:h-72 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-inner bg-navy-deep/80 shrink-0">
             <Image
               src={portraitSrc}
               alt={`Ảnh chân dung tốt nghiệp của ${EVENT_DATA.graduate.fullName}`}
               fill
               priority
               className="object-cover object-top hover:scale-105 transition-transform duration-500"
-              sizes="(max-width: 768px) 112px, 280px"
+              sizes="(max-width: 768px) 112px, 340px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent pointer-events-none" />
           </div>
