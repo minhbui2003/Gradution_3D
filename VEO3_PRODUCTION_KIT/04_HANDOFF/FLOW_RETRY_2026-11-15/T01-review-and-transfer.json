@@ -1,0 +1,23 @@
+{
+  "run_id": "63480eed-ed64-4d3f-a5f8-5101a03f8a31",
+  "run_url": "https://agent.tinyfish.ai/runs/63480eed-ed64-4d3f-a5f8-5101a03f8a31",
+  "result": {
+    "asset_url": "https://flow.google.com/project/2f050b2e-ad83-443b-bc4c-6556e1411bf8/edit/a98f6a0c-739d-459c-9a06-b363de7fa23e",
+    "observed_0s": "Modern multi-story building, glass facade, straight-on eye-level camera angle, starry night sky with glowing wisps of light at base, dreamlike atmosphere. No narrow curved navy portal visible at this distance.",
+    "observed_2_5s": "Video player skips in steps rather than smoothly scrubbing; same exterior building frame as 0s visible at end.",
+    "observed_4_5s": "Could not reach 4.5s precisely; player jumps to 8s frame.",
+    "observed_7_9s": "8s frame shows same building, front entrance perspective, starry sky, light streaks at base; camera is still frontal/elevated looking at multi-story building.",
+    "quality_notes": "Video player in Flow editor is not loading the actual video stream (total duration shows 00:00:00), only showing poster/thumbnail frames. Player timestamps show 00:00:00 at start and jump to 00:08:00 at end without any intermediate frames loading. The video is not actually playing or scrubbing through time, so a complete 8-second playback review is impossible. The poster image at both 0s and 8s shows the same modern multi-story building with starry sky and glowing light effects at the base. There is no visible evidence of a 'narrow curved navy portal' or 'warm corridor' at either the start or end frames. The architecture shown (multi-story glass building with night sky) does not match the expected 'university building entrance' description. Full playback verification was not possible because the video stream is not loading in the browser, only the poster image is displayed.",
+    "quality_decision": "INSUFFICIENT",
+    "original_filename": "N/A (no filename exposed in Flow UI)",
+    "download_limitation": "The 720p 'Kích thước gốc' (original) download was initiated and returned a snack-bar notification 'Đã tải video của bạn xuống!' (Your video has been downloaded!) — however, the actual file was not retrieved as a local artifact in this browser session. The /asb URL is an authenticated proxy link that requires signed-in Google Flow credentials and redirects unauthenticated requests to accounts.google.com. No direct HTTPS media URL (e.g., google storage/googleusercontent) was exposed that can be fetched without cookies. The poster/thumbnail URL (storage.googleapis.com) is a signed image, not the MP4 video file itself. The video source is served through Google Flow's internal proxy and is not directly accessible as a public media URL.",
+    "full_prompt_matches": true,
+    "download_artifact_urls": [
+      "https://flow.google.com/asb/ANqvLOa-He3dvtpONBLvUXp-CMIV3bATRe9DcRif7oSGRRlSY3RqfV50vXvOMMWYRoDUrFHbttWB-pOSSNPeQP3s_2HKZUGo7YP3hRSu_vjwzmW6hVMgOyJoCQ17hWZlLcJJhma0IurUicD3SkaqFqbuN9i6AQC6hdT86qs-18SRYw",
+      "https://storage.googleapis.com/ai-sandbox-videofx/image/c2e88fcf-29be-4c7b-8ef0-ed39f9780708?GoogleAccessId=labs-ai-sandbox-videofx-prod@system.gserviceaccount.com&Expires=1794746378&Signature=IdaRUv%2FOrqHdHQZilvdMdYK1SSfYexYjH4doqnbDjjbeNafQ1VDQ50vUa2Fn4d7CPlD1oxFyzUZJfcqBBjZfWyQHqcTKaPdz4FX4hMueZRiP6RXIp5zFY9tm6h2j3i1XgoGOenhZX4kwCLk5QveHPvCGZ%2BO3Q4bl40EpIbdfA2r93QfI40iTD%2BhFaY90qq85PmuvRpeUtfK9XlAWQVZyjHoq2b9rv%2BQFJaTC7xLv3FbO3Sqjx2BkisMobNZ%2BvZa%2BqhLZcTdAZK2ZZKlMBfpIymFGyZ3sxrLrPj6fx9VW9BdaMFpf2dX%2Bxf3NaAW%2FysL7qHwiZaAlDxAQTc2aZjcyaA%3D%3D"
+    ],
+    "complete_playback_review": false,
+    "authenticated_download_url": "https://flow.google.com/asb/ANqvLOa-He3dvtpONBLvUXp-CMIV3bATRe9DcRif7oSGRRlSY3RqfV50vXvOMMWYRoDUrFHbttWB-pOSSNPeQP3s_2HKZUGo7YP3hRSu_vjwzmW6hVMgOyJoCQ17hWZlLcJJhma0IurUicD3SkaqFqbuN9i6AQC6hdT86qs-18SRYw",
+    "direct_non_cookie_media_url": "N/A"
+  }
+}

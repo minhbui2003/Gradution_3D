@@ -1,0 +1,7 @@
+Supply INPUT/FIRST_FRAME.png and INPUT/LAST_FRAME.png in their respective first-frame and last-frame conditioning slots. One continuous 8-second architectural camera shot, landscape 16:9, silent empty background plate. These are approved NEW plain, unbranded reference images.
+
+Move forward from the exterior along the existing central approach, under the existing glass canopy, and stop at the exact close glass entrance viewpoint. There is only ONE navy curved rectangular portal, integrated in the doorway wall. Do not create a separate freestanding semicircular arch in front of it. Do not travel deeper than the supplied end viewpoint or invent an alternative lobby.
+
+Use a controlled continuous dolly with a gentle acceleration and clear deceleration. Begin the purposeful movement within the first 0.5 seconds, reach the exact final camera viewpoint by about 6 seconds, and hold that viewpoint for the rest of the shot with minimal atmosphere. Do not add an extra static waiting shot in the middle. Maintain spatial continuity and realistic occlusion; do not substitute a different room or use a final reference-image overlay to fake the destination. Keep existing structural edges coherent and illumination stable.
+
+All plain unbranded surfaces stay plain. No text, logos, emblems, corner graphics, UI symbols, captions, people, graduation cap, portrait or memory cards. Keep the center clear for separate website content. No dissolve, crossfade, architectural morph, double exposure, hard cut, teleport, rewind or reverse playback.

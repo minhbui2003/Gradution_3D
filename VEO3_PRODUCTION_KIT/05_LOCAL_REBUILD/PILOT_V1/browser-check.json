@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "playback_started": true,
+  "mobile_no_horizontal_overflow": true,
+  "page_errors": [],
+  "media": [
+    {
+      "file": "PILOT_PREVIEW.mp4",
+      "duration": 17.133008,
+      "width": 1280,
+      "height": 720,
+      "error": null
+    },
+    {
+      "file": "S01_AMBIENT_LOCAL.mp4",
+      "duration": 8,
+      "width": 1280,
+      "height": 720,
+      "error": null
+    },
+    {
+      "file": "S02_AMBIENT_LOCAL.mp4",
+      "duration": 8,
+      "width": 1280,
+      "height": 720,
+      "error": null
+    },
+    {
+      "file": "T01_S01_TO_S02_LOCAL.mp4",
+      "duration": 8,
+      "width": 1280,
+      "height": 720,
+      "error": null
+    },
+    {
+      "file": "T01_WEB_1.15s.mp4",
+      "duration": 1.133333,
+      "width": 1280,
+      "height": 720,
+      "error": null
+    }
+  ],
+  "note": "Local file playback in headless Chromium. No live Flow access or real-device performance measurement."
+}

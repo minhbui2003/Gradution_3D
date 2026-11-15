@@ -1,0 +1,10 @@
+T07: Hội trường → sảnh thông tin
+
+1. Duyệt ảnh mới của S07 và S08 trước. Hai ảnh phải cùng kiến trúc/không gian như tuyến đã chốt.
+2. Chạy tools/sync_inputs.py; mở INPUT để lấy đúng hai ảnh đầu/cuối mới.
+3. Tạo video Frames với FIRST_FRAME.png ở ô đầu, LAST_FRAME.png ở ô cuối. Dán PROMPT_TRANSITION_EN.txt.
+4. Chọn 16:9, 8 giây, x1, ưu tiên 1080p. Xem toàn bộ đường đi; không chỉ xem ảnh đầu/cuối.
+5. Không chấp nhận phòng khác, vòm/cửa phát sinh hoặc đoạn cuối hòa hình về ảnh đích.
+6. Lưu nguyên bản vào OUTPUT/T07_S07_TO_S08.mp4. Chưa tự tăng tốc hoặc cắt.
+
+Nhịp web khoảng 1–1.5 giây là phần xử lý sau khi duyệt nguồn; không phải yêu cầu gen một clip chỉ dài 1 giây.

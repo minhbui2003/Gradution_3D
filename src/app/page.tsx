@@ -13,8 +13,9 @@ import { MotionAtmosphere } from '@/components/experience/MotionAtmosphere';
 import { Pause, Play, ArrowDown } from 'lucide-react';
 import { getActiveScene, SCENES } from '@/config/scenes';
 import { smoothstep } from '@/lib/sceneProgress';
+import { FIRST_MEMORY_PROGRESS } from '@/config/navigation';
 
-// Background scenes run freely; the campus walk and doorway follow scroll.
+// Ambient scenes play freely; each navigation gesture runs a complete camera trip.
 const VideoSceneBackground = dynamic(
   () =>
     import('@/components/experience/VideoSceneBackground').then(
@@ -93,12 +94,12 @@ export default function GraduationPage() {
         <button type="button" className="ambient-motion-toggle" onClick={() => setMotionEnabled((value) => !value)} aria-pressed={!motionEnabled} aria-label={motionEnabled ? 'Giảm chuyển động' : 'Bật chuyển động'} title={motionEnabled ? 'Giảm chuyển động' : 'Bật chuyển động'}>
           {motionEnabled ? <Pause size={12} /> : <Play size={12} />}
         </button>
-        {progress < .14 && <button type="button" className="scroll-invitation" onClick={() => scrollToProgress(.24)} style={{ opacity: 1 - smoothstep(.08, .14, progress) }}>
-          <span>Cuộn để khám phá</span><ArrowDown size={13} />
+        {progress < .14 && <button type="button" className="scroll-invitation" onClick={() => scrollToProgress(FIRST_MEMORY_PROGRESS)} style={{ opacity: 1 - smoothstep(.08, .14, progress) }}>
+          <span>Cuộn một lần để khám phá</span><ArrowDown size={13} />
         </button>}
       </div>
 
-      {/* Shared, damped scroll progress */}
+      {/* A deliberate wheel/swipe runs one complete transition to the next stop. */}
       <ScrollDirector
         onProgress={setProgress}
         scrollContainerRef={scrollContainerRef}

@@ -1,0 +1,7 @@
+Use the approved INPUT/REFERENCE.png as BOTH first-frame and last-frame conditioning images. Generate one continuous 8-second silent architectural background plate, landscape 16:9.
+
+This is a still architectural photograph with only minimal atmosphere animated. Fixed tripod for ALL eight seconds. Constant focal length, focus, perspective, exposure and framing. Zero camera translation, zero zoom, zero pan, zero tilt. Every doorway, wall edge, glass mullion, ceiling beam and floor edge remains at the SAME pixel position from beginning to end. This clip contains NO arrival, approach or camera move.
+
+Only sparse faint dust near the side edges. No light ribbon crosses the central passage; illumination stays almost constant.
+
+Keep the approved plain unbranded reference surfaces unchanged. Add no lettering, logos, insignia, branding, corner graphics, badges, interface symbols, upload icons or subtitles. No people, character, cap, portrait or cards. Animate atmosphere gently FORWARD in time at native speed, with a subtle loop-compatible beginning and end. Never travel forward and then return to the reference. No dissolve back, crossfade, morph, ghosting, rewind, reverse motion, smoke fountain, large bright clouds, sweeping light ribbons, strobe or exposure pumping. The central passage remains clear for HTML content composited separately.

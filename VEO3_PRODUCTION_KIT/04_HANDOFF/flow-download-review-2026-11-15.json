@@ -1,0 +1,437 @@
+{
+  "provenance": "User downloaded these MP4s from Flow and placed them in data; model identity is not certified by file metadata.",
+  "integration": "local website pilot",
+  "sources": {
+    "T01": {
+      "file": "data/Camera_approach_to_building_entr…_c2e88fcf_1080p.mp4",
+      "canonical": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4",
+      "sha256": "2f97506d4b023cac7b4bb69ebeed206e5fb1c7d64af39310d4ee9e91e77b6949",
+      "frames": 188,
+      "fps": 24.0,
+      "duration_seconds": 7.833333333333333,
+      "web_url": "/videos/flow/t01-2f97506d4b02.mp4",
+      "web_bytes": 2840602,
+      "frame_bytes": 7447682
+    },
+    "S02": {
+      "file": "data/Generating_architectural_video_b…_d0eb969a_1080p.mp4",
+      "canonical": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4",
+      "sha256": "b5b7ed0cc991760535e11effb0c6b7ae35eddbf5c6660a5e4a70dde0326fc857",
+      "frames": 188,
+      "fps": 24.0,
+      "duration_seconds": 7.833333333333333,
+      "web_url": "/videos/flow/s02-b5b7ed0cc991.mp4",
+      "web_bytes": 964985
+    }
+  },
+  "original_files_preserved": true,
+  "web_processing": "Original user downloads preserved. Muted 720p web copies; gesture-specific 1.2s/60fps forward and return files sample original T01 frames with eased timing. No synthetic scenery or interpolated frames.",
+  "decisions": {
+    "S02": {
+      "decision": "accepted_for_web_pilot",
+      "notes": "Stable architecture and closed door, subtle particles. Review sampled frame registration and the loop in browser."
+    },
+    "T01": {
+      "decision": "preview_only_regenerate_for_final",
+      "actual_motion_window_seconds": [
+        0,
+        7.791666666666667
+      ],
+      "notes": "Camera moves across almost the whole clip, rather than only 2.5–4.5s. An additional rounded navy arch appears before the supplied entrance. Use the entire approach for the web test; do not cut blindly to 2.5–4.5s."
+    }
+  },
+  "limitations": [
+    "Later memory backgrounds and routes remain the previous sources."
+  ],
+  "diagnostics": {
+    "S02_loop_endpoint_mae_normalized": 0.012295496323529411,
+    "T01_to_S02_endpoint_mae_normalized": 0.047305266203703705,
+    "S02_sampled_registration": [
+      {
+        "time": 0.0,
+        "scale": 1.0,
+        "translation_at_640px": [
+          -4.5808842853231675e-15,
+          -2.3215366590304734e-15
+        ],
+        "rotation_degrees": 1.554627172358792e-16,
+        "inliers": 471
+      },
+      {
+        "time": 0.25,
+        "scale": 1.0000647190996168,
+        "translation_at_640px": [
+          -0.021150328157358633,
+          -0.03901990719510838
+        ],
+        "rotation_degrees": 0.0016135233897802722,
+        "inliers": 409
+      },
+      {
+        "time": 0.5,
+        "scale": 1.000011175928224,
+        "translation_at_640px": [
+          -0.01593930747442943,
+          -0.01974354336880176
+        ],
+        "rotation_degrees": 0.0011608391736660888,
+        "inliers": 382
+      },
+      {
+        "time": 0.75,
+        "scale": 1.000079612910767,
+        "translation_at_640px": [
+          -0.015414678784896467,
+          -0.035061659853370515
+        ],
+        "rotation_degrees": 0.0018528022007968767,
+        "inliers": 382
+      },
+      {
+        "time": 1.0,
+        "scale": 1.0001563317449855,
+        "translation_at_640px": [
+          -0.032121194455330286,
+          -0.04816993515046952
+        ],
+        "rotation_degrees": 0.0009490115252224256,
+        "inliers": 365
+      },
+      {
+        "time": 1.25,
+        "scale": 1.000303852404231,
+        "translation_at_640px": [
+          -0.09601641854690425,
+          -0.07249128844457683
+        ],
+        "rotation_degrees": -0.0006555915976903848,
+        "inliers": 353
+      },
+      {
+        "time": 1.5,
+        "scale": 1.0000465590285275,
+        "translation_at_640px": [
+          -0.01847303433683215,
+          -0.039427904474523885
+        ],
+        "rotation_degrees": 0.00028679282810656066,
+        "inliers": 346
+      },
+      {
+        "time": 1.75,
+        "scale": 1.0000467864695812,
+        "translation_at_640px": [
+          0.004504925037452022,
+          -0.015348183172444374
+        ],
+        "rotation_degrees": -0.0013856112233507501,
+        "inliers": 345
+      },
+      {
+        "time": 2.0,
+        "scale": 1.000136093857786,
+        "translation_at_640px": [
+          -0.03029489805048231,
+          -0.05794083866758594
+        ],
+        "rotation_degrees": 0.0021470570582935965,
+        "inliers": 337
+      },
+      {
+        "time": 2.25,
+        "scale": 1.0000591918360917,
+        "translation_at_640px": [
+          0.020670121319247815,
+          -0.05011176544368052
+        ],
+        "rotation_degrees": 0.005718218693074627,
+        "inliers": 346
+      },
+      {
+        "time": 2.5,
+        "scale": 0.9999872272962685,
+        "translation_at_640px": [
+          0.018763462623967626,
+          -0.0025079428696614947
+        ],
+        "rotation_degrees": 0.0005502403347715593,
+        "inliers": 337
+      },
+      {
+        "time": 2.75,
+        "scale": 0.999974424585544,
+        "translation_at_640px": [
+          0.07842474397622548,
+          -0.015342768740630336
+        ],
+        "rotation_degrees": 0.005087913561835724,
+        "inliers": 322
+      },
+      {
+        "time": 3.0,
+        "scale": 1.000059496391245,
+        "translation_at_640px": [
+          0.04707033373650666,
+          0.019706601957560504
+        ],
+        "rotation_degrees": -0.0033501841431627846,
+        "inliers": 317
+      },
+      {
+        "time": 3.25,
+        "scale": 1.0000248328149597,
+        "translation_at_640px": [
+          0.028455089583695407,
+          0.0968379694168338
+        ],
+        "rotation_degrees": -0.009573543172416767,
+        "inliers": 319
+      },
+      {
+        "time": 3.5,
+        "scale": 1.0000457415101065,
+        "translation_at_640px": [
+          0.094672503739597,
+          -0.022749885510874323
+        ],
+        "rotation_degrees": 0.001760669304503151,
+        "inliers": 301
+      },
+      {
+        "time": 3.75,
+        "scale": 1.000128902807064,
+        "translation_at_640px": [
+          0.08240028793781949,
+          -0.04835411815828827
+        ],
+        "rotation_degrees": 0.00567483677201169,
+        "inliers": 312
+      },
+      {
+        "time": 4.0,
+        "scale": 1.0001266601837615,
+        "translation_at_640px": [
+          0.050862700870530235,
+          0.022704466357201174
+        ],
+        "rotation_degrees": -0.003582701268450517,
+        "inliers": 310
+      },
+      {
+        "time": 4.25,
+        "scale": 1.000206790234247,
+        "translation_at_640px": [
+          -0.00043023567515918296,
+          -0.0004185959982300159
+        ],
+        "rotation_degrees": -2.634943836212895e-05,
+        "inliers": 317
+      },
+      {
+        "time": 4.5,
+        "scale": 1.000042993636207,
+        "translation_at_640px": [
+          0.0914686365613892,
+          0.04322089146890933
+        ],
+        "rotation_degrees": -0.0012029878765933903,
+        "inliers": 301
+      },
+      {
+        "time": 4.75,
+        "scale": 1.0002562663116332,
+        "translation_at_640px": [
+          0.021329960339467657,
+          -0.009362921677514296
+        ],
+        "rotation_degrees": 0.0005427356432375765,
+        "inliers": 298
+      },
+      {
+        "time": 5.0,
+        "scale": 1.0001895731186679,
+        "translation_at_640px": [
+          0.0642088186033005,
+          0.011591690157039152
+        ],
+        "rotation_degrees": 0.002512601854964667,
+        "inliers": 293
+      },
+      {
+        "time": 5.25,
+        "scale": 1.0001290322344234,
+        "translation_at_640px": [
+          0.08730423850010992,
+          -0.019816406916505252
+        ],
+        "rotation_degrees": 0.0032349970438762007,
+        "inliers": 305
+      },
+      {
+        "time": 5.5,
+        "scale": 1.000106199820357,
+        "translation_at_640px": [
+          0.12278369340727087,
+          -0.059342600256881727
+        ],
+        "rotation_degrees": 0.004339536229021581,
+        "inliers": 254
+      },
+      {
+        "time": 5.75,
+        "scale": 1.0003418479026767,
+        "translation_at_640px": [
+          0.030133912966617944,
+          -0.034797080694430695
+        ],
+        "rotation_degrees": -0.0011711274992760904,
+        "inliers": 289
+      },
+      {
+        "time": 6.0,
+        "scale": 1.0005028765838577,
+        "translation_at_640px": [
+          -0.00686272006120012,
+          -0.05579609466631322
+        ],
+        "rotation_degrees": 0.0010142368859545764,
+        "inliers": 271
+      },
+      {
+        "time": 6.25,
+        "scale": 1.000438079269253,
+        "translation_at_640px": [
+          0.04621618038523094,
+          -0.07186055682514139
+        ],
+        "rotation_degrees": -0.0006232276597981702,
+        "inliers": 269
+      },
+      {
+        "time": 6.5,
+        "scale": 1.000428310507571,
+        "translation_at_640px": [
+          0.029506710882116444,
+          -0.07402131831301034
+        ],
+        "rotation_degrees": 0.0035913984854828982,
+        "inliers": 266
+      },
+      {
+        "time": 6.75,
+        "scale": 1.000901587873748,
+        "translation_at_640px": [
+          -0.08993274918756966,
+          -0.10329840992807728
+        ],
+        "rotation_degrees": 0.006233775526350978,
+        "inliers": 255
+      },
+      {
+        "time": 7.0,
+        "scale": 1.0008315440146571,
+        "translation_at_640px": [
+          0.007558080356829957,
+          -0.19375690543307328
+        ],
+        "rotation_degrees": 0.01579349566576813,
+        "inliers": 268
+      },
+      {
+        "time": 7.25,
+        "scale": 1.0006451306113124,
+        "translation_at_640px": [
+          -0.00860327439411333,
+          -0.08390375760870576
+        ],
+        "rotation_degrees": 0.0034337519459865075,
+        "inliers": 281
+      },
+      {
+        "time": 7.5,
+        "scale": 1.0007855258936171,
+        "translation_at_640px": [
+          -0.03943792041464035,
+          -0.09201925261147942
+        ],
+        "rotation_degrees": 0.00475692679642198,
+        "inliers": 282
+      },
+      {
+        "time": 7.75,
+        "scale": 1.0006535223539628,
+        "translation_at_640px": [
+          0.03044182037345353,
+          -0.1422802765501721
+        ],
+        "rotation_degrees": 0.00988727442512621,
+        "inliers": 282
+      },
+      {
+        "time": 7.791666666666667,
+        "scale": 1.0006568101122595,
+        "translation_at_640px": [
+          0.022750400263612445,
+          -0.13183145134405566
+        ],
+        "rotation_degrees": 0.008980549458750058,
+        "inliers": 282
+      }
+    ],
+    "method": "Decoded all frames; inspected a 0.5s visual timeline and endpoint frames. Registration is supporting evidence, not automatic visual acceptance."
+  },
+  "validation": {
+    "typescript": "passed",
+    "production_build": "passed",
+    "browser_checks": 97,
+    "browser_passed": true,
+    "browser_report": "artifacts/runtime-qa/flow-pilot-2026-11-15/report.json",
+    "original_hashes_verified": true,
+    "runtime_audio_tracks_removed": true,
+    "gesture_navigation_checks": 35,
+    "gesture_navigation_report": "artifacts/runtime-qa/smooth-intro-final-gestures/report.json",
+    "gesture_input_additional_checks": 3,
+    "nested_scrolling_and_typing_passed": true,
+    "gesture_navigation_passed": true,
+    "gesture_regression_checks": 97,
+    "gesture_regression_passed": true,
+    "gesture_regression_report": "artifacts/runtime-qa/smooth-intro-regression/report.json",
+    "total_current_browser_checks": 163,
+    "intro_synchronization_checks": 31,
+    "intro_synchronization_passed": true,
+    "intro_synchronization_report": "artifacts/runtime-qa/smooth-intro-final/report.json",
+    "headless_frame_presentation_diagnostics": {
+      "desktop": {
+        "presented_intermediate_frames": 67,
+        "maximum_gap_ms": 33.40000000000009
+      },
+      "mobile": {
+        "presented_intermediate_frames": 61,
+        "maximum_gap_ms": 150.0
+      }
+    },
+    "physical_device_fps_measured": false
+  },
+  "runtime": {
+    "arrival_progress": [
+      0.18,
+      0.205
+    ],
+    "first_memory_hold_progress": [
+      0.205,
+      0.233
+    ],
+    "transition_source_seconds": [
+      0,
+      7.791666666666667
+    ],
+    "playback": "A single gesture buffers the short intro file, opens panels, plays a 1.2s 60fps derived clip at normal speed, then reveals the first memory only after playback ends. Presented frames drive UI progress; stalls cannot reveal a memory early. Reverse navigation uses a separate return file.",
+    "other_scenes": "Existing sources retained until the user supplies the next Flow clips.",
+    "hero_background": "T01 first frame held behind live HTML atmosphere; camera framing matches the start of the trip."
+  },
+  "next_sources": [
+    "02_TRANSITIONS/T02_S02_TO_S03/FIRST_FRAME.png",
+    "02_TRANSITIONS/T02_S02_TO_S03/LAST_FRAME.png",
+    "01_STOPS/S03_MEMORY_YEAR_2/REFERENCE.png"
+  ]
+}

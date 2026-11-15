@@ -65,10 +65,16 @@ function GraduateJourney({ progress, motionEnabled, ceremonyReady }: Required<Ex
 
 export function ExperienceCanvas({ progress, motionEnabled = true, ceremonyReady = false }: ExperienceCanvasProps) {
   const [visible, setVisible] = useState(true);
+  const [mobile, setMobile] = useState(false);
   useEffect(() => {
     const update = () => setVisible(!document.hidden);
+    const media = window.matchMedia('(max-width: 767px)');
+    const resize = () => setMobile(media.matches);
+    update();
+    resize();
     document.addEventListener('visibilitychange', update);
-    return () => document.removeEventListener('visibilitychange', update);
+    media.addEventListener('change', resize);
+    return () => { document.removeEventListener('visibilitychange', update); media.removeEventListener('change', resize); };
   }, []);
   const eventSource = useMemo(() => typeof document !== 'undefined' ? document.body : undefined, []);
   return (
@@ -78,7 +84,7 @@ export function ExperienceCanvas({ progress, motionEnabled = true, ceremonyReady
           eventSource={eventSource} eventPrefix="client"
           frameloop={visible && motionEnabled ? 'always' : 'demand'}
           gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1, powerPreference: 'high-performance' }}
-          dpr={[1, 1.5]} camera={{ position: [0, 0.1, 4.8], fov: 38 }}
+          dpr={[1, mobile ? 1 : 1.5]} camera={{ position: [0, 0.1, 4.8], fov: 38 }}
           onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
           fallback={<span className="sr-only">Lời mời và thông tin sự kiện ở bên dưới.</span>}
         >

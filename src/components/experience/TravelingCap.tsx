@@ -5,6 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Cap } from './models/Cap';
 import { smoothstep, lerp } from '@/lib/sceneProgress';
+import { CAMPUS_JOURNEY } from '@/config/journey';
 
 export function TravelingCap({ progress, motionEnabled }: { progress: number; motionEnabled: boolean }) {
   const group = useRef<THREE.Group>(null);
@@ -39,9 +40,9 @@ export function TravelingCap({ progress, motionEnabled }: { progress: number; mo
     const door = smoothstep(.37, .4, progress) * (1 - smoothstep(.435, .465, progress));
     point.x = lerp(point.x, 0, door);
     point.y = lerp(point.y, .055, door);
-    point.z = lerp(point.z, -2.6, door * smoothstep(.40, .445, progress));
+    point.z = lerp(point.z, -2.6, door * smoothstep(CAMPUS_JOURNEY.doorOpen, .445, progress));
     group.current.position.set(point.x * viewport.width + idleX, point.y * viewport.height + .1 + idleY, point.z);
-    const doorwayScale = 1 - .88 * smoothstep(.40, .44, progress) * (1 - smoothstep(.44, .47, progress));
+    const doorwayScale = 1 - .88 * smoothstep(CAMPUS_JOURNEY.doorOpen, .44, progress) * (1 - smoothstep(.44, .47, progress));
     group.current.scale.setScalar((size.width < 768 ? .36 : .65) * doorwayScale);
     group.current.rotation.set(.48 + Math.sin(t * .45) * .08, -progress * Math.PI * 6 + t * .22, Math.sin(progress * 16) * .25 + Math.sin(t * .7) * .05);
     const positions = trail.geometry.attributes.position;
@@ -49,7 +50,7 @@ export function TravelingCap({ progress, motionEnabled }: { progress: number; mo
       curve.getPoint(Math.max(0, Math.min(1, progress - .045 * i / (positions.count - 1))), point);
       point.x = lerp(point.x, 0, door);
       point.y = lerp(point.y, .055, door);
-      point.z = lerp(point.z, -2.6, door * smoothstep(.40, .445, progress));
+      point.z = lerp(point.z, -2.6, door * smoothstep(CAMPUS_JOURNEY.doorOpen, .445, progress));
       positions.setXYZ(i, point.x * viewport.width + idleX, point.y * viewport.height + .1 + idleY, point.z);
     }
     positions.needsUpdate = true;

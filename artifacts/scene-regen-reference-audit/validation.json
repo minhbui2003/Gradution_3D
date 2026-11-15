@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "scene_cards": 8,
+  "transition_cards": 7,
+  "copy_prompts": 23,
+  "images_loaded": true,
+  "copy_button": true,
+  "mobile_overflow": false
+}

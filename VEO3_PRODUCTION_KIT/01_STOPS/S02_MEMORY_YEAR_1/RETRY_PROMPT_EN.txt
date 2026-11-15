@@ -1,0 +1,9 @@
+Use the clean REFERENCE.png in BOTH the first-frame and last-frame inputs. Render one continuous 8-second ambient background plate, 16:9.
+
+This is a still architectural photograph with only a little atmosphere animated. Keep every wall, glass mullion, ceiling beam, doorway and floor edge at the SAME pixel position throughout ALL eight seconds. Fixed tripod. Constant focal length and focus. Zero camera translation, zero zoom, zero pan, zero tilt. There is no arrival shot or camera approach in this clip. Preserve the supplied curved navy portal and narrow corridor exactly. Keep the far door closed and stationary.
+
+Animate only a few very small, faint dust particles near the outer edges. Keep illumination almost constant. The architecture stays registered to the reference while those particles drift gently forward in time. Keep the center clear for website content. Make the atmospheric loop subtle; the final frame must be reached through continuous motion, never by returning or dissolving to the reference.
+
+Do not move toward or through the entrance. Do not enlarge the doorway. Do not create gold smoke, a particle fountain or bright clouds. No crossfade, dissolve, morph, ghosting, rewind or reverse motion. No people, cap, character, cards or new text. Silent background plate.
+
+Before generation: replace the source PNG with a clean version without the image UI symbol. Run tools/sync_references.py after changing a stop reference. These instructions cannot guarantee a camera-locked output; review the whole generated clip again.

@@ -1,0 +1,40 @@
+{
+  "run_id": "205bc9a5-d367-452b-ab55-a38ad76238d8",
+  "result": {
+    "models": [
+      {
+        "name": "Omni 1.2 Flash",
+        "observed_price_text": "No Veo price shown (non-Veo model)",
+        "credits_per_8s_video": 0,
+        "both_endpoint_frames_supported": false
+      },
+      {
+        "name": "Omni 1.1 Flash (DEPRECATED: ",
+        "observed_price_text": "Discontinued Dec 5 — not a Veo model",
+        "credits_per_8s_video": 0,
+        "both_endpoint_frames_supported": false
+      },
+      {
+        "name": "Veo 3.1 - Lite",
+        "observed_price_text": "Quá trình tạo sẽ tốn 10 tín dụng (for x1, 16:9, 8s)",
+        "credits_per_8s_video": 10,
+        "both_endpoint_frames_supported": true
+      },
+      {
+        "name": "Veo 3.1 - Fast (DEPRECATED: 12",
+        "observed_price_text": "Discontinued Dec 5 — no separate price shown",
+        "credits_per_8s_video": 0,
+        "both_endpoint_frames_supported": false
+      },
+      {
+        "name": "Veo 3.1 - Quality (DEPRECATED: 12",
+        "observed_price_text": "Quá trình tạo sẽ tốn 100 tín dụng (for x1, 16:9, 8s)",
+        "credits_per_8s_video": 100,
+        "both_endpoint_frames_supported": true
+      }
+    ],
+    "exact_blocker": "Veo 3.1 Quality costs 100 credits per video (exceeds 18-credit account balance). However, Veo 3.1 Lite costs only 10 credits per 8s x1 720p 16:9 video and DOES support both first ('Bắt đầu') and last ('Kết thúc') frame conditioning. So the 'Quality' blockage is not universal — the Lite tier is affordable and supports both frame endpoints. Omni 1.2/1.1 are non-Veo alternatives not requested.",
+    "account_flow_credits": 18,
+    "affordable_veo_with_both_endpoints": "NO - Veo 3.1 Lite costs 10 credits per 8s video (supports both start/end frame conditioning) which is within the 18-credit budget, but Veo 3.1 Quality costs 100 credits (exceeds budget). Veo 3.1 Lite IS affordable at 10 credits and supports both first and last frame conditioning. It is NOT the Quality model the user was blocked by, but it IS a genuine Veo option that both supports both frame endpoints AND costs <= 18 credits (only 10)."
+  }
+}

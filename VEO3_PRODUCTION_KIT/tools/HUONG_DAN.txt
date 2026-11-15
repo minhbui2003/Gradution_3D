@@ -24,3 +24,11 @@ sync_references cập nhật ảnh đầu/cuối khi bạn thay REFERENCE.png c�
 nó sẽ hủy trạng thái duyệt cũ của các video liên quan vì đầu vào đã đổi.
 
 Đừng đặt khóa API, tài khoản, token vào bộ folder này. Không công cụ nào cần chúng.
+
+Kiểm tra web hiện tại (15/11/2026):
+Chạy web bằng npm.cmd run dev, sau đó ở một terminal khác:
+python scripts/verify-experience.py --output artifacts/runtime-qa
+Lệnh cần Python Playwright và Chromium đã cài sẵn. Nó kiểm tra desktop/mobile,
+giới hạn tải trước/bộ đệm, bốn cảnh nền giữ camera, luồng cửa trực tiếp, cuộn ngược,
+RSVP mở/đóng và giảm chuyển động. Ảnh chụp cùng report.json được ghi vào thư mục output.
+Nó không gửi RSVP/lời chúc, không điều khiển Flow, không thay thế duyệt video và không đo FPS thiết bị thật.

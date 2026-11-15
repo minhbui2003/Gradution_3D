@@ -1,0 +1,319 @@
+{
+  "status": "local_pilot_validated_not_integrated",
+  "generator": "local_processing_not_new_veo_generation",
+  "frame_size": [
+    1280,
+    720
+  ],
+  "fps": 24,
+  "source_duration_seconds": 8,
+  "actual_camera_motion_window_seconds": [
+    2.5,
+    4.5
+  ],
+  "originals_preserved": true,
+  "canonical_references_changed": false,
+  "methods": {
+    "S01": "Existing native Veo ambient, localized imagegen UI patch, atmospheric seam blend.",
+    "S02": "Locked original reference, localized imagegen UI patch, procedural cyclic gold dust.",
+    "T01": "Reuses original scene-02 frames 0..59 with eased timing and a localized UI delogo video filter; no new invented room or architectural dissolve."
+  },
+  "imagegen_mode": "built_in_image_edit",
+  "sources": [
+    {
+      "file": "VEO3_PRODUCTION_KIT/01_STOPS/S01_INVITATION/REFERENCE.png",
+      "sha256": "8c911b579c2ae6436f9a5fd0b8090648a66ae3a657553c2456ecd74f0082f4c0"
+    },
+    {
+      "file": "VEO3_PRODUCTION_KIT/01_STOPS/S02_MEMORY_YEAR_1/REFERENCE.png",
+      "sha256": "e00f25d45f8c0aaae057d8855e7f58bfae5bddddcd8ef0d8fd37f1864b51095e"
+    },
+    {
+      "file": "VEO3_PRODUCTION_KIT/01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4",
+      "sha256": "5405e0e51facd240c1bf41d2d65aaca592b7ae9980dcdb13e458670c8c91db0d"
+    },
+    {
+      "file": "public/travel/scene-02/frame-000.webp",
+      "sha256": "3026779e92acc2573ad156575adeb800d98d6b518250d0f00a785af77a47e080"
+    },
+    {
+      "file": "public/travel/scene-02/frame-001.webp",
+      "sha256": "3c9045e2163b0d92ade5d7b6b2e5f994c61cccdf0ac00400c90a748e6b071401"
+    },
+    {
+      "file": "public/travel/scene-02/frame-002.webp",
+      "sha256": "c933ed533e77e098c6209bfe28657b941d37768ff1ab11583edf2309db39e537"
+    },
+    {
+      "file": "public/travel/scene-02/frame-003.webp",
+      "sha256": "b84058e69a3f2c4af085d5076410cb0857dc654a3cf491abd2b0adb46ab01fb1"
+    },
+    {
+      "file": "public/travel/scene-02/frame-004.webp",
+      "sha256": "da38ee460d983a04efab731ceb32c301fcbe0d732c7b7b88e3ce03f99d9c8ac8"
+    },
+    {
+      "file": "public/travel/scene-02/frame-005.webp",
+      "sha256": "09c6b9d23ac1a813802f0ad1f2838c0a07faf783b1c7c04a13e941e7d5cfb81e"
+    },
+    {
+      "file": "public/travel/scene-02/frame-006.webp",
+      "sha256": "739c4fbf246f3f0b1115e45342d21610626b544beef2c2b5829706db3e89f989"
+    },
+    {
+      "file": "public/travel/scene-02/frame-007.webp",
+      "sha256": "e8b2e77f8497099f489a31df5ddbe28e592d1d434f455277b66ea20e6df4d82c"
+    },
+    {
+      "file": "public/travel/scene-02/frame-008.webp",
+      "sha256": "025cf3648903aa30f063360c673383aad4937337d6fd4ed32f99b26a0d976026"
+    },
+    {
+      "file": "public/travel/scene-02/frame-009.webp",
+      "sha256": "690fcfd4089e51e0f8f5b647299c661c7c266ee357fdab0f45605b50bb9c562e"
+    },
+    {
+      "file": "public/travel/scene-02/frame-010.webp",
+      "sha256": "f28d6906c06f565f5212425a6976cd5bc940f6167aa90752ba18c1288f9853d2"
+    },
+    {
+      "file": "public/travel/scene-02/frame-011.webp",
+      "sha256": "b7434f884d255f7b5a570cceeb25a1f7430131b1c334e0d2cc2b3437a9ed12ba"
+    },
+    {
+      "file": "public/travel/scene-02/frame-012.webp",
+      "sha256": "8d825d8fe52a0dd059e993850d5968387d75947a575b630656b688505c947464"
+    },
+    {
+      "file": "public/travel/scene-02/frame-013.webp",
+      "sha256": "eea851d94d9e436dda159ff943e2e560664e7994e5ce8bf5629983bf5fd6d6ba"
+    },
+    {
+      "file": "public/travel/scene-02/frame-014.webp",
+      "sha256": "c8ee329b4d2adee91e2ff802bd57636d93608bfddbbaf3746a412ba6b06b6852"
+    },
+    {
+      "file": "public/travel/scene-02/frame-015.webp",
+      "sha256": "0b1a296e37d7448fc9adbc4b17a5be6618fbf2c96651dda7b078477cc5da70eb"
+    },
+    {
+      "file": "public/travel/scene-02/frame-016.webp",
+      "sha256": "b4dcce825f0b6420ff945e150aeea914e236ba88f831e6facc1b1b755248fc15"
+    },
+    {
+      "file": "public/travel/scene-02/frame-017.webp",
+      "sha256": "2808a564324adce10906467fde0f08bc176397b90dc7df9b0d9ebf23c18b5190"
+    },
+    {
+      "file": "public/travel/scene-02/frame-018.webp",
+      "sha256": "f81522ff4850b8f51c583b7e8f8a1155734e49532a374a24c6942b64929a9f20"
+    },
+    {
+      "file": "public/travel/scene-02/frame-019.webp",
+      "sha256": "655593871d9e3eb6e325ce53eaa04eecc57dc547f4d54d4b509d9b4d3374497c"
+    },
+    {
+      "file": "public/travel/scene-02/frame-020.webp",
+      "sha256": "cab6447a32345cfb79fef78e555b178194035ee09a80ae2b5d13603be892445f"
+    },
+    {
+      "file": "public/travel/scene-02/frame-021.webp",
+      "sha256": "b8b0168a09184e6e567c006c4d6834fd65719c9864434928e17de244da2d9f54"
+    },
+    {
+      "file": "public/travel/scene-02/frame-022.webp",
+      "sha256": "9ae648560266640492b8b0f4072610f451fb26a83c9f611fd9d36b1f5a865b8c"
+    },
+    {
+      "file": "public/travel/scene-02/frame-023.webp",
+      "sha256": "62ee00411b47e5d7f3d8e34c565f14a93b5e98b7e3dbe5477baf9f00775e0696"
+    },
+    {
+      "file": "public/travel/scene-02/frame-024.webp",
+      "sha256": "4175a8faf732c93e3a897fc43275469a061329d09e91bfc03f27c5d5ca824915"
+    },
+    {
+      "file": "public/travel/scene-02/frame-025.webp",
+      "sha256": "165b197246ec8d3e8b18e69fc55ade2dcce98a1451892033e5f0db0667bc3f21"
+    },
+    {
+      "file": "public/travel/scene-02/frame-026.webp",
+      "sha256": "9774be3823e47d9aa1e55708bcf7df4e591d2208dfb06cd56dea2bb8e86eb1bb"
+    },
+    {
+      "file": "public/travel/scene-02/frame-027.webp",
+      "sha256": "03a3fbada1df9ce5434eaeb0c1ccd167483fbf3e163539f3e93e0b1025b6f0c7"
+    },
+    {
+      "file": "public/travel/scene-02/frame-028.webp",
+      "sha256": "119d5d724f36c883104f1dab252e7fc4afacd906c3ae98bd590316c638884330"
+    },
+    {
+      "file": "public/travel/scene-02/frame-029.webp",
+      "sha256": "bca6321f5eae4bc025bd0e27996ac3f3fabd847acb21ed07d3077a35cb579e54"
+    },
+    {
+      "file": "public/travel/scene-02/frame-030.webp",
+      "sha256": "97d03d101c660839501c8f40dcbe0ee08713ccecf0b0b655879aee6e7292ba16"
+    },
+    {
+      "file": "public/travel/scene-02/frame-031.webp",
+      "sha256": "aac786819f6c9034c03aebb8183639ac3c5323fbf928f90c8a8607e1ebae5713"
+    },
+    {
+      "file": "public/travel/scene-02/frame-032.webp",
+      "sha256": "79c94908ea92f75b5100c1888785fdae98328ba5d41e4e99f69f48e6e7a0114e"
+    },
+    {
+      "file": "public/travel/scene-02/frame-033.webp",
+      "sha256": "9b20cc2e6585fab522ae4b373c359a6332c167ff898cb109d93e078611bb85c6"
+    },
+    {
+      "file": "public/travel/scene-02/frame-034.webp",
+      "sha256": "0073ee95c378fcd3b7958fd2661d8e07c95f995c5d75d90f433ff7fdf44c5cdc"
+    },
+    {
+      "file": "public/travel/scene-02/frame-035.webp",
+      "sha256": "ac77d149e97d303247e8a4813916ea78243af3d1042fb145e92357290b7559f7"
+    },
+    {
+      "file": "public/travel/scene-02/frame-036.webp",
+      "sha256": "b3b4401872ea96f728d191c078c78bea85844b4ff463f8d23129d439b06a30ef"
+    },
+    {
+      "file": "public/travel/scene-02/frame-037.webp",
+      "sha256": "dbf2ae44ae4598a6102d287f52a4f8ba7bfbdd285e31905f853dcc6edc770e07"
+    },
+    {
+      "file": "public/travel/scene-02/frame-038.webp",
+      "sha256": "286092f0dbd6e70e5f66316300745cf6f67db1bc7f326fb2a4a6c8dc4e8d491b"
+    },
+    {
+      "file": "public/travel/scene-02/frame-039.webp",
+      "sha256": "8ae57c28097dcc9b9d87d92beb621f10352a44fb2d78c974f17b7594c9e87732"
+    },
+    {
+      "file": "public/travel/scene-02/frame-040.webp",
+      "sha256": "58b02c5271048f3dd23605926056c712373e3f5a45678b97c11181695f1f0c3d"
+    },
+    {
+      "file": "public/travel/scene-02/frame-041.webp",
+      "sha256": "d9e15358cbd911ba05285bd51a1af606a81d01e895418c8f8c40a503625a41cd"
+    },
+    {
+      "file": "public/travel/scene-02/frame-042.webp",
+      "sha256": "c60566e79c760b172c1e6f93c98f2a7e042adb9abe3259a1c26e019696c14b94"
+    },
+    {
+      "file": "public/travel/scene-02/frame-043.webp",
+      "sha256": "0073c22463f6c66146ff9d5a488d0941a6e047de21a8651f3be28029dd335f21"
+    },
+    {
+      "file": "public/travel/scene-02/frame-044.webp",
+      "sha256": "ca649660ed9667ce489fbe18049496bea9c2e9c75d8c0d550003d79b14a36242"
+    },
+    {
+      "file": "public/travel/scene-02/frame-045.webp",
+      "sha256": "634187681f24d33a484ce1d66249c544c68b5b41149d43e79ef5570c3ad78799"
+    },
+    {
+      "file": "public/travel/scene-02/frame-046.webp",
+      "sha256": "4d42253ac1adee74aaa042903ab273eac6c3edcc28e50e83535e6bc0feaa6822"
+    },
+    {
+      "file": "public/travel/scene-02/frame-047.webp",
+      "sha256": "8554070250f26ae4817a39e33003dbe53a8dc741eb4c4775def0c01ea490a2a9"
+    },
+    {
+      "file": "public/travel/scene-02/frame-048.webp",
+      "sha256": "8a89afccc0d53c1f6325dd95d4f156b21fcf6f5d6787ace32a721f5df814ee98"
+    },
+    {
+      "file": "public/travel/scene-02/frame-049.webp",
+      "sha256": "ccc7596878396e10e96993194907c77bb1005c92b6063da4b2f10db93c3000ac"
+    },
+    {
+      "file": "public/travel/scene-02/frame-050.webp",
+      "sha256": "c2e8d04412b940089f14b1f83497e5bd35f70de9e1287056d62c0508063aab6a"
+    },
+    {
+      "file": "public/travel/scene-02/frame-051.webp",
+      "sha256": "877647ef87a9bd4ed33803983b49a383b2280ecc8e299d5943cb5c5377ff11b1"
+    },
+    {
+      "file": "public/travel/scene-02/frame-052.webp",
+      "sha256": "4d21124152879c55db0ee3660d14cf91dd0b98e5fecbf1b6342d64de785c456d"
+    },
+    {
+      "file": "public/travel/scene-02/frame-053.webp",
+      "sha256": "d63855b9732f98f3c0bd4616467a64b0b0e84ba2ca0b573a5863e61dbf31bbfe"
+    },
+    {
+      "file": "public/travel/scene-02/frame-054.webp",
+      "sha256": "59b38f2f46601a735a72dcb1ffcf8f375ebb6c85b3d7915ba00f0ed2fe1e2be0"
+    },
+    {
+      "file": "public/travel/scene-02/frame-055.webp",
+      "sha256": "d769beab89c5547676e935ba4f4f63302d89cef6da05e7dac13da9fa4c9dc764"
+    },
+    {
+      "file": "public/travel/scene-02/frame-056.webp",
+      "sha256": "e0f7c41218b9996eec9438b4766ece15838533e1dbe2e5f40fa926007c8f8cee"
+    },
+    {
+      "file": "public/travel/scene-02/frame-057.webp",
+      "sha256": "eebb51d048a8fcd2a9ee83423d072545c771a9a4ae6d3df4a3e28ab36edb0766"
+    },
+    {
+      "file": "public/travel/scene-02/frame-058.webp",
+      "sha256": "07bada87c8f8dd511d6dc2917e3da94dbd40bb01699e300636205056ae5d1a9c"
+    },
+    {
+      "file": "public/travel/scene-02/frame-059.webp",
+      "sha256": "588e527c5273f62492b75b125a12888862f19ab2e1d90438e34e2ef6762cc52a"
+    }
+  ],
+  "files": [
+    {
+      "file": "S01_AMBIENT_LOCAL.mp4",
+      "sha256": "9e2acc002ae92075e0fb8cb918ab1b3d8353546cac05f0c5dadc4fa991f8dd8c",
+      "bytes": 1530906
+    },
+    {
+      "file": "S02_AMBIENT_LOCAL.mp4",
+      "sha256": "a6d46bd8570c7396fe2a6aaa64452f797562786a4d073269a2b647ea4f209c2e",
+      "bytes": 140948
+    },
+    {
+      "file": "T01_S01_TO_S02_LOCAL.mp4",
+      "sha256": "3d0ebb8b3a9e8c8eab4f511af15e1e799b9d594bcd10191a4f4c4b40ed52d8c9",
+      "bytes": 1680620
+    },
+    {
+      "file": "T01_WEB_1.15s.mp4",
+      "sha256": "7b51f2da5606d93be0ba213b5308f07d732fb0c34531c23fbc4f0c752815d8cc",
+      "bytes": 969730
+    },
+    {
+      "file": "PILOT_PREVIEW.mp4",
+      "sha256": "19f0b8dde14276d170304599b45d9232e8da69432d4c7bac41f0302dba655b57",
+      "bytes": 2724576
+    }
+  ],
+  "limitations": [
+    "The original camera route is reused and retains its original geometry/AI artifacts.",
+    "No claim of a newly generated Veo clip or reconstructed true 3D environment.",
+    "This does not activate the remaining 12 production-kit clips."
+  ],
+  "web_actual_duration_seconds": 1.133333,
+  "imagegen_patch_sources": [
+    {
+      "file": "inputs/S01_UI_CLEANUP_SOURCE.png",
+      "sha256": "1e781c561f1f9ec00525fdbc059f56e23b43044a1b0cee591d98a54b137ec614"
+    },
+    {
+      "file": "inputs/S02_UI_CLEANUP_SOURCE.png",
+      "sha256": "4d01ee5497172ab3a19deb2951e22b04504adcc4988862bb626dbaf68becf80f"
+    }
+  ]
+}

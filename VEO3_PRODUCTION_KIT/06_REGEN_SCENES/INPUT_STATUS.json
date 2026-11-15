@@ -1,0 +1,15 @@
+{
+  "new_inputs_present": [],
+  "updated_transitions": [],
+  "waiting_transitions": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T07",
+    "T08"
+  ],
+  "visual_review_still_required": true,
+  "note": "Checks file type, size and accidental use of old reference; cannot automatically certify absence of logos or tool-added marks."
+}

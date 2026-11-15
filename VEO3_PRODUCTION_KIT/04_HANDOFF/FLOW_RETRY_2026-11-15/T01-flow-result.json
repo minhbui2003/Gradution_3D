@@ -1,0 +1,21 @@
+{
+  "run_id": "27ffaf56-625e-4938-9d1a-df4e107e1e0e",
+  "run_url": "https://agent.tinyfish.ai/runs/27ffaf56-625e-4938-9d1a-df4e107e1e0e",
+  "result": {
+    "exact_error": "",
+    "download_url": "https://flow.google.com/asb/ANqvLOZN_CDm7YU5GPvOQ_U1NSNbSorv20Rw_ON-q_OnMjCQPLQ7ip-132XvzwyPwbgQkCPXSA_HNUlHlI7PFmjIaPbH0IicFs0PNSxBZ3Mx7JjyozqbcsgiVfl0LnftSNDUzDhZw2Yqaq2OprgetQvlYOjXcTWqnG7HZqDGWEv_eQ",
+    "visual_review": "Video titled 'Camera approach to building entrance' shows a building exterior with starry night sky, animated clouds/stars, and a glass-facade structure. The full T01 prompt was verified as complete with both S01_EXTERIOR_CLEAN.png and S02_ENTRANCE_CLEAN.png loaded as start/end frame chips (no error icons). Generation completed successfully with 720p original-size download confirmed.",
+    "generation_status": "completed",
+    "source_asset_urls": [
+      "S01: https://flow.google.com/asb/ANqvLOYSMHnj1KEANxoyv8ZdYffgHpt7FoQYYbPCbfEL4O1pYMeRwDSzidItFPp8M_q-1Ve_KmvV0Qq_QMQ_odBLXVvXUbIpTMH8FlhMmQG4J4qa4NfHiEyEV0SwsxsCWGdZMX7pDEMCdHGjfX1AgQVd0Vbdj5-nLVSztJADm6g5fQ=s1600-rw",
+      "S02: https://flow.google.com/asb/ANqvLOaqyCxIBJQKzXFby6secscy_xmPjDq7ieKRwivP1mo0NLqkRjB_TtzzpD4QFtXf75xqbmmRLiBrNbIWitkmVOcTB6pNO1gCTik9ncyQcDsSKMkYU8oDVKwIGoBPgERoxfsTRGxzu6yxcbpQUYeuZW7oimobi-hc5wxph4fO=s1600-rw"
+    ],
+    "actual_project_url": "https://flow.google.com/project/2f050b2e-ad83-443b-bc4c-6556e1411bf8",
+    "download_completed": true,
+    "generated_asset_url": "https://flow.google.com/project/2f050b2e-ad83-443b-bc4c-6556e1411bf8/edit/a98f6a0c-739d-459c-9a06-b363de7fa23e",
+    "full_prompt_verified": true,
+    "source_images_present": true,
+    "new_generation_submitted": true,
+    "source_images_fully_loaded": true
+  }
+}

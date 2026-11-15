@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bản sửa pilot · S01 — T01 — S02</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#081423;color:#edf1f8;font:15px/1.7 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:40px 24px 70px}h1{font:500 clamp(30px,5vw,50px)/1.15 Georgia,serif;margin:14px 0}h2{font-size:20px}p{color:#b8c6d7}a{color:#efd29a}video{width:100%;display:block;background:#030a12;aspect-ratio:16/9;border-radius:8px}article{padding:20px;background:#102238;border:1px solid #e0c08833;border-radius:12px;margin:24px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.grid article{margin:0}.tag{color:#e8c887;font-size:11px;letter-spacing:.12em}small{color:#a2b5ce}.actions{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px}@media(max-width:750px){.grid{grid-template-columns:1fr}main{padding:25px 15px}article{padding:14px}}</style>
+<main>
+<span class="tag">LOCAL PILOT / 15.11.2026</span>
+<h1>Đứng yên khi đọc.<br>Di chuyển đúng đường.</h1>
+<p>Bộ ba được xử lý tại máy từ tài nguyên có sẵn. Đây không phải lượt tạo Veo mới: S01 dùng clip nền đã có, S02 dùng ảnh cố định với bụi sáng chuyển động, T01 dựng lại từ chuỗi khung hình gốc đi vào đúng cửa hành lang. Các file Veo cũ được giữ nguyên.</p>
+<article>
+<h2>Xem nối: S01 → T01 → S02</h2>
+<p>8 giây nền thiệp mời → khoảng 1,15 giây di chuyển → 8 giây nền Năm 1.</p>
+<video controls playsinline preload="metadata" src="PILOT_PREVIEW.mp4"></video>
+<div class="actions"><a href="PILOT_PREVIEW.mp4" download>Tải bản xem nối</a><a href="manifest.json">Nguồn và phương pháp dựng</a><a href="validation.json">Kết quả kiểm tra</a></div>
+</article>
+<div class="grid">
+<article><h2>S01 · Nền thiệp mời</h2><p>Giữ clip nền sẵn có, xử lý biểu tượng góc phải trên và đoạn nối vòng khí quyển.</p><video controls loop playsinline preload="metadata" src="S01_AMBIENT_LOCAL.mp4"></video><a href="S01_AMBIENT_LOCAL.mp4" download>Tải S01 · 8 giây</a></article>
+<article><h2>S02 · Nền Năm 1</h2><p>Kiến trúc và camera cố định toàn bộ clip. Chỉ có những hạt sáng nhỏ ở hai bên chuyển động.</p><video controls loop playsinline preload="metadata" src="S02_AMBIENT_LOCAL.mp4"></video><a href="S02_AMBIENT_LOCAL.mp4" download>Tải S02 · 8 giây</a></article>
+<article><h2>T01 · Bản nguồn 8 giây</h2><p>Giữ đầu 2,5 giây; đi vào cửa trong khoảng 2,5–4,5 giây; giữ đúng góc đến. Không dùng sảnh màu kem trong clip bị loại.</p><video controls playsinline preload="metadata" src="T01_S01_TO_S02_LOCAL.mp4"></video><a href="T01_S01_TO_S02_LOCAL.mp4" download>Tải T01 · 8 giây</a></article>
+<article><h2>T01 · Nhịp ngắn cho web</h2><p>Chỉ lấy phần di chuyển thực tế rồi điều chỉnh về nhịp khoảng 1,15 giây.</p><video controls playsinline preload="metadata" src="T01_WEB_1.15s.mp4"></video><a href="T01_WEB_1.15s.mp4" download>Tải T01 cho web</a></article>
+</div>
+<p><small>Giới hạn: đường camera tái sử dụng footage gốc nên vẫn giữ các sai lệch kiến trúc có sẵn của footage đó; đây không phải mô hình trường học 3D được tái dựng. Bộ này mới gồm ba clip pilot, chưa thay thế toàn bộ 15 clip và chưa tích hợp vào website chính.</small></p>
+<details><summary>Ảnh làm sạch bằng imagegen và prompt đã dùng</summary><p>Chế độ chỉnh sửa ảnh tích hợp. Chỉ vùng nhỏ chứa biểu tượng góc phải trên được lấy từ các ảnh này để ghép vào video; kiến trúc còn lại dùng nguồn gốc.</p><div class="actions"><a href="inputs/S01_UI_CLEANUP_SOURCE.png">Ảnh làm sạch S01</a><a href="inputs/S02_UI_CLEANUP_SOURCE.png">Ảnh làm sạch S02</a><a href="inputs/IMAGEGEN_PROMPTS.txt">Hai prompt chỉnh sửa</a></div></details>
+<a href="../../START_HERE.html">← Quay về bộ hướng dẫn</a>
+</main>
+</html>

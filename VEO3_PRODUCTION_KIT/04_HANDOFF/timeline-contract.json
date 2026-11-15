@@ -1,22 +1,22 @@
 {
-  "status": "design_not_activated",
+  "status": "activated_presented_frame_synchronized_intro",
   "input_mode": "one_intentional_gesture_per_transition",
   "state_machine": [
     "idle",
-    "preparing-next",
-    "traveling",
-    "settling",
-    "modal-open",
-    "reduced-motion",
-    "fallback"
+    "preparing",
+    "traveling"
   ],
   "gesture_rules": {
     "inertia_filter": true,
-    "maximum_pending_intent": 1,
+    "maximum_pending_intent": 0,
     "disable_scene_navigation_when_typing": true,
     "disable_scene_navigation_in_modal": true,
     "require_new_intent_for_door_open": true,
-    "extra_intent_at_door_threshold": false
+    "extra_intent_at_door_threshold": false,
+    "consume_input_during_transition": true,
+    "quiet_wheel_gap_milliseconds": 180,
+    "minimum_wheel_pixels": 18,
+    "minimum_vertical_swipe_pixels": 24
   },
   "transition_runtime_target_seconds": [
     0.9,
@@ -31,7 +31,7 @@
     "ping_pong": false
   },
   "targets_are_not_measured_results": true,
-  "revision": 2,
+  "revision": 4,
   "door_flow": {
     "source_stop": "S05",
     "transition": "T05",
@@ -51,5 +51,68 @@
   ],
   "retired_transition_ids": [
     "T06"
-  ]
+  ],
+  "runtime": {
+    "first_scroll_destination": "S02 / Nam 1",
+    "first_scroll_destination_progress": 0.22,
+    "first_scroll_transition_seconds": 1.56,
+    "later_transitions_seconds": 1.05,
+    "hero_panels": "Text opens left; portrait opens right. Native Flow approach runs independently of wheel distance.",
+    "stops": [
+      0,
+      0.22,
+      0.265,
+      0.31,
+      0.36,
+      0.51,
+      0.68,
+      0.88
+    ],
+    "reduced_motion": "Immediate destination; ambient videos paused.",
+    "navigation_inputs": [
+      "wheel",
+      "touch swipe",
+      "Arrow/Page keys",
+      "explore buttons"
+    ],
+    "fallback": "Scroll bar/programmatic scrolling retains legacy progress mapping.",
+    "first_scroll_duration_note": "Nominal after fully buffering: 200ms opening, 1.2s normal-speed video, 160ms card reveal. Buffering or stalled playback delays UI arrival.",
+    "first_scroll_playback_rate": 1,
+    "first_scroll_video_fps": 60,
+    "ui_clock": "presented native video frames, with ended required before memory reveal",
+    "scrollbar_sync": "once at destination, not every animation frame",
+    "full_clip_buffer_required": true,
+    "hero_background": "Exact T01 first-frame poster with HTML atmosphere, replacing the mismatched legacy hero clip."
+  },
+  "validation": {
+    "gesture_checks": 35,
+    "passed": true,
+    "report": "artifacts/runtime-qa/gesture-navigation/report.json",
+    "physical_device_measurement": false,
+    "gesture_input_additional_checks": 3,
+    "nested_scrolling_and_typing_passed": true,
+    "typescript": "passed",
+    "production_build": "passed",
+    "gesture_navigation_checks": 35,
+    "gesture_navigation_passed": true,
+    "gesture_regression_checks": 97,
+    "gesture_regression_passed": true,
+    "gesture_regression_report": "artifacts/runtime-qa/smooth-intro-regression/report.json",
+    "total_current_browser_checks": 163,
+    "intro_synchronization_checks": 31,
+    "intro_synchronization_passed": true,
+    "intro_synchronization_report": "artifacts/runtime-qa/smooth-intro-final/report.json",
+    "gesture_navigation_report": "artifacts/runtime-qa/smooth-intro-final-gestures/report.json",
+    "headless_frame_presentation_diagnostics": {
+      "desktop": {
+        "presented_intermediate_frames": 67,
+        "maximum_gap_ms": 33.40000000000009
+      },
+      "mobile": {
+        "presented_intermediate_frames": 61,
+        "maximum_gap_ms": 150.0
+      }
+    },
+    "physical_device_fps_measured": false
+  }
 }

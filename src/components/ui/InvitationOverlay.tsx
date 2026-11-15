@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUpRight, CalendarDays, MapPin, GraduationCap } from 'lu
 import { EVENT_DATA } from '@/config/event';
 import { smoothstep } from '@/lib/sceneProgress';
 import { scrollToProgress } from '../experience/ScrollDirector';
+import { FIRST_MEMORY_PROGRESS } from '@/config/navigation';
 
 interface InvitationOverlayProps { progress: number; onOpenRSVP: () => void; }
 
@@ -30,7 +31,7 @@ export function InvitationOverlay({ progress, onOpenRSVP }: InvitationOverlayPro
         <p className="hero-description hero-reveal">Trân trọng mời thầy cô, gia đình và bạn bè<br className="hidden sm:block" /> cùng đến chia sẻ khoảnh khắc đặc biệt này.</p>
         <div className="hero-actions hero-reveal">
           <button type="button" onClick={onOpenRSVP} className="primary-action">Mình sẽ có mặt <ArrowUpRight size={17} /></button>
-          <button type="button" onClick={() => scrollToProgress(0.24)} className="secondary-action">Khám phá hành trình <ArrowDown size={16} /></button>
+          <button type="button" onClick={() => scrollToProgress(FIRST_MEMORY_PROGRESS)} className="secondary-action">Khám phá hành trình <ArrowDown size={16} /></button>
         </div>
         <div className="hero-facts hero-reveal">
           <span><CalendarDays size={15} />{EVENT_DATA.ceremony.dateDisplay}</span>

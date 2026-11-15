@@ -1,0 +1,70 @@
+{
+  "status": "user_downloads_verified_and_integrated_for_local_test",
+  "all_tinyfish_runs_terminal": true,
+  "S02_generation_status": "Failed: model selection not verified; no unique completed asset returned",
+  "S02_complete_playback_verified": false,
+  "S02_downloaded_to_workspace": false,
+  "latest_model_report_inconsistent": true,
+  "latest_credit_report_inconsistent": true,
+  "final_notes": "Historical TinyFish automation attempts were unsuccessful. Subsequently the user placed two original MP4 downloads in data. Both decode completely and are integrated in the local website. S02 is accepted for the pilot; T01 remains preview-only because of spatial/timing defects. See the latest review.",
+  "task_complete": false,
+  "T01_flow_reported_asset_url": "https://flow.google.com/project/2f050b2e-ad83-443b-bc4c-6556e1411bf8/edit/a98f6a0c-739d-459c-9a06-b363de7fa23e",
+  "T01_complete_playback_verified": false,
+  "T01_downloaded_to_workspace": false,
+  "S02_latest_run_id": "4ab17935-5590-4f1e-8719-719d50361878",
+  "S02_requested_model": "Veo 3.1 Lite",
+  "flow_credits_observed": 18,
+  "veo_quality_cost": 100,
+  "veo_lite_cost": 10,
+  "local_browser_download_action": "Rejected by automatic approval review: blocked by policy",
+  "project_url": "https://flow.google.com/project/2f050b2e-ad83-443b-bc4c-6556e1411bf8",
+  "tinyfish_run_id": "8fecbf64-576a-4737-97f6-64924eddf454",
+  "verified_new_mp4_count": 2,
+  "downloaded_to_workspace_count": 0,
+  "findings": [
+    "Signed-in project access succeeded.",
+    "Reference attachment returned an error. Exact clean S02 entrance was not confirmed available.",
+    "Prompt serialization in the first signed-in run was incorrect. Correct raw text has been recovered; next generation must use it."
+  ],
+  "references": {
+    "S01": {
+      "source": "VEO3_PRODUCTION_KIT/05_LOCAL_REBUILD/PILOT_V1/inputs/S01_UI_CLEANUP_SOURCE.png",
+      "canonical": "VEO3_PRODUCTION_KIT/01_STOPS/S01_INVITATION/REFERENCE.png",
+      "upload": "VEO3_PRODUCTION_KIT/04_HANDOFF/FLOW_RETRY_2026-11-15/UPLOAD_TO_FLOW/S01_EXTERIOR_CLEAN.png",
+      "sha256": "1e781c561f1f9ec00525fdbc059f56e23b43044a1b0cee591d98a54b137ec614",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    "S02": {
+      "source": "VEO3_PRODUCTION_KIT/05_LOCAL_REBUILD/PILOT_V1/inputs/S02_UI_CLEANUP_SOURCE.png",
+      "canonical": "VEO3_PRODUCTION_KIT/01_STOPS/S02_MEMORY_YEAR_1/REFERENCE.png",
+      "upload": "VEO3_PRODUCTION_KIT/04_HANDOFF/FLOW_RETRY_2026-11-15/UPLOAD_TO_FLOW/S02_ENTRANCE_CLEAN.png",
+      "sha256": "4d01ee5497172ab3a19deb2951e22b04504adcc4988862bb626dbaf68becf80f",
+      "dimensions": [
+        1672,
+        941
+      ]
+    }
+  },
+  "prompts": {
+    "S02": {
+      "path": "VEO3_PRODUCTION_KIT/01_STOPS/S02_MEMORY_YEAR_1/RETRY_PROMPT_EN.txt",
+      "sha256": "19179ea72fc769b06cfe0b931329eb991993b9614484527eddce3a508c1474b6",
+      "text": "Use the clean REFERENCE.png in BOTH the first-frame and last-frame inputs. Render one continuous 8-second ambient background plate, 16:9.\n\nThis is a still architectural photograph with only a little atmosphere animated. Keep every wall, glass mullion, ceiling beam, doorway and floor edge at the SAME pixel position throughout ALL eight seconds. Fixed tripod. Constant focal length and focus. Zero camera translation, zero zoom, zero pan, zero tilt. There is no arrival shot or camera approach in this clip. Preserve the supplied curved navy portal and narrow corridor exactly. Keep the far door closed and stationary.\n\nAnimate only a few very small, faint dust particles near the outer edges. Keep illumination almost constant. The architecture stays registered to the reference while those particles drift gently forward in time. Keep the center clear for website content. Make the atmospheric loop subtle; the final frame must be reached through continuous motion, never by returning or dissolving to the reference.\n\nDo not move toward or through the entrance. Do not enlarge the doorway. Do not create gold smoke, a particle fountain or bright clouds. No crossfade, dissolve, morph, ghosting, rewind or reverse motion. No people, cap, character, cards or new text. Silent background plate.\n\nBefore generation: replace the source PNG with a clean version without the image UI symbol. Run tools/sync_references.py after changing a stop reference. These instructions cannot guarantee a camera-locked output; review the whole generated clip again.\n"
+    },
+    "T01": {
+      "path": "VEO3_PRODUCTION_KIT/02_TRANSITIONS/T01_S01_TO_S02/RETRY_PROMPT_EN.txt",
+      "sha256": "3509529ecf3aaa6526d3da5a203d89da7fb2e8e7a70e74267a700de70cf0c991",
+      "text": "Supply the clean FIRST_FRAME.png and LAST_FRAME.png in their respective frame-conditioning inputs. One continuous 8-second shot, 16:9. FIRST_FRAME is the initial exterior viewpoint. LAST_FRAME is the EXACT destination viewpoint at the glass entrance, looking toward the narrow curved navy portal and its warm corridor.\n\nThe destination in LAST_FRAME is the physical entrance of the building in FIRST_FRAME. Establish that specific entrance directly behind the existing glass canopy. Preserve its curved navy portal, glass mullions, warm lighting and closed distant door during the entire approach. Do not create an alternative interior.\n\nTiming: 0–2.5 seconds hold the exterior viewpoint with only faint atmospheric motion. 2.5–4.5 seconds perform ONE controlled forward dolly along the central approach, under the existing canopy, stopping at precisely the viewpoint in LAST_FRAME. 4.5–8 seconds hold that exact arrival viewpoint with only sparse atmospheric motion. Stop before traveling deeper than the supplied destination. No additional turn, roll or exploration of a lobby.\n\nReveal the real entrance by perspective and physical occlusion of the existing canopy and doorway. Never substitute a wide cream-colored gallery or a new rectangular lobby. Never enter a different room and then dissolve back to LAST_FRAME. No crossfade, dissolve, morph, double exposure, teleport, hard cut or final reference-image overlay. Match the final view by continuous camera travel and deceleration.\n\nKeep architecture coherent, exposure stable and the central passage clear. Empty environment only: no cap, people, character, cards or new text. Silent background plate.\n\nBefore generation: clean the stop reference PNGs and run tools/sync_references.py to update these endpoint images. These instructions do not guarantee spatial continuity; reject another invented interior or end dissolve.\n"
+    }
+  },
+  "reference_sync_verified": true,
+  "existing_original_videos_preserved": true,
+  "local_web_test_ready": true,
+  "received_from_user_count": 2,
+  "agent_automatic_download_count": 0,
+  "source_model_identity": "Not certified by file metadata; user supplied downloads from Flow",
+  "latest_review": "04_HANDOFF/flow-download-review-2026-11-15.json"
+}

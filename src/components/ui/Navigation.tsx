@@ -12,7 +12,7 @@ interface NavigationProps {
 
 const NAV_ITEMS = [
   { id: 'hero', label: 'Thiệp mời', targetP: 0, icon: Sparkles },
-  { id: 'campus', label: 'Kỷ niệm', targetP: 0.24, icon: BookOpen },
+  { id: 'campus', label: 'Kỷ niệm', targetP: 0.22, icon: BookOpen },
   { id: 'ceremony', label: 'Lễ trao bằng', targetP: 0.48, icon: Award },
   { id: 'event', label: 'Thông tin lễ', targetP: 0.66, icon: Calendar },
   { id: 'wishes', label: 'Lời chúc & RSVP', targetP: 0.88, icon: Heart },
@@ -85,7 +85,7 @@ export function Navigation({ progress }: NavigationProps) {
         {progress < 0.15 && (
           <button
             type="button"
-            onClick={() => handleNavigate(0.24)}
+            onClick={() => handleNavigate(0.22)}
             className="hidden sm:flex items-center px-3 py-1.5 rounded-full text-xs font-medium glass-panel border border-gold/40 text-gold hover:bg-gold/10 transition-colors"
           >
             Khám phá ↓

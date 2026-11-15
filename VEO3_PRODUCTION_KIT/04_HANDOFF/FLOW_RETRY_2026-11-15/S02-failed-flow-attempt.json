@@ -1,0 +1,18 @@
+{
+  "run_id": "e094a9a3-f026-48e2-8621-eec05514c60f",
+  "run_url": "https://agent.tinyfish.ai/runs/e094a9a3-f026-48e2-8621-eec05514c60f",
+  "result": {
+    "settings": "720p, 8 seconds, x1, 16:9 landscape, Veo 3.1 Quality (attempted) / Omni 1.2 Flash (initially auto-selected)",
+    "exact_error": "Không thành công / Không tải được video (Failed / Could not load video) - both initial submission and retry with the error tile's 'Thử lại' button failed with the same video loading error. The generation likely failed due to the model being Omni 1.2 Flash instead of Veo 3.1 Quality, and/or credit insufficiency (credit banner warning was present). The S02 tile shows a persistent error state with a warning icon and refresh button that does not resolve the issue. No successful generation occurred; only the pre-existing T01 (recovery run) and other legacy project assets remain unaffected.",
+    "download_url": "N/A",
+    "visual_review": "N/A - no generated video",
+    "generation_status": "The S02 generation FAILED with error 'Không thành công / Không tải được video' (Failed / Could not load video) on retry after initial Omni 1.2 Flash model issue.",
+    "download_completed": false,
+    "generated_asset_url": "N/A - generation failed",
+    "last_frame_filename": "S02_ENTRANCE_CLEAN.png",
+    "first_frame_filename": "S02_ENTRANCE_CLEAN.png",
+    "submitted_prompt_text": "Use the clean REFERENCE.png in BOTH the first-frame and last-frame inputs. Render one continuous 8-second ambient background plate, 16:9.\n\nThis is a still architectural photograph with only a little atmosphere animated. Keep every wall, glass mullion, ceiling beam, doorway and floor edge at the SAME pixel position throughout ALL eight seconds. Fixed tripod. Constant focal length and focus. Zero camera translation, zero zoom, zero pan, zero tilt. There is no arrival shot or camera approach in this clip. Preserve the supplied curved navy portal and narrow corridor exactly. Keep the far door closed and stationary.\n\nAnimate only a few very small, faint dust particles near the outer edges. Keep illumination almost constant. The architecture stays registered to the reference while those particles drift gently forward in time. Keep the center clear for website content. Make the atmospheric loop subtle; the final frame must be reached through continuous motion, never by returning or dissolving to the reference.\n\nDo not move toward or through the entrance. Do not enlarge the doorway. Do not create gold smoke, a particle fountain or bright clouds. No crossfade, dissolve, morph, ghosting, rewind or reverse motion. No people, cap, character, cards or new text. Silent background plate.",
+    "new_generation_submitted": true,
+    "source_images_fully_loaded": true
+  }
+}

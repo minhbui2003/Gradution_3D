@@ -1,0 +1,4 @@
+Ảnh đầu lấy từ 01_SCENES/S05_MEMORY_YEAR_4/INPUT/REFERENCE.png
+Ảnh cuối lấy từ 01_SCENES/S07_CEREMONY/INPUT/REFERENCE.png
+Sau khi đã có các REFERENCE.png mới, chạy tools/sync_inputs.py để tạo FIRST_FRAME.png và LAST_FRAME.png ở đây.
+Không dùng hai file *_COMPOSITION_ONLY.png làm đầu vào gen video mới.

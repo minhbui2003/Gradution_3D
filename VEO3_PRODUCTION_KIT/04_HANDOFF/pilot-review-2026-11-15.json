@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-15",
+  "timezone": "Asia/Bangkok",
+  "status": "pilot_not_approved_for_batch_generation",
+  "scope": "Three local pilot videos, not a live Flow account inspection.",
+  "method": "Decoded all 190 frames of each clip; checked media metadata/endpoints, optical-flow diagnostics, sampled visual timelines and detailed failure frames. Not a real-time playback or listening review.",
+  "common_metadata": {
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "frames": 190,
+    "duration_seconds": 7.9167,
+    "technical_pass": true
+  },
+  "findings": {
+    "S01_AMBIENT": {
+      "decision": "motion_acceptable_source_cleanup_pending",
+      "notes": "Camera v? ki?n tr?c gi? ?n ??nh; m?y, d?i s?ng v? h?t chuy?n ??ng. Ch?a duy?t b?n cu?i: bi?u t??ng ?nh ? g?c ph?i tr?n ?? c? trong REFERENCE.png v? b? gi? v?o video. C?n ?nh ngu?n s?ch v? ki?m tra n?i v?ng ? t?c ?? th?t tr??c khi ch?t.",
+      "evidence": "artifacts/runtime-qa/pilot-review/S01_AMBIENT-timeline.jpg"
+    },
+    "S02_AMBIENT": {
+      "decision": "reject_regenerate",
+      "notes": "Sai y?u c?u n?n ??ng t?i ch?: camera ti?n v?o h?nh lang trong kho?ng 0?6 gi?y. Kho?ng 6.5 gi?y xu?t hi?n ch?ng/h?a h?nh ?? quay v? b? c?c ??u; kh?ng ph?i v?ng kh? quy?n li?n t?c. H?t v?ng k?t th?nh m?ng kh? l?n. Bi?u t??ng ?nh g?c ph?i tr?n ??n t? ?nh ngu?n. C?n gen l?i v?i camera c? ??nh to?n b? clip.",
+      "evidence": "artifacts/runtime-qa/pilot-review/S02_AMBIENT-detail.jpg"
+    },
+    "T01_S01_TO_S02": {
+      "decision": "reject_regenerate",
+      "notes": "??u v? cu?i g?n ?nh tham chi?u nh?ng chuy?n ??ng ? gi?a sai kh?ng gian: kho?ng 5?7.25 gi?y v?o m?t s?nh r?ng m?u kem, kh?c h?nh lang c? khung c?a cong xanh c?a LAST_FRAME. Kho?ng 7.5 gi?y ch?ng/h?a h?nh v? ?nh ??ch. Camera c?ng b?t ??u di chuy?n s?m h?n v? k?o d?i h?n l?ch 2.5?4.5 gi?y. Kh?ng c? ?o?n chuy?n ??ng li?n t?c h?p l? ?? c?t th?nh T01 ho?n ch?nh; kh?ng ch?t c?a s? trim.",
+      "evidence": "artifacts/runtime-qa/pilot-review/T01_S01_TO_S02-detail.jpg"
+    }
+  },
+  "next_steps": [
+    "Use clean source PNGs without the baked-in image UI symbol; run sync_references.py after changing them.",
+    "Regenerate S02 with fixed camera throughout; regenerate T01 without an invented lobby or end dissolve.",
+    "Review revised S01/S02/T01 and their joins before generating the other 12 clips."
+  ],
+  "limitations": [
+    "Optical-flow and pixel metrics are supporting diagnostics, not an automatic visual acceptance criterion.",
+    "No original video was overwritten, cropped, retimed, or integrated into the website during this review."
+  ]
+}

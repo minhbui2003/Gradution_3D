@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "created_local_date": "2026-11-15",
+  "timezone": "Asia/Bangkok",
+  "purpose": "Independent scene regeneration with newly created unbranded reference images.",
+  "source_images_are_clean": false,
+  "new_clean_images_generated": false,
+  "old_source_marks_preserved": true,
+  "website_modified": false,
+  "scenes": [
+    {
+      "id": "S01",
+      "title": "Thiệp mời trước trường",
+      "folder": "01_SCENES/S01_INVITATION",
+      "composition_reference": "01_SCENES/S01_INVITATION/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S01_INVITATION/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S01_INVITATION/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S01_INVITATION/PROMPT_AMBIENT_EN.txt",
+      "source": "data/Camera_approach_to_building_entr…_c2e88fcf_1080p.mp4",
+      "source_sha256": "2f97506d4b023cac7b4bb69ebeed206e5fb1c7d64af39310d4ee9e91e77b6949",
+      "source_frame": 0,
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "Năm 1 — bước chân đầu tiên",
+      "folder": "01_SCENES/S02_MEMORY_YEAR_1",
+      "composition_reference": "01_SCENES/S02_MEMORY_YEAR_1/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S02_MEMORY_YEAR_1/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S02_MEMORY_YEAR_1/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S02_MEMORY_YEAR_1/PROMPT_AMBIENT_EN.txt",
+      "source": "data/Generating_architectural_video_b…_d0eb969a_1080p.mp4",
+      "source_sha256": "b5b7ed0cc991760535e11effb0c6b7ae35eddbf5c6660a5e4a70dde0326fc857",
+      "source_frame": 0,
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Năm 2 — đồ án và bạn bè",
+      "folder": "01_SCENES/S03_MEMORY_YEAR_2",
+      "composition_reference": "01_SCENES/S03_MEMORY_YEAR_2/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S03_MEMORY_YEAR_2/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S03_MEMORY_YEAR_2/OUTPUT/S03_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S03_MEMORY_YEAR_2/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S03_MEMORY_YEAR_2/PROMPT_AMBIENT_EN.txt",
+      "source": "public/travel/scene-02/frame-085.webp",
+      "source_sha256": "9a0332339a83d8254354f61f5f749c07a1d1b742cd3ae2c2f523f1f0a929bf4a",
+      "source_frame": 85,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Năm 3 — thực tập",
+      "folder": "01_SCENES/S04_MEMORY_YEAR_3",
+      "composition_reference": "01_SCENES/S04_MEMORY_YEAR_3/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S04_MEMORY_YEAR_3/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S04_MEMORY_YEAR_3/OUTPUT/S04_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S04_MEMORY_YEAR_3/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S04_MEMORY_YEAR_3/PROMPT_AMBIENT_EN.txt",
+      "source": "public/travel/scene-02/frame-103.webp",
+      "source_sha256": "024f0acc374565c5da9265e3a6892d603a7c81750580b8834300469d8867743f",
+      "source_frame": 103,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "Năm 4 — gần cửa hội trường",
+      "folder": "01_SCENES/S05_MEMORY_YEAR_4",
+      "composition_reference": "01_SCENES/S05_MEMORY_YEAR_4/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S05_MEMORY_YEAR_4/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S05_MEMORY_YEAR_4/OUTPUT/S05_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S05_MEMORY_YEAR_4/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S05_MEMORY_YEAR_4/PROMPT_AMBIENT_EN.txt",
+      "source": "public/travel/scene-02/frame-120.webp",
+      "source_sha256": "77cfa9f49d951cdb2eb7dc061d8e1e305dff2671ae140180c31e9ff8f00989a8",
+      "source_frame": 120,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "Hội trường và khoảnh khắc tốt nghiệp",
+      "folder": "01_SCENES/S07_CEREMONY",
+      "composition_reference": "01_SCENES/S07_CEREMONY/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S07_CEREMONY/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S07_CEREMONY/OUTPUT/S07_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S07_CEREMONY/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S07_CEREMONY/PROMPT_AMBIENT_EN.txt",
+      "source": "public/videos/scene-03-living.mp4",
+      "source_sha256": "a8f93869099a2781570ccdd4afac121b91585fb17868ca35651eed694caf2290",
+      "source_frame": 0,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "Sảnh — thông tin buổi lễ",
+      "folder": "01_SCENES/S08_EVENT_DETAILS",
+      "composition_reference": "01_SCENES/S08_EVENT_DETAILS/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S08_EVENT_DETAILS/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S08_EVENT_DETAILS/OUTPUT/S08_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S08_EVENT_DETAILS/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S08_EVENT_DETAILS/PROMPT_AMBIENT_EN.txt",
+      "source": "public/videos/scene-04-living.mp4",
+      "source_sha256": "95f874941c8d8ebe355fdbacf63071d90ab98a1ecf4f63859d99574d99048283",
+      "source_frame": 0,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "Lưu bút, RSVP và cảm ơn",
+      "folder": "01_SCENES/S09_WISHES_RSVP",
+      "composition_reference": "01_SCENES/S09_WISHES_RSVP/00_CURRENT_PREVIEW/COMPOSITION_ONLY.png",
+      "composition_reference_is_clean": false,
+      "input": "01_SCENES/S09_WISHES_RSVP/INPUT/REFERENCE.png",
+      "expected_output": "01_SCENES/S09_WISHES_RSVP/OUTPUT/S09_AMBIENT.mp4",
+      "image_prompt": "01_SCENES/S09_WISHES_RSVP/PROMPT_IMAGE_EN.txt",
+      "video_prompt": "01_SCENES/S09_WISHES_RSVP/PROMPT_AMBIENT_EN.txt",
+      "source": "public/videos/scene-05-living.mp4",
+      "source_sha256": "55dcc2e3a0f2a34969c175d0ad604cdb445af8bb5fb08bc6a2f7dacd3677139d",
+      "source_frame": 0,
+      "dimensions": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "T01",
+      "source": "S01",
+      "destination": "S02",
+      "folder": "02_TRANSITIONS/T01_S01_TO_S02",
+      "first_input": "02_TRANSITIONS/T01_S01_TO_S02/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T01_S01_TO_S02/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4"
+    },
+    {
+      "id": "T02",
+      "source": "S02",
+      "destination": "S03",
+      "folder": "02_TRANSITIONS/T02_S02_TO_S03",
+      "first_input": "02_TRANSITIONS/T02_S02_TO_S03/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T02_S02_TO_S03/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T02_S02_TO_S03/OUTPUT/T02_S02_TO_S03.mp4"
+    },
+    {
+      "id": "T03",
+      "source": "S03",
+      "destination": "S04",
+      "folder": "02_TRANSITIONS/T03_S03_TO_S04",
+      "first_input": "02_TRANSITIONS/T03_S03_TO_S04/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T03_S03_TO_S04/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T03_S03_TO_S04/OUTPUT/T03_S03_TO_S04.mp4"
+    },
+    {
+      "id": "T04",
+      "source": "S04",
+      "destination": "S05",
+      "folder": "02_TRANSITIONS/T04_S04_TO_S05",
+      "first_input": "02_TRANSITIONS/T04_S04_TO_S05/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T04_S04_TO_S05/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T04_S04_TO_S05/OUTPUT/T04_S04_TO_S05.mp4"
+    },
+    {
+      "id": "T05",
+      "source": "S05",
+      "destination": "S07",
+      "folder": "02_TRANSITIONS/T05_S05_TO_S07",
+      "first_input": "02_TRANSITIONS/T05_S05_TO_S07/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T05_S05_TO_S07/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T05_S05_TO_S07/OUTPUT/T05_S05_TO_S07.mp4"
+    },
+    {
+      "id": "T07",
+      "source": "S07",
+      "destination": "S08",
+      "folder": "02_TRANSITIONS/T07_S07_TO_S08",
+      "first_input": "02_TRANSITIONS/T07_S07_TO_S08/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T07_S07_TO_S08/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T07_S07_TO_S08/OUTPUT/T07_S07_TO_S08.mp4"
+    },
+    {
+      "id": "T08",
+      "source": "S08",
+      "destination": "S09",
+      "folder": "02_TRANSITIONS/T08_S08_TO_S09",
+      "first_input": "02_TRANSITIONS/T08_S08_TO_S09/INPUT/FIRST_FRAME.png",
+      "last_input": "02_TRANSITIONS/T08_S08_TO_S09/INPUT/LAST_FRAME.png",
+      "expected_output": "02_TRANSITIONS/T08_S08_TO_S09/OUTPUT/T08_S08_TO_S09.mp4"
+    }
+  ]
+}

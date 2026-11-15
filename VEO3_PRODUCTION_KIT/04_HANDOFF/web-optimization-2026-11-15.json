@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-15",
+  "timezone": "Asia/Bangkok",
+  "status": "local_web_presented_frame_intro_sync",
+  "baseline_commit": "43d70eb",
+  "changes": [
+    "Bound camera-frame caches and prefetch only nearby frames; cancel stale/hidden requests.",
+    "Match year 4 to the near-door frame 120; remove the separate doorway waiting beat and prompt.",
+    "Use still camera viewpoints and paused video for reduced motion; lower mobile WebGL pixel ratio.",
+    "One wheel/swipe runs a full automatic transition. Intro panels part, native video approaches in 1.38s, then holds at first memory. Touchpad inertia is consumed; modals and nested scrolling remain usable.",
+    "Replace the independent 1.38s UI timer and 7.84x playback with buffered 1.2s 60fps files at 1x; one player owns playback and actual presented frames drive UI progress. Re-announce scene readiness when preloaded layers become active; no forced final seeks.",
+    "Align invitation background to the exact T01 first frame; remove legacy hero video decoding and the backwards framing jump at handoff."
+  ],
+  "same_local_navigation_sample": {
+    "baseline_travel_requests": 276,
+    "optimized_travel_requests": 48,
+    "note": "Local headless Chromium, same viewport and jump sequence. This is not an FPS measurement."
+  },
+  "validation": {
+    "typescript": "passed",
+    "production_build": "passed",
+    "browser_checks": 82,
+    "browser_report": "artifacts/runtime-qa/report.json",
+    "production_smoke_checks": 6,
+    "production_smoke_report": "artifacts/runtime-qa/production-smoke.json",
+    "flow_pilot_browser_checks": 97,
+    "flow_pilot_browser_report": "artifacts/runtime-qa/flow-pilot-2026-11-15/report.json",
+    "gesture_navigation_checks": 35,
+    "gesture_navigation_passed": true,
+    "gesture_navigation_report": "artifacts/runtime-qa/smooth-intro-final-gestures/report.json",
+    "gesture_input_additional_checks": 3,
+    "nested_scrolling_and_typing_passed": true,
+    "gesture_regression_checks": 97,
+    "gesture_regression_passed": true,
+    "gesture_regression_report": "artifacts/runtime-qa/smooth-intro-regression/report.json",
+    "total_current_browser_checks": 163,
+    "intro_synchronization_checks": 31,
+    "intro_synchronization_passed": true,
+    "intro_synchronization_report": "artifacts/runtime-qa/smooth-intro-final/report.json",
+    "headless_frame_presentation_diagnostics": {
+      "desktop": {
+        "presented_intermediate_frames": 67,
+        "maximum_gap_ms": 33.40000000000009
+      },
+      "mobile": {
+        "presented_intermediate_frames": 61,
+        "maximum_gap_ms": 150.0
+      }
+    },
+    "physical_device_fps_measured": false
+  },
+  "new_flow_media": {
+    "present": 2,
+    "expected": 15,
+    "received_from_user": true,
+    "generated_by_this_agent": false,
+    "downloaded_to_data": true,
+    "decoded_all_source_frames": true,
+    "reviewed_for_pilot": true,
+    "ambient_accepted_for_pilot": 1,
+    "transition_preview_only": 1,
+    "review": "04_HANDOFF/flow-download-review-2026-11-15.json",
+    "remaining": "Later clips still use prior runtime sources."
+  },
+  "limitations": [
+    "Existing source imagery and its AI artifacts remain until new clips are generated and reviewed.",
+    "No physical-device FPS/GPU measurement or deployment was performed."
+  ],
+  "original_flow_automation_attempt": {
+    "present": 0,
+    "expected": 15,
+    "generated": false,
+    "downloaded": false,
+    "visually_reviewed": false,
+    "blocker": "Automatic approval review rejected launching Chrome with a remote debugging port: blocked by policy.",
+    "alternative": "TinyFish was suggested; its installation, connection and Flow sign-in are not confirmed."
+  }
+}

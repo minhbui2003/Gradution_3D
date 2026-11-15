@@ -1,0 +1,4 @@
+Ảnh/video ở đây được trích từ đúng nền web đang dùng, giữ nguyên nội dung và các dấu có sẵn.
+Đây là mẫu xem bố cục, KHÔNG phải ảnh đầu vào mới đã sạch logo.
+Tạo ảnh mới bằng PROMPT_IMAGE_EN.txt, duyệt ảnh rồi đặt vào INPUT/REFERENCE.png.
+Không upload bản video/ảnh còn dấu này làm đầu vào video mới.

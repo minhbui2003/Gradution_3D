@@ -1,0 +1,11 @@
+Supply the clean FIRST_FRAME.png and LAST_FRAME.png in their respective frame-conditioning inputs. One continuous 8-second shot, 16:9. FIRST_FRAME is the initial exterior viewpoint. LAST_FRAME is the EXACT destination viewpoint at the glass entrance, looking toward the narrow curved navy portal and its warm corridor.
+
+The destination in LAST_FRAME is the physical entrance of the building in FIRST_FRAME. Establish that specific entrance directly behind the existing glass canopy. Preserve its curved navy portal, glass mullions, warm lighting and closed distant door during the entire approach. Do not create an alternative interior.
+
+Timing: 0–2.5 seconds hold the exterior viewpoint with only faint atmospheric motion. 2.5–4.5 seconds perform ONE controlled forward dolly along the central approach, under the existing canopy, stopping at precisely the viewpoint in LAST_FRAME. 4.5–8 seconds hold that exact arrival viewpoint with only sparse atmospheric motion. Stop before traveling deeper than the supplied destination. No additional turn, roll or exploration of a lobby.
+
+Reveal the real entrance by perspective and physical occlusion of the existing canopy and doorway. Never substitute a wide cream-colored gallery or a new rectangular lobby. Never enter a different room and then dissolve back to LAST_FRAME. No crossfade, dissolve, morph, double exposure, teleport, hard cut or final reference-image overlay. Match the final view by continuous camera travel and deceleration.
+
+Keep architecture coherent, exposure stable and the central passage clear. Empty environment only: no cap, people, character, cards or new text. Silent background plate.
+
+Before generation: clean the stop reference PNGs and run tools/sync_references.py to update these endpoint images. These instructions do not guarantee spatial continuity; reject another invented interior or end dissolve.

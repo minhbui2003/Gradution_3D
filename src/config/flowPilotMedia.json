@@ -1,0 +1,20 @@
+{
+  "transition": {
+    "frameDirectory": "flow-t01-2f97506d4b02",
+    "frameCount": 188,
+    "fps": 24.0,
+    "lastFrameTime": 7.791666666666667,
+    "poster": "/travel/flow-t01-2f97506d4b02/frame-000.webp",
+    "video": "/videos/flow/t01-2f97506d4b02.mp4",
+    "arrivalVideo": "/videos/flow/t01-78e4314616a9-arrival-v2.mp4",
+    "returnVideo": "/videos/flow/t01-78e4314616a9-return-v2.mp4",
+    "arrivalPoster": "/videos/flow/t01-78e4314616a9-arrival.webp",
+    "playbackSeconds": 1.2,
+    "playbackFps": 60,
+    "playbackFrames": 72
+  },
+  "ambient": {
+    "src": "/videos/flow/s02-b5b7ed0cc991.mp4",
+    "poster": "/videos/flow/s02-b5b7ed0cc991.webp"
+  }
+}

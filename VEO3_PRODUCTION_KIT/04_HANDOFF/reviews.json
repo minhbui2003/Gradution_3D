@@ -2,14 +2,15 @@
   "S01_AMBIENT": {
     "accepted": false,
     "video_sha256": null,
-    "notes": "",
+    "notes": "Reference changed; regenerate or review against new reference.",
     "actual_motion_window_seconds": null
   },
   "S02_AMBIENT": {
-    "accepted": false,
-    "video_sha256": null,
-    "notes": "",
-    "actual_motion_window_seconds": null
+    "accepted": true,
+    "video_sha256": "b5b7ed0cc991760535e11effb0c6b7ae35eddbf5c6660a5e4a70dde0326fc857",
+    "review_decision": "accepted_for_web_pilot",
+    "actual_motion_window_seconds": null,
+    "notes": "Stable architecture and closed door, subtle particles. Review sampled frame registration and the loop in browser."
   },
   "S03_AMBIENT": {
     "accepted": false,
@@ -49,14 +50,18 @@
   },
   "T01_S01_TO_S02": {
     "accepted": false,
-    "video_sha256": null,
-    "notes": "",
-    "actual_motion_window_seconds": null
+    "video_sha256": "2f97506d4b023cac7b4bb69ebeed206e5fb1c7d64af39310d4ee9e91e77b6949",
+    "review_decision": "preview_only_regenerate_for_final",
+    "actual_motion_window_seconds": [
+      0,
+      7.791666666666667
+    ],
+    "notes": "Camera moves across almost the whole clip, rather than only 2.5–4.5s. An additional rounded navy arch appears before the supplied entrance. Use the entire approach for the web test; do not cut blindly to 2.5–4.5s."
   },
   "T02_S02_TO_S03": {
     "accepted": false,
     "video_sha256": null,
-    "notes": "",
+    "notes": "Reference changed; regenerate or review against new reference.",
     "actual_motion_window_seconds": null
   },
   "T03_S03_TO_S04": {

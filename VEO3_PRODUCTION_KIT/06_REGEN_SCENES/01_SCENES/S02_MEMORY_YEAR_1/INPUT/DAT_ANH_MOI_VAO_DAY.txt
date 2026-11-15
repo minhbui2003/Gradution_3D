@@ -1,0 +1,4 @@
+Đặt ảnh MỚI đã duyệt tại đây với tên REFERENCE.png.
+Yêu cầu: PNG thật, 16:9, tối thiểu 1280x720, ưu tiên 1920x1080.
+Không tự chép ảnh COMPOSITION_ONLY.png vào đây rồi coi đó là ảnh sạch.
+Ở Flow: chọn cùng ảnh REFERENCE.png cho ô ảnh đầu và ô ảnh cuối của nền đứng.

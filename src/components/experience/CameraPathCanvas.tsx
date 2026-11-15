@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react';
 
 type DecodedFrame = ImageBitmap | HTMLImageElement;
 
-export function CameraPathCanvas({ scene, time, active, onReady }: {
-  scene: 'scene-02' | 'scene-03'; time: number; active: boolean; onReady: () => void;
+export function CameraPathCanvas({ scene, time, active, onReady, frameCount }: {
+  scene: string; time: number; active: boolean; onReady: () => void; frameCount?: number;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const targetRef = useRef(time * 24);
@@ -24,14 +24,30 @@ export function CameraPathCanvas({ scene, time, active, onReady }: {
     if (!canvas || !ctx) return;
     let mounted = true;
     let frame = 0;
-    const count = scene === 'scene-02' ? 190 : 73;
-    const limit = window.innerWidth < 768 ? 12 : 20;
+    const count = frameCount ?? (scene === 'scene-02' ? 190 : 73);
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
+    const limit = mobile ? 10 : 16;
+    const byteLimit = mobile ? 24 : 48;
+    const concurrency = mobile ? 3 : 4;
     const decoded = new Map<number, DecodedFrame>();
     const bytes = new Map<number, Blob>();
     const fetching = new Map<number, AbortController>();
     const decoding = new Set<number>();
     const failed = new Set<number>();
     const release = (value: DecodedFrame) => { if ('close' in value) value.close(); };
+    const priorities = () => {
+      const center = Math.max(0, Math.min(count - 1, Math.floor(targetRef.current)));
+      const offsets = activeRef.current ? [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7] : [0, 1, 2];
+      return offsets.slice(0, limit).map((offset) => center + offset).filter((index) => index >= 0 && index < count);
+    };
+    const trim = <T,>(cache: Map<number, T>, maximum: number, dispose?: (value: T) => void) => {
+      const furthest = Array.from(cache.keys()).sort((a, b) => Math.abs(b - targetRef.current) - Math.abs(a - targetRef.current));
+      while (cache.size > maximum) {
+        const index = furthest.shift()!;
+        dispose?.(cache.get(index)!);
+        cache.delete(index);
+      }
+    };
 
     const drawImage = (value: DecodedFrame, alpha: number) => {
       const scale = Math.max(canvas.width / value.width, canvas.height / value.height);
@@ -42,7 +58,7 @@ export function CameraPathCanvas({ scene, time, active, onReady }: {
     };
 
     const draw = () => {
-      if (!mounted || !activeRef.current) return;
+      if (!mounted || !activeRef.current || document.hidden) return;
       const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1 : 1.25);
       const width = Math.round(window.innerWidth * dpr);
       const height = Math.round(window.innerHeight * dpr);
@@ -71,36 +87,36 @@ export function CameraPathCanvas({ scene, time, active, onReady }: {
       ctx.globalAlpha = 1;
       canvas.dataset.framePosition = position.toFixed(4);
       canvas.dataset.decodedFrames = String(decoded.size);
+      canvas.dataset.cachedFrames = String(bytes.size);
     };
 
     const schedule = () => {
       if (!mounted) return;
+      const wanted = new Set(priorities());
+      fetching.forEach((controller, index) => { if (!wanted.has(index) || document.hidden) controller.abort(); });
+      if (document.hidden) return;
       if (!frame) frame = requestAnimationFrame(() => { frame = 0; draw(); });
       pump();
     };
 
     const decode = async (index: number) => {
-      if (!mounted || decoded.has(index) || decoding.has(index) || failed.has(index) || !bytes.has(index)) return;
+      if (!mounted || document.hidden || decoding.size >= 2 || decoded.has(index) || decoding.has(index) || failed.has(index) || !bytes.has(index)) return;
       decoding.add(index);
       try {
         const blob = bytes.get(index)!;
         let value: DecodedFrame;
-        if (typeof createImageBitmap === 'function') value = await createImageBitmap(blob, window.innerWidth < 768 ? { resizeWidth: 768, resizeHeight: 432 } : {});
+        if (typeof createImageBitmap === 'function') value = await createImageBitmap(blob, mobile ? { resizeWidth: 960, resizeHeight: 540 } : {});
         else {
           const url = URL.createObjectURL(blob);
           const img = new Image(); img.src = url;
           try { await img.decode(); value = img; } finally { URL.revokeObjectURL(url); }
         }
         if (!mounted) { release(value); return; }
-        if (Math.abs(index - targetRef.current) > limit / 2) { release(value); return; }
+        if (!priorities().includes(index)) { release(value); return; }
         decoded.set(index, value);
-        while (decoded.size > limit) {
-          const oldest = decoded.keys().next().value;
-          if (oldest === undefined) break;
-          release(decoded.get(oldest)!); decoded.delete(oldest);
-        }
+        trim(decoded, limit, release);
         if (!frame) frame = requestAnimationFrame(() => { frame = 0; draw(); });
-      } catch { failed.add(index); } finally { decoding.delete(index); }
+      } catch { failed.add(index); } finally { decoding.delete(index); if (mounted) pump(); }
     };
 
     const fetchFrame = async (index: number) => {
@@ -111,36 +127,41 @@ export function CameraPathCanvas({ scene, time, active, onReady }: {
         const blob = await response.blob();
         if (!mounted) return;
         bytes.set(index, blob);
-        if (Math.abs(index - targetRef.current) <= (limit - 4) / 2) await decode(index);
+        trim(bytes, byteLimit);
+        if (priorities().includes(index)) await decode(index);
       } catch {
         if (!controller.signal.aborted) failed.add(index);
       } finally { fetching.delete(index); if (mounted) pump(); }
     };
 
     const pump = () => {
-      if (!mounted) return;
-      const center = Math.max(0, Math.min(count - 1, Math.floor(targetRef.current)));
-      const priority = [0, 1, 2, -1, 3, -2, 4, -3, 5, -4, 6, -5, 7, -6, 8, -7].slice(0, limit - 2).map((offset) => center + offset).filter((index) => index >= 0 && index < count);
+      if (!mounted || document.hidden) return;
+      const priority = priorities();
       for (const index of priority) { if (bytes.has(index)) void decode(index); }
-      // Retain compressed bytes for the full route; only nearby frames occupy decoded memory.
-      const order = [...priority, ...Array.from({ length: Math.ceil(count / 8) }, (_, i) => i * 8), ...Array.from({ length: count }, (_, i) => i)];
-      for (const index of order) {
-        if (fetching.size >= 6) break;
+      // Warm only the arrival frames. Fetch around the current viewpoint instead
+      // of downloading both complete routes when the visitor is still at the hero.
+      for (const index of priority) {
+        if (fetching.size >= concurrency) break;
         if (!bytes.has(index) && !fetching.has(index) && !failed.has(index)) void fetchFrame(index);
       }
     };
 
     scheduleRef.current = schedule;
+    const reconnect = () => { failed.clear(); schedule(); };
     window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('online', reconnect);
+    document.addEventListener('visibilitychange', schedule);
     schedule();
     return () => {
       mounted = false; scheduleRef.current = null;
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', schedule);
+      window.removeEventListener('online', reconnect);
+      document.removeEventListener('visibilitychange', schedule);
       fetching.forEach((controller) => controller.abort());
       decoded.forEach(release); decoded.clear(); bytes.clear();
     };
-  }, [scene]);
+  }, [scene, frameCount]);
 
   return <canvas ref={canvasRef} className="camera-path-canvas" data-camera-scene={scene} aria-hidden="true" />;
 }

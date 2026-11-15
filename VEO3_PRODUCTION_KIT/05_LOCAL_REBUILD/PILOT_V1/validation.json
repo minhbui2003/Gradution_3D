@@ -1,0 +1,123 @@
+{
+  "generator": "local_processing_not_new_veo_generation",
+  "checks": [
+    {
+      "id": "S01_AMBIENT_LOCAL.mp4:format",
+      "passed": true
+    },
+    {
+      "id": "S01_AMBIENT_LOCAL.mp4:loop-endpoints",
+      "passed": true,
+      "normalized_mae": 0.004937
+    },
+    {
+      "id": "S02_AMBIENT_LOCAL.mp4:format",
+      "passed": true
+    },
+    {
+      "id": "S02_AMBIENT_LOCAL.mp4:loop-endpoints",
+      "passed": true,
+      "normalized_mae": 0.000239
+    },
+    {
+      "id": "S02:fixed-central-architecture",
+      "passed": true,
+      "max_mean_rgb_delta_8bit": 0.04163
+    },
+    {
+      "id": "S02:atmosphere-is-animated",
+      "passed": true,
+      "max_fullframe_mean_rgb_delta_8bit": 0.06543
+    },
+    {
+      "id": "T01_S01_TO_S02_LOCAL.mp4:format",
+      "passed": true
+    },
+    {
+      "id": "T01_WEB_1.15s.mp4:format",
+      "passed": true
+    },
+    {
+      "id": "PILOT_PREVIEW.mp4:format",
+      "passed": true
+    },
+    {
+      "id": "S01_AMBIENT_LOCAL.mp4 -> T01_S01_TO_S02_LOCAL.mp4",
+      "passed": true,
+      "normalized_mae": 0.005054
+    },
+    {
+      "id": "T01_S01_TO_S02_LOCAL.mp4 -> S02_AMBIENT_LOCAL.mp4",
+      "passed": true,
+      "normalized_mae": 0.002428
+    },
+    {
+      "id": "web-cut:duration",
+      "passed": true,
+      "actual_duration_seconds": 1.133333
+    }
+  ],
+  "media": [
+    {
+      "file": "S01_AMBIENT_LOCAL.mp4",
+      "width": 1280,
+      "height": 720,
+      "fps": "24/1",
+      "frames": 192,
+      "duration": 8.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p"
+    },
+    {
+      "file": "S02_AMBIENT_LOCAL.mp4",
+      "width": 1280,
+      "height": 720,
+      "fps": "24/1",
+      "frames": 192,
+      "duration": 8.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p"
+    },
+    {
+      "file": "T01_S01_TO_S02_LOCAL.mp4",
+      "width": 1280,
+      "height": 720,
+      "fps": "24/1",
+      "frames": 192,
+      "duration": 8.0,
+      "codec": "h264",
+      "pixel_format": "yuv420p"
+    },
+    {
+      "file": "T01_WEB_1.15s.mp4",
+      "width": 1280,
+      "height": 720,
+      "fps": "30/1",
+      "frames": 34,
+      "duration": 1.133333,
+      "codec": "h264",
+      "pixel_format": "yuv420p"
+    },
+    {
+      "file": "PILOT_PREVIEW.mp4",
+      "width": 1280,
+      "height": 720,
+      "fps": "30/1",
+      "frames": 514,
+      "duration": 17.133008,
+      "codec": "h264",
+      "pixel_format": "yuv420p"
+    }
+  ],
+  "passed": true,
+  "review_status": "local_pilot_visually_reviewed_with_original_footage_limitations",
+  "limitations": [
+    "Metrics do not prove artistic quality or original-footage spatial accuracy.",
+    "No new Veo generation or account access occurred."
+  ],
+  "visual_findings": {
+    "S01": "Locked building, moving original atmosphere, upper-right image UI icon removed.",
+    "S02": "Reference geometry remains fixed; small side dust moves and loop endpoints match closely.",
+    "T01": "Source route reaches the correct curved navy portal with no invented cream gallery or end dissolve. Original source geometry changes and nearest-frame retiming remain."
+  }
+}

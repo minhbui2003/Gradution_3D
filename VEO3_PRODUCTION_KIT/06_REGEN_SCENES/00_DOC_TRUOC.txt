@@ -1,0 +1,21 @@
+MỞ START_HERE.html để xem từng cảnh và copy prompt.
+
+Bộ mới: 8 nền đứng yên + 7 đoạn chuyển. S06/T06 đã bỏ; Năm 4 -> mở cửa -> hội trường trong một chặng.
+Ưu tiên: tạo ảnh mới S01/S02 cùng một kiến trúc -> gen S02_AMBIENT và T01 -> xem thử -> tiếp tục S03/T02.
+Nếu cần nền mở đầu có mây chuyển động, gen thêm S01_AMBIENT; web hiện giữ đúng khung đầu T01 ở màn thiệp mời.
+
+MỖI CẢNH / 01_SCENES:
+- 00_CURRENT_PREVIEW: ảnh trích và video hiện tại để đối chiếu, giữ nguyên cả dấu nguồn.
+- PROMPT_IMAGE_EN.txt: tạo ảnh môi trường MỚI, bề mặt không chữ/logo/icon.
+- INPUT/REFERENCE.png: bạn đặt ảnh mới đã duyệt, không có sẵn trong bộ này.
+- PROMPT_AMBIENT_EN.txt: dùng cùng REFERENCE.png ở đầu/cuối, camera đứng yên đủ 8 giây.
+- OUTPUT: lưu bản xuất gốc đúng tên.
+
+ĐOẠN NỐI / 02_TRANSITIONS: tạo sau khi có ảnh mới ở hai cảnh liên quan.
+Chạy python VEO3_PRODUCTION_KIT/06_REGEN_SCENES/tools/sync_inputs.py để chép đúng các cặp ảnh mới đã có.
+Helper chỉ ghi bên trong bộ tái tạo này, không thay video web đang dùng.
+
+Icon/chữ/logo đã nằm trong ảnh cũ có thể bị giữ nguyên khi gen video: cần ảnh đầu vào mới được duyệt trước.
+Prompt không bảo đảm ngăn nhãn do nền tảng tự chèn khi xuất. Nếu có nhãn tự động, kiểm tra lựa chọn xuất chính thức của công cụ trước khi gen hàng loạt.
+Nội dung web (tên, ảnh riêng, card, nón 3D, form) vẫn là lớp riêng, không gen vào nền.
+Bộ này chưa tạo ảnh/video mới và không tự chứng nhận các ảnh trích là sạch.

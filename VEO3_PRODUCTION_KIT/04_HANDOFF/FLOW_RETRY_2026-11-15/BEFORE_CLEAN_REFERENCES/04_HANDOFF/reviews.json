@@ -1,0 +1,101 @@
+{
+  "S01_AMBIENT": {
+    "accepted": false,
+    "video_sha256": "5405e0e51facd240c1bf41d2d65aaca592b7ae9980dcdb13e458670c8c91db0d",
+    "notes": "Camera v? ki?n tr?c gi? ?n ??nh; m?y, d?i s?ng v? h?t chuy?n ??ng. Ch?a duy?t b?n cu?i: bi?u t??ng ?nh ? g?c ph?i tr?n ?? c? trong REFERENCE.png v? b? gi? v?o video. C?n ?nh ngu?n s?ch v? ki?m tra n?i v?ng ? t?c ?? th?t tr??c khi ch?t.",
+    "actual_motion_window_seconds": null,
+    "reviewed_local_date": "2026-11-15",
+    "review_decision": "motion_acceptable_source_cleanup_pending",
+    "evidence": "artifacts/runtime-qa/pilot-review/S01_AMBIENT-timeline.jpg"
+  },
+  "S02_AMBIENT": {
+    "accepted": false,
+    "video_sha256": "a520228ad65fc3a3030844ff1fcbeab38ac172eed1fd29802d6364e41243147d",
+    "notes": "Sai y?u c?u n?n ??ng t?i ch?: camera ti?n v?o h?nh lang trong kho?ng 0?6 gi?y. Kho?ng 6.5 gi?y xu?t hi?n ch?ng/h?a h?nh ?? quay v? b? c?c ??u; kh?ng ph?i v?ng kh? quy?n li?n t?c. H?t v?ng k?t th?nh m?ng kh? l?n. Bi?u t??ng ?nh g?c ph?i tr?n ??n t? ?nh ngu?n. C?n gen l?i v?i camera c? ??nh to?n b? clip.",
+    "actual_motion_window_seconds": null,
+    "reviewed_local_date": "2026-11-15",
+    "review_decision": "reject_regenerate",
+    "evidence": "artifacts/runtime-qa/pilot-review/S02_AMBIENT-detail.jpg"
+  },
+  "S03_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S04_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S05_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "Door flow revision: updated near-door reference or direct S05-to-S07 transition.",
+    "actual_motion_window_seconds": null
+  },
+  "S07_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S08_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "S09_AMBIENT": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T01_S01_TO_S02": {
+    "accepted": false,
+    "video_sha256": "151aedd434bf174c8166125da991f1da76be2add36c4bb16c20e45bb6c5e1bc2",
+    "notes": "??u v? cu?i g?n ?nh tham chi?u nh?ng chuy?n ??ng ? gi?a sai kh?ng gian: kho?ng 5?7.25 gi?y v?o m?t s?nh r?ng m?u kem, kh?c h?nh lang c? khung c?a cong xanh c?a LAST_FRAME. Kho?ng 7.5 gi?y ch?ng/h?a h?nh v? ?nh ??ch. Camera c?ng b?t ??u di chuy?n s?m h?n v? k?o d?i h?n l?ch 2.5?4.5 gi?y. Kh?ng c? ?o?n chuy?n ??ng li?n t?c h?p l? ?? c?t th?nh T01 ho?n ch?nh; kh?ng ch?t c?a s? trim.",
+    "actual_motion_window_seconds": null,
+    "reviewed_local_date": "2026-11-15",
+    "review_decision": "reject_regenerate",
+    "evidence": "artifacts/runtime-qa/pilot-review/T01_S01_TO_S02-detail.jpg"
+  },
+  "T02_S02_TO_S03": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T03_S03_TO_S04": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T04_S04_TO_S05": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "Door flow revision: updated near-door reference or direct S05-to-S07 transition.",
+    "actual_motion_window_seconds": null
+  },
+  "T05_S05_TO_S07": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "Door flow revision: updated near-door reference or direct S05-to-S07 transition.",
+    "actual_motion_window_seconds": null
+  },
+  "T07_S07_TO_S08": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  },
+  "T08_S08_TO_S09": {
+    "accepted": false,
+    "video_sha256": null,
+    "notes": "",
+    "actual_motion_window_seconds": null
+  }
+}

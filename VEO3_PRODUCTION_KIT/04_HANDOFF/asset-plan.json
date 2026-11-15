@@ -3,7 +3,7 @@
   "created_local_date": "2026-11-14",
   "timezone": "Asia/Ho_Chi_Minh",
   "status": "waiting_for_user_generated_media",
-  "active_website_modified": false,
+  "active_website_modified": true,
   "source_archive": "Graduation_Videos.rar",
   "stops": [
     {
@@ -19,7 +19,7 @@
       "role": "hero",
       "folder": "01_STOPS/S01_INVITATION",
       "reference": "01_STOPS/S01_INVITATION/REFERENCE.png",
-      "reference_sha256": "8c911b579c2ae6436f9a5fd0b8090648a66ae3a657553c2456ecd74f0082f4c0",
+      "reference_sha256": "1e781c561f1f9ec00525fdbc059f56e23b43044a1b0cee591d98a54b137ec614",
       "ambient_output": "01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4"
     },
     {
@@ -35,7 +35,7 @@
       "role": "memory",
       "folder": "01_STOPS/S02_MEMORY_YEAR_1",
       "reference": "01_STOPS/S02_MEMORY_YEAR_1/REFERENCE.png",
-      "reference_sha256": "e00f25d45f8c0aaae057d8855e7f58bfae5bddddcd8ef0d8fd37f1864b51095e",
+      "reference_sha256": "4d01ee5497172ab3a19deb2951e22b04504adcc4988862bb626dbaf68becf80f",
       "ambient_output": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4"
     },
     {

@@ -1,0 +1,15 @@
+S03 — Năm 2 — đồ án và bạn bè
+
+1. Xem ảnh/video trong 00_CURRENT_PREVIEW để hiểu vị trí camera. Các dấu nguồn vẫn còn trong mẫu đối chiếu.
+2. Dùng PROMPT_IMAGE_EN.txt để tạo ảnh nền mới. Kiểm tra cả bốn góc, mặt tiền, biển hiệu và sân khấu; không chấp nhận icon/chữ/logo được vẽ trong cảnh.
+3. Đặt ảnh mới đã duyệt vào INPUT/REFERENCE.png. Các cảnh cùng hành lang phải giữ cùng cửa, vật liệu và sơ đồ không gian.
+4. Tạo video Frames: ảnh đầu = REFERENCE.png; ảnh cuối = cùng REFERENCE.png. Dán PROMPT_AMBIENT_EN.txt.
+5. Chọn 16:9, 8 giây, x1, 1080p nếu có; tắt âm thanh nếu có. Không chọn chuyển động camera.
+6. Xem toàn bộ video: kiến trúc đứng yên, cửa không tự mở, hạt nhẹ; không có đoạn cuối hòa về ảnh đầu. Kiểm tra chữ/logo/icon mới phát sinh.
+7. Lưu bản gốc vào OUTPUT/S03_AMBIENT.mp4.
+
+Lớp web riêng: Một card Năm 2; không hiển thị đồng thời cả bốn card.
+Bố cục: Card bên phải, cửa và hướng đi ở giữa.
+Chữ, ảnh cá nhân, nút, thẻ kỷ niệm và nón vẫn do web hiển thị; không gen chúng vào nền.
+
+Prompt kiểm soát nội dung được vẽ, không bảo đảm ngăn nhãn do công cụ tự chèn khi xuất. Nếu bản xuất có nhãn tự động, kiểm tra lựa chọn xuất chính thức của công cụ trước khi gen hàng loạt.

@@ -1,4 +1,6 @@
 # Rebuild locally after cloning; keep all other project assets in Git.
 node_modules/
 .next/
+artifacts/runtime-qa/
+__pycache__/
 

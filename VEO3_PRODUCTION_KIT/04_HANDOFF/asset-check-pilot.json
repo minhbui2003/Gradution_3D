@@ -1,8 +1,8 @@
 {
   "scope": "pilot",
   "expected": 3,
-  "present": 0,
-  "ready": 0,
+  "present": 3,
+  "ready": 1,
   "status": "pending_assets_or_review",
   "note": "Pixel scores are diagnostics, not proof of camera lock, spatial continuity, or artistic quality.",
   "results": [
@@ -10,42 +10,77 @@
       "id": "S01_AMBIENT",
       "kind": "ambient",
       "path": "01_STOPS/S01_INVITATION/OUTPUT/S01_AMBIENT.mp4",
-      "exists": false,
-      "errors": [
-        "missing_video"
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "visual_review_pending_or_sha_changed"
       ],
-      "warnings": [],
       "visual_accepted": false,
-      "metadata_checked": false,
-      "technical_pass": false,
+      "metadata_checked": true,
+      "bytes": 1199873,
+      "sha256": "5405e0e51facd240c1bf41d2d65aaca592b7ae9980dcdb13e458670c8c91db0d",
+      "media": {
+        "width": 1280,
+        "height": 720,
+        "fps": 24.0,
+        "frames": 190,
+        "duration_seconds": 7.9167
+      },
+      "first_reference_mae_normalized": 0.01785,
+      "last_reference_mae_normalized": 0.02519,
+      "loop_endpoint_mae_normalized": 0.01376,
+      "technical_pass": true,
       "ready_for_integration": false
     },
     {
       "id": "S02_AMBIENT",
       "kind": "ambient",
       "path": "01_STOPS/S02_MEMORY_YEAR_1/OUTPUT/S02_AMBIENT.mp4",
-      "exists": false,
-      "errors": [
-        "missing_video"
-      ],
+      "exists": true,
+      "errors": [],
       "warnings": [],
-      "visual_accepted": false,
-      "metadata_checked": false,
-      "technical_pass": false,
-      "ready_for_integration": false
+      "visual_accepted": true,
+      "metadata_checked": true,
+      "bytes": 2480938,
+      "sha256": "b5b7ed0cc991760535e11effb0c6b7ae35eddbf5c6660a5e4a70dde0326fc857",
+      "media": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "frames": 188,
+        "duration_seconds": 7.8333
+      },
+      "first_reference_mae_normalized": 0.01262,
+      "last_reference_mae_normalized": 0.01279,
+      "loop_endpoint_mae_normalized": 0.01099,
+      "technical_pass": true,
+      "ready_for_integration": true
     },
     {
       "id": "T01_S01_TO_S02",
       "kind": "transition",
       "path": "02_TRANSITIONS/T01_S01_TO_S02/OUTPUT/T01_S01_TO_S02.mp4",
-      "exists": false,
-      "errors": [
-        "missing_video"
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "visual_review_pending_or_sha_changed"
       ],
-      "warnings": [],
       "visual_accepted": false,
-      "metadata_checked": false,
-      "technical_pass": false,
+      "metadata_checked": true,
+      "bytes": 5878826,
+      "sha256": "2f97506d4b023cac7b4bb69ebeed206e5fb1c7d64af39310d4ee9e91e77b6949",
+      "media": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "frames": 188,
+        "duration_seconds": 7.8333
+      },
+      "first_reference_mae_normalized": 0.01779,
+      "last_reference_mae_normalized": 0.04413,
+      "loop_endpoint_mae_normalized": 0.21786,
+      "trim_window_reviewed": true,
+      "technical_pass": true,
       "ready_for_integration": false
     }
   ]

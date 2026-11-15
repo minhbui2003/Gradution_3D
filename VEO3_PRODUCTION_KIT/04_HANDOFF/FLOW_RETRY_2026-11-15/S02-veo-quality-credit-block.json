@@ -1,0 +1,15 @@
+{
+  "run_id": "fa78c14a-4a29-419d-97c3-80f3a972bb0e",
+  "run_url": "https://agent.tinyfish.ai/runs/fa78c14a-4a29-419d-97c3-80f3a972bb0e",
+  "result": {
+    "exact_error": "Submission blocked: Insufficient credits. The account has 18 Google Flow credits available, but the generation with the selected settings (Veo 3.1 Quality, 8s) requires 100 credits. The 'Tạo' (Create) button was replaced by a 'Cảnh báo về việc không đủ tín dụng' (Credit warning) button.",
+    "new_asset_url": "N/A",
+    "submitted_once": false,
+    "prompt_complete": true,
+    "generation_status": "Blocked",
+    "exact_account_banner": "Bạn sắp dùng hết tín dụng Google Flow. Tín dụng của bạn sẽ được đặt lại hằng tháng hoặc bạn có thể nạp tiền để nhận thêm ngay.",
+    "source_images_loaded": true,
+    "saved_generation_model": "N/A",
+    "model_before_submission": "Veo 3.1 Quality"
+  }
+}

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { EVENT_DATA } from '@/config/event';
-import { ArrowDown, ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { smoothstep } from '@/lib/sceneProgress';
 import { CAMPUS_JOURNEY, MEMORY_STOPS, getMemoryOpacity } from '@/config/journey';
 
@@ -39,9 +39,8 @@ export function StoryOverlay({ progress }: StoryOverlayProps) {
   const cardOpacity = stop ? getMemoryOpacity(progress, activeIndex) : 0;
   const enter = stop ? smoothstep(stop.start, stop.start + .009, progress) : 0;
   const exit = stop ? smoothstep(stop.holdEnd, stop.end, progress) : 0;
-  const headingOpacity = smoothstep(.18, .195, progress) * (1 - smoothstep(.375, .39, progress));
-  const doorOpacity = smoothstep(.382, .389, progress) * (1 - smoothstep(.4, .416, progress));
-  const phase = progress >= CAMPUS_JOURNEY.doorOpen ? 'opening' : progress >= CAMPUS_JOURNEY.doorHold ? 'door' : activeIndex >= 0 ? 'memory' : 'approach';
+  const headingOpacity = smoothstep(.205, .215, progress) * (1 - smoothstep(.375, .39, progress));
+  const phase = progress >= CAMPUS_JOURNEY.doorOpen ? 'opening' : activeIndex >= 0 ? 'memory' : 'approach';
 
   return (
     <div className="campus-story-overlay fixed inset-0 pointer-events-none z-10" data-journey-phase={phase}>
@@ -66,12 +65,6 @@ export function StoryOverlay({ progress }: StoryOverlayProps) {
             <span className="memory-stop-link">Lưu giữ khoảnh khắc <ArrowUpRight size={14} /></span>
           </div>
         </article>
-      </div>}
-      {doorOpacity > 0 && <div className="door-prompt" style={{ opacity: doorOpacity }}>
-        <span className="door-prompt-rule" />
-        <p>Khép lại một hành trình.</p>
-        <span>Cuộn tiếp để mở chương mới</span>
-        <ArrowDown size={16} />
       </div>}
       {/* Enlarged Memory Photo Lightbox Modal with Scroll Isolation */}
       {selectedStoryIndex !== null && (
